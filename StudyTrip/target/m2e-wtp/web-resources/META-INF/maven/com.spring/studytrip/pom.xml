@@ -414,21 +414,6 @@
                 </configuration>
             </plugin>
             
-            <!--Maven 빌드할때 사용되는 내용이다. 시작 -->
-            <plugin>
-			<groupId>org.apache.tomcat.maven</groupId>
-			<artifactId>tomcat7-maven-plugin</artifactId>
-			<version>2.2</version>
-			<configuration>
-	            <port>9090</port>                              <!--  tomcat서버를 9090 port 에서 실행 -->               
-	            <path>/board</path>                            <!--  /board에 배포 -->					
-			    <url>http://127.0.0.1:9090/manager/text</url>  <!--  구동중인 톰캣의 주소(또는 Tomcat 방화벽 설정에 따라 192.168.50.53:9090 도 가능함) + /manager/text   role 이 manager-script 일 경우 manager/text, role 이 manager-gui 일 경우 manager/html  -->
-			    <username>admin</username>                     <!--  톰캣사용자 정보 -->
-			    <password>1234</password>  
-			</configuration>
-		    </plugin>
-            <!--Maven 빌드할때 사용되는 내용이다. 끝 -->
-            
         </plugins>
     </build>
 </project>
