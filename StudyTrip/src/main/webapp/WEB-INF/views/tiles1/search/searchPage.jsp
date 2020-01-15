@@ -303,7 +303,7 @@
 				    	</label>				    			    
 				    </li>
 				  </ul>
-				       <div align="center" style="margin-bottom: 40px;">
+				       <div align="center" style="margin-bottom: 40px; margin-left: 490px;">
 				       		<button type="button" class="btn btn-info">선택해제</button>
 				       		<button type="button" class="btn btn-success" style="margin-left: 20px;">필터검색</button>
 				       </div>
