@@ -1,4 +1,4 @@
-package com.spring.main.service;
+package com.spring.service;
 
 public interface InterMainService {
 

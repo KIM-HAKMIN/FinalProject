@@ -1,4 +1,4 @@
-package com.spring.main.controller;
+package com.spring.controller;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -7,36 +7,26 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.spring.main.service.InterMainService;
+import com.spring.service.InterMainService;
 
 
 @Controller
-public class SearchController {
+public class MainController {
 
 	@Autowired   // Type에 따라 알아서 Bean 을 주입해준다.
 	private InterMainService service;
 	
-	@RequestMapping(value="/search.st")
-	public ModelAndView search(ModelAndView mav) {
+	@RequestMapping(value="/main.st")
+	public ModelAndView Test(ModelAndView mav) {
 		
+		String date = service.getToday();
 		
-		mav.setViewName("search/searchPage.tiles1");
-		
-		
-		return mav;
-	}
-	
-	@RequestMapping(value="/studyDetail.st")
-	public ModelAndView searchDetail(ModelAndView mav) {
-		
-		
-		mav.setViewName("search/studyDetail.tiles1");
+		mav.addObject("date",date);
+		mav.setViewName("main/mainTest.tiles1");
 		
 		
 		return mav;
 	}
-	
-	
 
 	
 }
