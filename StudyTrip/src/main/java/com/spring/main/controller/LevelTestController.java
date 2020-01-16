@@ -39,4 +39,12 @@ public class LevelTestController {
 		
 		return mav;
 	}
+	
+	@RequestMapping(value="/themaform.st")
+	public ModelAndView Test4(ModelAndView mav) {
+		
+		mav.setViewName("thema/themaform");		
+		
+		return mav;
+	}
 }
