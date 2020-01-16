@@ -1,4 +1,4 @@
-package com.spring.main.model;
+package com.spring.model;
 
 public interface InterMainDAO {
 

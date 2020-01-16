@@ -1,4 +1,4 @@
-package com.spring.main.model;
+package com.spring.model;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
