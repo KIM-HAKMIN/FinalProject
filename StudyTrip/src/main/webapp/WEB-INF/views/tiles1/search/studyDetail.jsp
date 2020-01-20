@@ -41,6 +41,18 @@ td{
     line-height: 1.8em;
 }
 
+#question-submit{
+	float: right;
+    margin-top: 10px;
+    padding: 15px 50px;
+    border: none;
+    border-radius: 1px;
+    background-color: #ef6c00;
+    color: #fff;
+    font-size: 11pt;
+    cursor: pointer;
+}
+
 </style>
 
 
@@ -52,7 +64,7 @@ td{
 <div style="background: #ebebeb;" align="center" >
 	<div style="width: 77%; padding-top: 30px; display: inline-block;">
 	
-		<div style="float: left; background-color: #eee; width: 70%; ">
+		<div style="float: left; background-color: white; width: 70%; ">
 			<div style="background-color: #aaa;">
 			
 				<div>
@@ -170,7 +182,7 @@ td{
 				</div>
 				
 				<div style="background-color: white; display: inline-block; width: 75%; padding: 50px 30px 50px 30px; text-align: left;">
-					<table>
+					<table style="height: 100px;">
 						<tr>
 							<td class="table_col" style="width: 50px;">지역:</td>
 							<td class="table_row" style="width: 100px;">김포</td>
@@ -211,10 +223,10 @@ td{
 				
 				<div style="background-color: white; display: inline-block; width: 75%; padding: 30px 30px 30px 30px; text-align: left;">
 					<div style="font-size: 11pt; color: #505050; font-weight: bold; margin-bottom: 10px;">'입문2'레벨은 이런 분들을 위한 스터디에요!</div>
-					<div class="levelFont">중학교 영단어 수준까지 흐릿하게 기억나요.</div>
-					<div class="levelFont">학창시절 문법을 배웠지만 기억에 남아있지 않아요.</div>
-					<div class="levelFont">기본 문장 한마디는 영어로 만들 수 있지만, 조금만 길어져도 막혀요.</div>
-					<div class="levelFont">외국인이 말을 하면 20-30% 정도 알아들어요</div>	
+					<div class="levelFont"><img src="<%= ctxPath%>/resources/images/tick.png" style="width: 15px; height: 15px;"/> 중학교 영단어 수준까지 흐릿하게 기억나요.</div>
+					<div class="levelFont"><img src="<%= ctxPath%>/resources/images/tick.png" style="width: 15px; height: 15px;"/>학창시절 문법을 배웠지만 기억에 남아있지 않아요.</div>
+					<div class="levelFont"><img src="<%= ctxPath%>/resources/images/tick.png" style="width: 15px; height: 15px;"/>기본 문장 한마디는 영어로 만들 수 있지만, 조금만 길어져도 막혀요.</div>
+					<div class="levelFont"><img src="<%= ctxPath%>/resources/images/tick.png" style="width: 15px; height: 15px;"/>외국인이 말을 하면 20-30% 정도 알아들어요</div>	
 					<div id="levelbox" style="width: 380px; margin-top: 30px;">
 						<span style="color: white;">나한테 맞는 레벨일까?▶︎</span><span style="color:#fffb67;"><u>30초 레벨테스트 하러가기!</u></span>
 					</div>
@@ -234,7 +246,7 @@ td{
 				
 				<div style="background-color: white; display: inline-block; width: 75%; padding: 30px 30px 30px 30px;">
 
-					<div style="width: 100%; height: 110px; background-color: #f0f7eb;">
+					<div style="width: 100%; height: 110px; background-color: white;">
 						
 					</div>
 	
@@ -300,7 +312,23 @@ td{
 						<div style="margin-top: 10px;">2019년 11월</div>
 					</div>
 				</div>
+			</div>		
+			
+			
+			<div style="width: 100%; min-height: 250px;">
+				<div style="display: inline-block; width: 24%; float: left; padding: 30px 30px 30px 30px;">
+				Q&A
+				</div>
+				
+				<div align="right" style="background-color: white; display: inline-block; width: 75%; padding: 30px 30px 30px 30px; text-align: left;">
+
+						<div align="right"><textarea style="width: 100%;" rows="8"  placeholder="스터디에 대해 궁금한 점이 있으신가요?"></textarea></div>
+						
+						<div align="right"><input id="question-submit" type="submit" value="완료" /></div>
+				
+				</div>
 			</div>			
+				
 
 	
 		</div> <!-- left 마지막 div -->
