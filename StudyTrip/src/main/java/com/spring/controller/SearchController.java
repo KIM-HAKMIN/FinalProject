@@ -35,7 +35,16 @@ public class SearchController {
 		
 		return mav;
 	}
-	
+
+	@RequestMapping(value="/studyRegister.st")
+	public ModelAndView studyRegister(ModelAndView mav) {
+		
+		
+		mav.setViewName("search/studyRegister.tiles1");
+		
+		
+		return mav;
+	}	
 	
 
 	
