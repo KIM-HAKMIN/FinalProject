@@ -1,12 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-</head>
-<body>
 
-</body>
-</html>
+<% String ctxPath = request.getContextPath(); %>
+
+<script type="text/javascript">
+	if(${n==1}) {
+		alert("글쓰기 성공!!");
+		location.href="<%= ctxPath%>/list.action";
+	}
+	else {
+		alert("글쓰기 실패!!");
+		location.href="<%= ctxPath%>/list.action";
+	}
+</script>
