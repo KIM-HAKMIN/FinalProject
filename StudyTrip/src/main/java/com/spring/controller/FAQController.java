@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.spring.common.MyUtil;
-import com.spring.model.BoardVO;
+import com.spring.model.FAQVO;
 import com.spring.service.InterFAQService;
 
 @Controller
@@ -29,7 +29,7 @@ public class FAQController {
 		String gobackURL = request.getParameter("gobackURL");
 		mav.addObject("gobackURL", gobackURL);
 		
-		BoardVO boardvo = null;
+		FAQVO boardvo = null;
 			
 		boardvo = service.getViewWithNoAddCount(seq);
 
@@ -43,7 +43,7 @@ public class FAQController {
 	@RequestMapping(value="/FAQ_list.st", method= {RequestMethod.GET})
 	public ModelAndView FAQ_list(HttpServletRequest request, ModelAndView mav) {
 
-		List<BoardVO> boardList = null;
+		List<FAQVO> boardList = null;
 
 		String str_currentShowPageNo = request.getParameter("currentShowPageNo"); 
 		
@@ -153,7 +153,7 @@ public class FAQController {
 	
 	
 	@RequestMapping(value="/FAQ_addEnd.st", method= {RequestMethod.POST})
-	public ModelAndView FAQ_addEnd(BoardVO boardvo, ModelAndView mav) {
+	public ModelAndView FAQ_addEnd(FAQVO boardvo, ModelAndView mav) {
 
 		// *** 크로스 사이트 스크립트 공격에 대응하는 안전한 코드(시큐어 코드) 작성하기 ***
 		boardvo.setSubject( MyUtil.replaceParameter(boardvo.getSubject()) ); // vo에서 글제목 읽어와서 바꾸어서 vo에 다시 넣기		
@@ -189,7 +189,7 @@ public class FAQController {
 		String seq = request.getParameter("seq");
 		String pw = request.getParameter("pw");
 		
-		BoardVO boardvo = new BoardVO();
+		FAQVO boardvo = new FAQVO();
 		boardvo.setSeq(seq);
 		boardvo.setPw(pw);
 		
@@ -214,7 +214,7 @@ public class FAQController {
 
 		String seq = request.getParameter("seq");
 		
-		BoardVO boardvo = service.getViewWithNoAddCount(seq);
+		FAQVO boardvo = service.getViewWithNoAddCount(seq);
 
 		mav.addObject("boardvo", boardvo);
 		mav.setViewName("FAQ/edit.tiles1");
@@ -224,7 +224,7 @@ public class FAQController {
 	
 	
 	@RequestMapping(value="/FAQ_editEnd.st", method= {RequestMethod.POST})
-	public ModelAndView FAQ_editEnd(HttpServletRequest request, BoardVO boardvo, ModelAndView mav) {
+	public ModelAndView FAQ_editEnd(HttpServletRequest request, FAQVO boardvo, ModelAndView mav) {
 
 		// *** 크로스 사이트 스크립트 공격에 대응하는 안전한 코드(시큐어 코드) 작성하기 *** //
 		boardvo.setSubject(MyUtil.replaceParameter(boardvo.getSubject()));

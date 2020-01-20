@@ -5,18 +5,18 @@ import java.util.List;
 
 public interface InterFAQDAO {
 
-	BoardVO getView(String seq);
+	FAQVO getView(String seq);
 
 	int getTotalCountWithNOsearch();
 
-	List<BoardVO> boardListWithPaging(HashMap<String, String> paraMap);
+	List<FAQVO> boardListWithPaging(HashMap<String, String> paraMap);
 
-	int add(BoardVO boardvo);
+	int add(FAQVO boardvo);
 
-	boolean checkPW(BoardVO boardvo);
+	boolean checkPW(FAQVO boardvo);
 
-	int deleteBoard(BoardVO boardvo);
+	int deleteBoard(FAQVO boardvo);
 
-	int updateBoard(BoardVO boardvo);
+	int updateBoard(FAQVO boardvo);
 
 }

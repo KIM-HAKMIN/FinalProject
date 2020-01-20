@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.spring.common.AES256;
-import com.spring.model.BoardVO;
+import com.spring.model.FAQVO;
 import com.spring.model.InterFAQDAO;
 
 @Service
@@ -21,8 +21,8 @@ public class FAQService implements InterFAQService {
 	
 	
 	@Override
-	public BoardVO getViewWithNoAddCount(String seq) {
-		BoardVO boardvo = dao.getView(seq);
+	public FAQVO getViewWithNoAddCount(String seq) {
+		FAQVO boardvo = dao.getView(seq);
 		return boardvo;
 	}
 
@@ -33,19 +33,19 @@ public class FAQService implements InterFAQService {
 	}
 
 	@Override
-	public List<BoardVO> boardListWithPaging(HashMap<String, String> paraMap) {
-		List<BoardVO> boardList = dao.boardListWithPaging(paraMap);
+	public List<FAQVO> boardListWithPaging(HashMap<String, String> paraMap) {
+		List<FAQVO> boardList = dao.boardListWithPaging(paraMap);
 		return boardList;
 	}
 
 	@Override
-	public int add(BoardVO boardvo) {
+	public int add(FAQVO boardvo) {
 		int n = dao.add(boardvo);	
 		return n;
 	}
 
 	@Override
-	public int del(BoardVO boardvo) {
+	public int del(FAQVO boardvo) {
 		boolean bool = dao.checkPW(boardvo);
 		
 		if(!bool) {
@@ -58,7 +58,7 @@ public class FAQService implements InterFAQService {
 	}
 
 	@Override
-	public int edit(BoardVO boardvo) {
+	public int edit(FAQVO boardvo) {
 		boolean bool = dao.checkPW(boardvo);
 		
 		if(!bool) 

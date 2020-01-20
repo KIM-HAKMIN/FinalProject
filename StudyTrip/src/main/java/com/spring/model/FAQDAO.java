@@ -15,8 +15,8 @@ public class FAQDAO implements InterFAQDAO {
 	
 	
 	@Override
-	public BoardVO getView(String seq) {
-		BoardVO boardvo = sqlsession.selectOne("board.getView", seq);
+	public FAQVO getView(String seq) {
+		FAQVO boardvo = sqlsession.selectOne("board.getView", seq);
 		return boardvo;
 	}
 
@@ -27,19 +27,19 @@ public class FAQDAO implements InterFAQDAO {
 	}	
 
 	@Override
-	public List<BoardVO> boardListWithPaging(HashMap<String, String> paraMap) {
-		List<BoardVO> boardList = sqlsession.selectList("board.boardListWithPaging", paraMap);
+	public List<FAQVO> boardListWithPaging(HashMap<String, String> paraMap) {
+		List<FAQVO> boardList = sqlsession.selectList("board.boardListWithPaging", paraMap);
 		return boardList;
 	}
 
 	@Override
-	public int add(BoardVO boardvo) {
+	public int add(FAQVO boardvo) {
 		int n = sqlsession.insert("board.add", boardvo);
 		return n;
 	}
 
 	@Override
-	public boolean checkPW(BoardVO boardvo) {
+	public boolean checkPW(FAQVO boardvo) {
 		int n = sqlsession.selectOne("board.checkPW", boardvo); 
 		
 		if(n==1)
@@ -49,13 +49,13 @@ public class FAQDAO implements InterFAQDAO {
 	}
 
 	@Override
-	public int deleteBoard(BoardVO boardvo) {
+	public int deleteBoard(FAQVO boardvo) {
 		int n = sqlsession.delete("board.deleteBoard", boardvo);  
 		return n;
 	}
 
 	@Override
-	public int updateBoard(BoardVO boardvo) {
+	public int updateBoard(FAQVO boardvo) {
 		int n = sqlsession.update("board.updateBoard", boardvo);
 		return n;
 	}

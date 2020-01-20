@@ -3,20 +3,20 @@ package com.spring.service;
 import java.util.HashMap;
 import java.util.List;
 
-import com.spring.model.BoardVO;
+import com.spring.model.FAQVO;
 
 public interface InterFAQService {
 
-	BoardVO getViewWithNoAddCount(String seq);
+	FAQVO getViewWithNoAddCount(String seq);
 
 	int getTotalCountWithNOsearch();
 
-	List<BoardVO> boardListWithPaging(HashMap<String, String> paraMap);
+	List<FAQVO> boardListWithPaging(HashMap<String, String> paraMap);
 
-	int add(BoardVO boardvo);
+	int add(FAQVO boardvo);
 
-	int del(BoardVO boardvo);
+	int del(FAQVO boardvo);
 
-	int edit(BoardVO boardvo);
+	int edit(FAQVO boardvo);
 
 }

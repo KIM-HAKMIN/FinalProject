@@ -1,6 +1,6 @@
 package com.spring.model;
 
-public class BoardVO {
+public class FAQVO {
 	
 	private String seq;          // 글번호 
 	private String subject;      // 글제목
@@ -13,9 +13,9 @@ public class BoardVO {
 	private String nextsubject;      // 다음글제목
 	
 	
-	public BoardVO() { }
+	public FAQVO() { }
 	
-	public BoardVO(String seq, String subject, String content, String pw, String previousseq, String previoussubject, String nextseq, String nextsubject) {
+	public FAQVO(String seq, String subject, String content, String pw, String previousseq, String previoussubject, String nextseq, String nextsubject) {
 		super();
 		this.seq = seq;
 		this.subject = subject;
