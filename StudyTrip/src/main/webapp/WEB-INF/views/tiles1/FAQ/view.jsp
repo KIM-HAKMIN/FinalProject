@@ -89,5 +89,7 @@ a {
 	
 	<button class="m" type="button" onClick="javascript:location.href='<%= request.getContextPath() %>/FAQ_list.st'">목록</button> 
 	
-	<button class="a" type="button" onClick="javascript:location.href='<%= request.getContextPath() %>/FAQ_edit.st?seq=${boardvo.seq}'">수정</button>
-	<button type="button" onClick="javascript:location.href='<%= request.getContextPath() %>/FAQ_del.st?seq=${boardvo.seq}'">삭제</button>
+	<%-- <c:if test="${sessionScope.loginuser.userid == 'admin'}"> --%>
+		<button class="a" type="button" onClick="javascript:location.href='<%= request.getContextPath() %>/FAQ_edit.st?seq=${boardvo.seq}'">수정</button>
+		<button type="button" onClick="javascript:location.href='<%= request.getContextPath() %>/FAQ_del.st?seq=${boardvo.seq}'">삭제</button>
+	<%-- </c:if> --%>
