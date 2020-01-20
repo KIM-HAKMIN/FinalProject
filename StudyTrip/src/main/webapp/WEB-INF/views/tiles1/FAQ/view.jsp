@@ -82,12 +82,12 @@ a {
 	</table>
 </div>
 	
-	<div class="m n" style="margin-bottom: 1%;">이전글 : <span class="move" onClick="javascript:location.href='view.action?seq=${boardvo.previousseq}'">${boardvo.previoussubject}</span></div>
-	<div class="m" style="margin-bottom: 1%;">다음글 : <span class="move" onClick="javascript:location.href='view.action?seq=${boardvo.nextseq}'">${boardvo.nextsubject}</span></div>
+	<div class="m n" style="margin-bottom: 1%;">이전글 : <span class="move" onClick="javascript:location.href='FAQ_view.st?seq=${boardvo.previousseq}'">${boardvo.previoussubject}</span></div>
+	<div class="m" style="margin-bottom: 1%;">다음글 : <span class="move" onClick="javascript:location.href='FAQ_view.st?seq=${boardvo.nextseq}'">${boardvo.nextsubject}</span></div>
 	
 	<br/>
 	
-	<button class="m" type="button" onClick="javascript:location.href='<%= request.getContextPath() %>/list.action'">목록</button> 
+	<button class="m" type="button" onClick="javascript:location.href='<%= request.getContextPath() %>/FAQ_list.st'">목록</button> 
 	
-	<button class="a" type="button" onClick="javascript:location.href='<%= request.getContextPath() %>/edit.action?seq=${boardvo.seq}'">수정</button>
-	<button type="button" onClick="javascript:location.href='<%= request.getContextPath() %>/del.action?seq=${boardvo.seq}'">삭제</button>
+	<button class="a" type="button" onClick="javascript:location.href='<%= request.getContextPath() %>/FAQ_edit.st?seq=${boardvo.seq}'">수정</button>
+	<button type="button" onClick="javascript:location.href='<%= request.getContextPath() %>/FAQ_del.st?seq=${boardvo.seq}'">삭제</button>

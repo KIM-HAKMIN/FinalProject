@@ -55,7 +55,7 @@ img {
 		frm.seq.value = seq;
 		
 		frm.method = "GET";
-		frm.action = "view.action";
+		frm.action = "FAQ_view.st";
 		frm.submit();
 	}
 	

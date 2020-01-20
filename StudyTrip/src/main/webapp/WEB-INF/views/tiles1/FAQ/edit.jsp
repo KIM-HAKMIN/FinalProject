@@ -105,7 +105,7 @@ table td{
 			// 폼을 submit
 			var frm = document.editFrm;
 			frm.method = "POST";
-			frm.action = "<%= ctxPath%>/editEnd.action";
+			frm.action = "<%= ctxPath%>/FAQ_editEnd.st";
 			frm.submit();
 		});
 		

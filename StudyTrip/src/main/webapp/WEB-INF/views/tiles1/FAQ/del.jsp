@@ -52,7 +52,7 @@ table td{
 			// 폼을 submit
 			var frm = document.delFrm;
 			frm.method = "POST";
-			frm.action = "<%= ctxPath%>/delEnd.action";
+			frm.action = "<%= ctxPath%>/FAQ_delEnd.st";
 			frm.submit();
 		});
 		
