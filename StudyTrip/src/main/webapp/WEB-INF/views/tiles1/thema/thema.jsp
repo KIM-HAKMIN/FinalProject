@@ -1,5 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
+<%
+	String ctxPath = request.getContextPath();
+%>
+    
+    
 <!DOCTYPE html>
 <html>
 <head>
@@ -270,7 +276,7 @@ display: inline-block;
 						<div id="with-member-studies-wrap" class="theme-study-list-wrap swiper-container-horizontal">
 							<div class="swiper-wrapper">
 								<div class="study-wrap swiper-slide swiper-slide-active">
-									<a href="https://docs.google.com/forms/d/e/1FAIpQLSfXQQcBFtE56DRl7Az_U8D4Y2YdKZQlHjbphZ4Nb-cNz3gV_A/viewform?usp=sf_link" target="_blank">
+									<a href="<%=ctxPath%>/themaform.st" target="_blank">
 									<div class="date-label">1월 매주 금/토
 									</div>
 									<div class="study-thumbnail" style="background-image: url(&quot;https://cdn.studysearch.co.kr/images/theme-study/27/1577871192.97?v=1577871193&quot;);">
@@ -319,7 +325,7 @@ display: inline-block;
 				      <div class="middle-title-wrap">
 				      	 <div class="middle-title">스터디서치에서는<br>즐거운 만남이 끊이지 않는다!</div>
 				      	 <div class="middle-sub-title">이제 여러분도 함께 해요!</div>
-				      	 <a class="start-link" href="/product/level/1/test/?s=tlm&amp;c=1">스터디 시작하기</a>
+				      	 <a class="start-link" href="<%=ctxPath%>/leveltest.st">스터디 시작하기</a>
 				      </div>
 				   </div>
 		   
