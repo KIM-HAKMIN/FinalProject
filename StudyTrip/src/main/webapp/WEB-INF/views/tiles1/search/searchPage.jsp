@@ -181,16 +181,74 @@
 
 <script type="text/javascript">
 
-/* $(document).ready(function(){
+ $(document).ready(function(){
 	
-	alert("제이쿼리");
-	
- 	$("#resetBtn").click(function(){
-	
- 		alert("제이쿼리 이상무");
+	 $('#selectCancel').click(function(){
 		
-	}); 
-}); */
+		 $("input:checkbox[name=areaCheckbox]").prop("checked", false);
+		 $("input:checkbox[name=levelCheckbox]").prop("checked", false);		 
+		 $("input:checkbox[name=dayCheckbox]").prop("checked", false); 
+	 });
+	 
+	 
+	 
+	 $('.btnSearch').click(function(){
+		 
+			var length = $("input:checkbox[name=areaCheckbox]").length;
+		    var checkBoxArr = [];
+		    var checkBoxArr1 = [];
+		    var checkBoxArr2 = [];
+
+			
+			var area = null;
+			var level = null;
+			var day = null;
+				 
+		    for(var i=0; i<length; i++) {
+			  if( $("input:checkbox[name=areaCheckbox]").eq(i).is(":checked") ) {
+			    checkBoxArr.push( $("input:checkbox[name=areaCheckbox]").eq(i).val() );
+			  }
+		    }// end of for------------------------------------
+		    
+		   area = checkBoxArr.join();
+		   
+		    
+		    
+ 		   length = $("input:checkbox[name=levelCheckbox]").length;
+		    
+		   for(var i=0; i<length; i++) {
+				  if( $("input:checkbox[name=levelCheckbox]").eq(i).is(":checked") ) {
+				    checkBoxArr1.push( $("input:checkbox[name=levelCheckbox]").eq(i).val() );
+				}
+			}
+		   
+		   level = checkBoxArr1.join();
+		   
+
+ 		   length = $("input:checkbox[name=dayCheckbox]").length;
+		    
+		   for(var i=0; i<length; i++) {
+				  if( $("input:checkbox[name=dayCheckbox]").eq(i).is(":checked") ) {
+				    checkBoxArr2.push( $("input:checkbox[name=dayCheckbox]").eq(i).val() );
+				}
+			}
+		   
+		   day = checkBoxArr2.join();
+	 
+
+		   location.href="/studytrip/search.st?area="+area+"&&level="+level+"&&day="+day;
+		 
+	 });
+	 
+	 
+}); 
+ 
+	function goDetail(){
+		
+		
+		location.href="/studytrip/studyDetail.st?study_num="+$('#study_num').val();
+		
+	}
 	
 
 </script>
@@ -226,37 +284,37 @@
 				<ul  style="list-style-type: none; display: inline-block; width: 150px;" >
 				    <li>
 				    	<label for="area1" class="container element">&nbsp;강남
-				    	<input type="checkbox" name="areaCheckbox" id="area1" class="findCheck element"/>
+				    	<input type="checkbox" name="areaCheckbox" id="area1" class="findCheck element searchCheckbox" value="강남"/>
 				    	<span class="checkmark"></span>
 				    	</label>
 				    </li>
 				    <li>
 				    	<label for="area2" class="container element">&nbsp;신촌
-				    	<input type="checkbox" name="areaCheckbox" id="area2" class="findCheck element"/>
+				    	<input type="checkbox" name="areaCheckbox" id="area2" class="findCheck element searchCheckbox" value="신촌"/>
 				    	<span class="checkmark"></span>
 				    	</label>				    			    
 				    </li>
 				    <li>
 				    	<label for="area3" class="container element">&nbsp;홍대
-				    	<input type="checkbox" name="areaCheckbox" id="area3" class="findCheck element"/>
+				    	<input type="checkbox" name="areaCheckbox" id="area3" class="findCheck element searchCheckbox" value="홍대"/>
 				    	<span class="checkmark"></span>
 				    	</label>				    		    
 				    </li>
 				    <li>
 				    	<label for="area4" class="container element">&nbsp;부평
-				    	<input type="checkbox" name="areaCheckbox" id="area4" class="findCheck element"/>
+				    	<input type="checkbox" name="areaCheckbox" id="area4" class="findCheck element searchCheckbox" value="부평"/>
 				    	<span class="checkmark"></span>
 				    	</label>				    
 				    </li>
 				    <li>
 				    	<label for="area5" class="container element">&nbsp;종각
-				    	<input type="checkbox" name="areaCheckbox" id="area5" class="findCheck element"/>
+				    	<input type="checkbox" name="areaCheckbox" id="area5" class="findCheck element searchCheckbox" value="종각"/>
 				    	<span class="checkmark"></span>
 				    	</label>				    
 				    </li>
 				    <li>
 				    	<label for="area6" class="container element">&nbsp;노원
-				    	<input type="checkbox" name="areaCheckbox" id="area6" class="findCheck element"/>
+				    	<input type="checkbox" name="areaCheckbox" id="area6" class="findCheck element searchCheckbox" value="노원"/>
 				    	<span class="checkmark"></span>
 				    	</label>				    
 				    </li>						    					    
@@ -265,25 +323,25 @@
 				  <ul  style="list-style-type: none;  display: inline-block; width: 150px; margin-left: 102px; position: relative; bottom: 87px;" >
 				    <li>
 				    	<label for="level1" class="container element">&nbsp;입문
-				    	<input type="checkbox" name="levelCheckbox" id="level1" class="findCheck element"/>
+				    	<input type="checkbox" name="levelCheckbox" id="level1" class="findCheck element searchCheckbox" value="입문"/>
 				    	<span class="checkmark"></span>
 				    	</label>
 				    </li>
 				    <li>
 				    	<label for="level2" class="container element">&nbsp;초급
-				    	<input type="checkbox" name="levelCheckbox" id="level2" class="findCheck element"/>
+				    	<input type="checkbox" name="levelCheckbox" id="level2" class="findCheck element searchCheckbox" value="초급"/>
 				    	<span class="checkmark"></span>
 				    	</label>				    			    
 				    </li>
 				    <li>
 				    	<label for="level3" class="container element">&nbsp;중급
-				    	<input type="checkbox" name="levelCheckbox" id="level3" class="findCheck element"/>
+				    	<input type="checkbox" name="levelCheckbox" id="level3" class="findCheck element searchCheckbox" value="중급"/>
 				    	<span class="checkmark"></span>
 				    	</label>				    		    
 				    </li>
 				    <li>
 				    	<label for="level4" class="container element">&nbsp;고급
-				    	<input type="checkbox" name="levelCheckbox" id="level4" class="findCheck element"/>
+				    	<input type="checkbox" name="levelCheckbox" id="level4" class="findCheck element searchCheckbox" value="고급"/>
 				    	<span class="checkmark"></span>
 				    	</label>				    
 				    </li>					    					    
@@ -292,24 +350,24 @@
 				  <ul  style="list-style-type: none;  display: inline-block; width: 150px; margin-left: 101px; position: relative; bottom: 170px;" >
 				    <li>
 				    	<label for="day1" class="container element">&nbsp;평일
-				    	<input type="checkbox" name="dayCheckbox" id="day1" class="findCheck element"/>
+				    	<input type="checkbox" name="dayCheckbox" id="day1" class="findCheck element searchCheckbox" value="평일"/>
 				    	<span class="checkmark"></span>
 				    	</label>
 				    </li>
 				    <li>
 				    	<label for="day2" class="container element">&nbsp;주말
-				    	<input type="checkbox" name="dayCheckbox" id="day2" class="findCheck element"/>
+				    	<input type="checkbox" name="dayCheckbox" id="day2" class="findCheck element searchCheckbox" value="주말"/>
 				    	<span class="checkmark"></span>
 				    	</label>				    			    
 				    </li>
 				  </ul>
 				       <div align="center" style="margin-bottom: 40px; margin-left: 490px;">
-				       		<button type="button" class="btn btn-info">선택해제</button>
-				       		<button type="button" class="btn btn-success" style="margin-left: 20px;">필터검색</button>
+				       		<button type="button" class="btn btn-info" id="selectCancel">선택해제</button>
+				       		<button type="button" class="btn btn-success btnSearch" style="margin-left: 20px;">필터검색</button>
 				       </div>
 				</div>		  
 			</div>
-				<button type="button" style="width: 160px; height: 57px; margin-left: 40px; background-color: #ff6600"><span style="color: white; font-size: 12pt; font-weight: bold;">필터검색</span></button>			  		  
+				<button type="button" class="btnSearch" style="width: 160px; height: 57px; margin-left: 40px; background-color: #ff6600"><span style="color: white; font-size: 12pt; font-weight: bold;">필터검색</span></button>			  		  
 		</div>
 	</div>	
 </div>
@@ -317,8 +375,9 @@
 <div style="background: #ebebeb; width: 100%;" align="center">
 	<div align="left" style="width: 80%;">
 		<div style="text-align: left; color: #505050; font-size: 16pt; font-weight: bold; padding: 60px 0 40px 0; margin-left: 38px;"><span>1500개의 스터디</span></div>	
-		<c:forEach begin="1" end="5" varStatus="status">
-		<div style=" width: 290px; display: inline-block; margin-bottom: 30px; margin-left: 42px;">
+		<c:forEach begin="1" end="5" varStatus="status" >
+		<input type="hidden" id="study_num" value="1" />
+		<div id style=" width: 290px; display: inline-block; margin-bottom: 30px; margin-left: 42px; cursor: pointer;" onclick="goDetail()">
 			<div align="center" style="background-color:white; width: 100%; height: 50px; text-align: center;">
 				<div style="padding-top: 20px;"><span style="color: #4c8def; font-weight: bold;">1월20일 (월)</span> <span style= "color: #787878;font-weight: bold;"> 17:00~19:00 첫 시작</span></div>
 				<div style="border-top: solid 0.5px gray; width: 90%; margin: 0 auto; margin-top: 14px; position: relative;"></div>
@@ -336,19 +395,19 @@
 
 
 			<c:if test="true">
-			<div align="center" style="height: 220px; width: 100%; background-image:url('<%= ctxPath%>/resources/images/6035-1508821271.jpg');background-size:cover;">
+			<div align="center" style="height: 220px; width: 100%; background-image:url('<%= ctxPath%>/resources/images/6035-1508821271.jpg'); background-size:cover; background-position: center;">
 				<img src="<%= ctxPath%>/resources/images/1508821271.jpg" style="height: 100px; width: 100px; border-radius: 100px; position: relative; bottom: 35px; border: solid 2px white;"/>
 				<div style="width: 100%; height: 50px; background-color: rgba(0,0,0,.5); margin-top: 70px; text-align: center;"><div style="color: white; font-size: 11pt; font-weight:bold; position: relative; top: 13px;">마감 되었습니다.</div></div>		
 			</div>
 			</c:if>
 			<c:if test="false">
-			<div align="center" style="height: 220px; width: 100%; background-image:url('<%= ctxPath%>/resources/images/6035-1508821271.jpg');background-size:cover;">
+			<div align="center" style="height: 220px; width: 100%; background-image:url('<%= ctxPath%>/resources/images/6035-1508821271.jpg');background-size:cover; background-position: center;">
 				<img src="<%= ctxPath%>/resources/images/1508821271.jpg" style="height: 100px; width: 100px; border-radius: 100px; position: relative; bottom: 35px; border: solid 2px white;"/>
 				<div style="width: 100%; height: 50px; background-color: rgba(220,0,0,.6); margin-top: 70px; text-align: center;"><div style="color: white; font-size: 11pt; font-weight: bold; position: relative; top: 13px;">마감임박</div></div>		
 			</div>
 			</c:if>
 			<c:if test="false">
-			<div align="center" style="height: 220px; width: 100%; background-image:url('<%= ctxPath%>/resources/images/6035-1508821271.jpg');background-size:cover;">
+			<div align="center" style="height: 220px; width: 100%; background-image:url('<%= ctxPath%>/resources/images/6035-1508821271.jpg');background-size:cover; background-position: center;">
 				<img src="<%= ctxPath%>/resources/images/1508821271.jpg" style="height: 100px; width: 100px; border-radius: 100px; position: relative; bottom: 35px; border: solid 2px white;"/>
 				<div style="width: 100%; height: 50px; background-color: rgba(239,108,0,.8); margin-top: 70px; text-align: center;"><div style="color: white; font-size: 11pt; font-weight: bold; position: relative; top: 13px;">신규모집</div></div>		
 			</div>
