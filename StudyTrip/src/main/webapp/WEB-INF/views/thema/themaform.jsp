@@ -1,6 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
+<%
+	String ctxPath = request.getContextPath();
+%>
+    
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -173,6 +178,14 @@ form {
     white-space: pre-wrap;
 }
 
+
+.dayChoice {
+padding: 0;
+}
+
+.dayChoice-day{
+align-items: flex-start;
+}
 </style>
 
 </head>
@@ -236,12 +249,70 @@ form {
 												<div class="viewTitleListItemItemQ">
 												참여가능 하신 일정을 선택해주세요. *
 												</div>
+												<div>
+													<div class="dayChoice">
+														<span class="appsMaterialWizToggleRadiogroupGroupContent exportGroupContent">
+															<div class="freebirdFormviewerViewItemsRadioChoicesContainer">
+																<input type="checkbox" class="themachoiceday">
+																<div class="freebirdFormviewerViewItemsRadioOptionContainer">
+																	<label  class="docssharedWizToggleLabeledContainer freebirdFormviewerViewItemsRadioChoice">																		
+																		<div class="docssharedWizToggleLabeledLabelWrapper exportLabelWrapper">
+																			<div class="appsMaterialWizToggleRadiogroupElContainer exportContainerEl  docssharedWizToggleLabeledControl freebirdThemedRadio freebirdThemedRadioDarkerDisabled freebirdFormviewerViewItemsRadioControl">
+																				<div class="appsMaterialWizToggleRadiogroupEl exportToggleEl isChecked" jscontroller="EcW08c" jsaction="keydown:I481le;dyRcpb:dyRcpb;click:cOuCgd; mousedown:UX7yZ; mouseup:lbsD7e; mouseenter:tfO1Yc; mouseleave:JywGue; focus:AHmuwe; blur:O22p3e; contextmenu:mg9Pef;touchstart:p6p2H; touchmove:FwuNnf; touchend:yfqBxc(preventMouseEvents=true|preventDefault=true); touchcancel:JMtRjd;" jsshadow="" aria-label="1/18 (토) 홍대요!" tabindex="0" data-value="1/18 (토) 홍대요!" aria-describedby="  i11" role="radio" aria-checked="true" aria-posinset="1" aria-setsize="2"><div class="appsMaterialWizToggleRadiogroupInk exportInk">																				
+																				</div>
+																				<div class="appsMaterialWizToggleRadiogroupInnerBox">
+																				</div>
+																				<div class="appsMaterialWizToggleRadiogroupRadioButtonContainer">
+																					<div class="appsMaterialWizToggleRadiogroupOffRadio exportOuterCircle">
+																						<div class="appsMaterialWizToggleRadiogroupOnRadio exportInnerCircle">
+																						</div>
+																					</div>
+																				</div>
+																				</div>
+																			</div>
+																			<div class="docssharedWizToggleLabeledContent">
+																				<div class="docssharedWizToggleLabeledPrimaryText">
+																				<span dir="auto" class="docssharedWizToggleLabeledLabelText exportLabel freebirdFormviewerViewItemsRadioLabel">1/18 (토) 홍대요!</span>
+																				</div>
+																			</div>
+																		</div>
+																	</label>
+																</div>
+																<input type="checkbox" class="themachoiceday"><div class="freebirdFormviewerViewItemsRadioOptionContainer"> 
+																	<label class="docssharedWizToggleLabeledContainer freebirdFormviewerViewItemsRadioChoice">
+																		<div class="docssharedWizToggleLabeledLabelWrapper exportLabelWrapper">
+																			<div class="appsMaterialWizToggleRadiogroupElContainer exportContainerEl  docssharedWizToggleLabeledControl freebirdThemedRadio freebirdThemedRadioDarkerDisabled freebirdFormviewerViewItemsRadioControl">
+																				<div class="appsMaterialWizToggleRadiogroupEl exportToggleEl isCheckedNext" jscontroller="EcW08c" jsaction="keydown:I481le;dyRcpb:dyRcpb;click:cOuCgd; mousedown:UX7yZ; mouseup:lbsD7e; mouseenter:tfO1Yc; mouseleave:JywGue; focus:AHmuwe; blur:O22p3e; contextmenu:mg9Pef;touchstart:p6p2H; touchmove:FwuNnf; touchend:yfqBxc(preventMouseEvents=true|preventDefault=true); touchcancel:JMtRjd;" jsshadow="" aria-label="1/31 (금) 강남이요!" tabindex="-1" data-value="1/31 (금) 강남이요!" aria-describedby="  i14" role="radio" aria-checked="false" aria-posinset="2" aria-setsize="2">
+																					<div class="appsMaterialWizToggleRadiogroupInk exportInk">
+																					</div>
+																					<div class="appsMaterialWizToggleRadiogroupInnerBox">
+																					</div>
+																					<div class="appsMaterialWizToggleRadiogroupRadioButtonContainer">
+																						<div class="appsMaterialWizToggleRadiogroupOffRadio exportOuterCircle">
+																							<div class="appsMaterialWizToggleRadiogroupOnRadio exportInnerCircle"></div>
+																						</div>
+																					</div>
+																				</div>
+																			</div>
+																			<div class="docssharedWizToggleLabeledContent">
+																				<div class="docssharedWizToggleLabeledPrimaryText">
+																					<span dir="auto" class="docssharedWizToggleLabeledLabelText exportLabel freebirdFormviewerViewItemsRadioLabel">1/31 (금) 강남이요!</span>
+																				</div>
+																			</div>
+																		</div>
+																	</label>																	
+																</div>
+															</div>
+														</span>																												
+													</div>
+												</div>
 											</div>
 										</div>
 										<div>
 										
 										</div>
-									</div>										
+									</div>
+									<button type="button">다음</button>										
 								</div>
 							</div>								
 						</div>
