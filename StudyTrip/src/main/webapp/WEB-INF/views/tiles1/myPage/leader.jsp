@@ -79,7 +79,6 @@
   border-color: #ff9800;
   color: orange;
   width: 250px;
-  margin-bottom: 30%;
 }
 
 .warning:hover {
@@ -208,6 +207,15 @@ tr:nth-child(even) {
   background-color: #f2f2f2;
 }
 
+.backL {
+	margin-top: 32%;
+	margin-bottom: 25%;
+}
+
+.backO {
+	margin-bottom: 25%;
+}
+
 </style>
 
 <script type="text/javascript">
@@ -317,14 +325,14 @@ tr:nth-child(even) {
 			    
 			    <div class="flip-box-back">
 			      <div>
-				      <p style="margin: 40px 0 20px 0; font-size: 11pt; font-weight: bold;">답변이 필요한 <span style="color: orange; font-weight: bold; font-size: 12pt;">2</span>개의 Q&A 문의가 있습니다.</p>
-				      <input type="button" value="Q&A 확인하러 가기" onclick="상세페이지주소+Q&A위치값" class="btn warning" />
+			      	<input type="button" value="수강생 목록 보기" onclick="document.getElementById('id01').style.display='block'" class="btn warning backL" />
 			      </div>
-			     	 <input type="button" value="스터디 수정하러 가기" onclick="수정페이지주소" class="btn warning" />
+			     	<input type="button" value="스터디 수정하러 가기" onclick="수정페이지주소" class="btn warning backO" />
 			      <div>
 			      </div>
 			      <div>
-			      	<input type="button" value="수강생 목록 보기" onclick="document.getElementById('id01').style.display='block'" class="btn warning" />
+				     <p style="font-size: 11pt; font-weight: bold;">답변이 필요한 <span style="color: orange; font-weight: bold; font-size: 12pt;">{$vo.cnt}</span>개의 Q&A 문의가 있습니다.</p>
+				     <input type="button" value="Q&A 확인하러 가기" onclick="상세페이지주소+Q&A위치값" class="btn warning backQ" />
 			      </div>
 			    </div>
 			 
@@ -367,7 +375,7 @@ tr:nth-child(even) {
 
 		<div id="profile" class="tabcontent">
 		  
-			<form class="form-horizontal" style="padding: 3%;">
+			<form class="form-horizontal" style="padding: 3% 3% 1% 3%;">
 			    
 			    <div class="form-group">
 			      <label class="control-label col-sm-4" for="name">이름</label>
@@ -412,7 +420,7 @@ tr:nth-child(even) {
 			</form>
 
 			<div align="center" style="margin-bottom: 3%;">
-		   		<input type="button" value="내 프로필 수정" onclick="profileEdit();" class="btn warning" style="margin: 0; width: 150px;" id="submitBtn"/>
+		   		<input type="button" value="내 프로필 수정" onclick="profileEdit();" class="btn warning" style="width: 150px;" id="submitBtn"/>
 				<input type="button" value="회원탈퇴" onclick="profileDel();" class="btn warning" style="margin-left:5px; width: 150px;" id="delBtn"/>
 			</div>
 		</div>

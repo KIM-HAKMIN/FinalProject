@@ -2,6 +2,7 @@ show user;
 
 select * from user_all_tables;
 
+<<<<<<< HEAD
 -- 스토리 테이블
 create table story  
 (story_num      NVARCHAR2(20)     --  (P.K)  권한번호
@@ -410,3 +411,5 @@ nomaxvalue
 nominvalue
 nocycle
 nocache;
+=======
+>>>>>>> branch 'master' of https://github.com/KIM-HAKMIN/FinalProject.git

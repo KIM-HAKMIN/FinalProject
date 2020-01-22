@@ -71,13 +71,15 @@ a {
 	<table id="table" style="word-wrap: break-word; table-layout: fixed;">
 		<tr>
            	<th>제목</th>
-           	<%-- <td>${boardvo.subject}</td> --%>
-           	<td>글제목</td>
+           	<td>${boardvo.subject}</td>
+        </tr>
+        <tr>
+           	<th>분류</th>
+           	<td>${boardvo.kind}</td>
         </tr>
 		<tr>
 			<th>내용</th>
-			<%-- <td>${boardvo.content}</td> --%>
-			<td>글내용</td>
+			<td>${boardvo.content}</td> 
 		</tr>		
 	</table>
 </div>

@@ -6,7 +6,6 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.spring.common.AES256;
 import com.spring.model.FAQVO;
 import com.spring.model.InterFAQDAO;
 
@@ -15,9 +14,6 @@ public class FAQService implements InterFAQService {
 
 	@Autowired  
 	private InterFAQDAO dao;
-	
-	@Autowired   
-	private AES256 aes;
 	
 	
 	@Override

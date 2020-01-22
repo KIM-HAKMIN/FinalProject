@@ -203,7 +203,7 @@ th, td {
 		
 		<div id="mystudy" class="tabcontent">
 			<c:forEach begin="1" end="3" varStatus="status">  <!-- db 갯수 수정 -->
-			<div style=" width: 290px; display: inline-block; margin-left: 40px;">
+			<div style=" width: 290px; display: inline-block; margin-left: 40px;" onclick="상세페이지주소"> 
 				<div align="center" style="background-color:white; width: 100%; height: 50px; text-align: center;">
 					<div style="padding-top: 20px;"><span style="color: #4c8def; font-weight: bold;">1월20일 (월)</span> <span style= "color: #787878;font-weight: bold;"> 17:00~19:00 첫 시작</span></div>
 					<div style="border-top: solid 1.5px gray; width: 90%; margin: 0 auto; margin-top: 14px; position: relative;"></div>
@@ -255,7 +255,7 @@ th, td {
 		
 		<div id="wishlist" class="tabcontent">
 		  <c:forEach begin="1" end="3" varStatus="status">  <!-- db 갯수 수정 -->
-			<div style=" width: 290px; display: inline-block; margin-left: 40px;" id="myWish">
+			<div style=" width: 290px; display: inline-block; margin-left: 40px;" id="myWish" onclick="상세페이지주소">>
 				
 				<div>
 					<img src="/studytrip/resources/images/myPage/love.png" class="wish" style="width: 10%; float: right;">
@@ -308,7 +308,7 @@ th, td {
 		
 		<div id="profile" class="tabcontent">
 		  
-			<form class="form-horizontal" style="padding: 3%;">
+			<form class="form-horizontal" style="padding: 3% 3% 1% 3%;">
 			    
 			    <div class="form-group">
 			      <label class="control-label col-sm-4" for="name">이름</label>
@@ -354,7 +354,7 @@ th, td {
 
 			<div align="center" style="margin-bottom: 3%;">
 		   		<input type="button" value="내 프로필 수정" onclick="profileEdit();" class="btn warning" style="margin: 0; width: 150px;" id="submitBtn"/>
-		   		<input type="button" value="회원탈퇴" onclick="profileDel();" class="btn warning" style="margin: 0; width: 150px;" id="delBtn"/>
+		   		<input type="button" value="회원탈퇴" onclick="profileDel();" class="btn warning" style="margin-left:5px; width: 150px;" id="delBtn"/>
 			</div>
 		</div>
 	</div>

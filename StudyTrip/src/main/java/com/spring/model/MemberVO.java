@@ -2,17 +2,17 @@ package com.spring.model;
 
 public class MemberVO {
 
-	private String email;         // 이메일
+	private String useremail;     // 이메일
 	private String name;          // 회원명
 	private String pwd;           // 비밀번호
 	private String hp;            // 휴대폰 번호
-	private String photo;         // 프로필 사진
-	private String qualification; // 리더 자격조건
-	private String way;           // 일반회원 알게된 경로
-	private String registerday;   // 가입일자
-	private int gradelevel;       // 등급레벨
-	private int status;           // 회원탈퇴유무   1:사용가능(가입중) / 0:사용불능(탈퇴) 
-	
+	private String profile;       // 프로필 사진
+	private String qualifi;       // 리더 자격조건
+	private String route;         // 일반회원 알게된 경로
+	private String registerday;   // 가입일자 -> mapper(default:회원가입시)
+	private int status;           // 회원탈퇴유무  (1:가입중 / 0:탈퇴) -> mapper(default:회원가입시)
+	private int fk_auth_num;      // 권한번호 (1:회원, 2:리더) -> mapper
+	private int fk_coupon_num;    // 권한번호 (회원가입시 : default) -> mapper
 	
 	////////////////// ///////////////////// ** 로그인 ** //////////////////////////////////////////////////////////////
 	private String lastLoginDate;     // 마지막으로 로그인 한 날짜시간 기록용 
@@ -33,20 +33,22 @@ public class MemberVO {
 	public MemberVO() { }
 
 
-	public MemberVO(String email, String name, String pwd, String hp, String photo, String qualification, String way,
-			String registerday, int gradelevel, int status, String lastLoginDate, String lastPwdChangeDate,
-			boolean requirePwdChange, boolean idleStatus, int lastlogindategap, int pwdchangegap) {
+	public MemberVO(String useremail, String name, String pwd, String hp, String profile, String qualifi, String route,
+			String registerday, int status, int fk_auth_num, int fk_coupon_num, String lastLoginDate,
+			String lastPwdChangeDate, boolean requirePwdChange, boolean idleStatus, int lastlogindategap,
+			int pwdchangegap) {
 		super();
-		this.email = email;
+		this.useremail = useremail;
 		this.name = name;
 		this.pwd = pwd;
 		this.hp = hp;
-		this.photo = photo;
-		this.qualification = qualification;
-		this.way = way;
+		this.profile = profile;
+		this.qualifi = qualifi;
+		this.route = route;
 		this.registerday = registerday;
-		this.gradelevel = gradelevel;
 		this.status = status;
+		this.fk_auth_num = fk_auth_num;
+		this.fk_coupon_num = fk_coupon_num;
 		this.lastLoginDate = lastLoginDate;
 		this.lastPwdChangeDate = lastPwdChangeDate;
 		this.requirePwdChange = requirePwdChange;
@@ -56,13 +58,13 @@ public class MemberVO {
 	}
 
 
-	public String getEmail() {
-		return email;
+	public String getUseremail() {
+		return useremail;
 	}
 
 
-	public void setEmail(String email) {
-		this.email = email;
+	public void setUseremail(String useremail) {
+		this.useremail = useremail;
 	}
 
 
@@ -96,33 +98,33 @@ public class MemberVO {
 	}
 
 
-	public String getPhoto() {
-		return photo;
+	public String getProfile() {
+		return profile;
 	}
 
 
-	public void setPhoto(String photo) {
-		this.photo = photo;
+	public void setProfile(String profile) {
+		this.profile = profile;
 	}
 
 
-	public String getQualification() {
-		return qualification;
+	public String getQualifi() {
+		return qualifi;
 	}
 
 
-	public void setQualification(String qualification) {
-		this.qualification = qualification;
+	public void setQualifi(String qualifi) {
+		this.qualifi = qualifi;
 	}
 
 
-	public String getWay() {
-		return way;
+	public String getRoute() {
+		return route;
 	}
 
 
-	public void setWay(String way) {
-		this.way = way;
+	public void setRoute(String route) {
+		this.route = route;
 	}
 
 
@@ -136,16 +138,6 @@ public class MemberVO {
 	}
 
 
-	public int getGradelevel() {
-		return gradelevel;
-	}
-
-
-	public void setGradelevel(int gradelevel) {
-		this.gradelevel = gradelevel;
-	}
-
-
 	public int getStatus() {
 		return status;
 	}
@@ -153,6 +145,26 @@ public class MemberVO {
 
 	public void setStatus(int status) {
 		this.status = status;
+	}
+
+
+	public int getFk_auth_num() {
+		return fk_auth_num;
+	}
+
+
+	public void setFk_auth_num(int fk_auth_num) {
+		this.fk_auth_num = fk_auth_num;
+	}
+
+
+	public int getFk_coupon_num() {
+		return fk_coupon_num;
+	}
+
+
+	public void setFk_coupon_num(int fk_coupon_num) {
+		this.fk_coupon_num = fk_coupon_num;
 	}
 
 
@@ -214,6 +226,11 @@ public class MemberVO {
 	public void setPwdchangegap(int pwdchangegap) {
 		this.pwdchangegap = pwdchangegap;
 	}
+	
+	
+
+
+	
 	
 	
 }
