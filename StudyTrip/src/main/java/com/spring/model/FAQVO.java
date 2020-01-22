@@ -5,6 +5,7 @@ public class FAQVO {
 	private String seq;          // 글번호 
 	private String subject;      // 글제목
 	private String content;      // 글내용 
+	private String kind;         // 글분류
 	private String pw;           // 글암호
 	
 	private String previousseq;      // 이전글번호
@@ -15,11 +16,12 @@ public class FAQVO {
 	
 	public FAQVO() { }
 	
-	public FAQVO(String seq, String subject, String content, String pw, String previousseq, String previoussubject, String nextseq, String nextsubject) {
+	public FAQVO(String seq, String subject, String content, String pw, String kind, String previousseq, String previoussubject, String nextseq, String nextsubject) {
 		super();
 		this.seq = seq;
 		this.subject = subject;
 		this.content = content;
+		this.kind = kind;
 		this.pw = pw;
 		this.previousseq = previousseq;
 		this.previoussubject = previoussubject;
@@ -27,7 +29,7 @@ public class FAQVO {
 		this.nextsubject = nextsubject;
 	}
 
-	
+
 	public String getSeq() {
 		return seq;
 	}
@@ -52,6 +54,15 @@ public class FAQVO {
 		this.content = content;
 	}
 
+	
+	public String getKind() {
+		return kind;
+	}
+	
+	public void setKind(String kind) {
+		this.kind = kind;
+	}
+	
 	public String getPw() {
 		return pw;
 	}

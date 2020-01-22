@@ -121,6 +121,17 @@ table td{
 				<td><input type="text" name="subject" id="subject" class="long" /></td>
 			</tr>
 			<tr>
+				<th>분류</th>
+				<td>
+					<select name="kind">
+						<option value="결제">결제</option>
+						<option value="스터디 진행">스터디 진행</option>
+						<option value="서비스 사용">서비스 사용</option>
+						<option value="취소 및 환불">취소 및 환불</option>
+					</select>
+				</td>
+			</tr>
+			<tr>
 				<th>내용</th>
 				<td>
 					<textarea name="content" id="content" rows="10" cols="100" style="width: 95%; height: 412px;"></textarea> 
