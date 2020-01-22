@@ -6,12 +6,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.spring.service.InterMainService;
+import com.spring.service.InterMyPageService;
 
 @Controller
 public class MyPageController {
 
 	@Autowired  
-	private InterMainService service;
+	private InterMyPageService service;
 	
 	@RequestMapping(value="/myPage_member.st")
 	public ModelAndView myPage_member(ModelAndView mav) {

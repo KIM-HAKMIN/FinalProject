@@ -1,9 +1,14 @@
 package com.spring.controller;
 
+import java.io.File;
+import java.io.InputStream;
+import java.io.PrintWriter;
 import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -11,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.spring.common.FileManager;
 import com.spring.common.MyUtil;
 import com.spring.model.FAQVO;
 import com.spring.service.InterFAQService;
@@ -20,6 +26,10 @@ public class FAQController {
 
 	@Autowired  
 	private InterFAQService service;
+	
+	@Autowired
+	private FileManager fileManager;
+	
 	
 	@RequestMapping(value="/FAQ_view.st")
 	public ModelAndView FAQ_view(HttpServletRequest request, ModelAndView mav) {
@@ -92,7 +102,7 @@ public class FAQController {
 		// ==== 페이지바 만들기 ==== // 
 		String pageBar = "<ul>";
 		
-		int blockSize = 10;
+		int blockSize = 5;
 		
 		int loop = 1;
 		
@@ -106,16 +116,16 @@ public class FAQController {
 		
 		// *** [이전] 만들기 *** //    
 		if(pageNo != 1) {
-			pageBar += "&nbsp;<a href='"+url+"&currentShowPageNo="+(pageNo-1)+"&sizePerPage="+sizePerPage+"'>[이전]</a>&nbsp;";
+			pageBar += "&nbsp;<a href='"+url+"&currentShowPageNo="+(currentShowPageNo-1)+"&sizePerPage="+sizePerPage+"'>&laquo;</a>&nbsp;";
 		}
 		
 		while( !(loop>blockSize || pageNo>totalPage) ) {
 			
 			if(pageNo == currentShowPageNo) {
-				pageBar += "&nbsp;<span style='color: red; border: 1px solid gray; padding: 2px 4px;'>"+pageNo+"</span>&nbsp;";
+				pageBar += "&nbsp;<span class='active'>"+pageNo+"</span>&nbsp;";
 			}
 			else {
-				pageBar += "&nbsp;<a href='"+url+"&currentShowPageNo="+pageNo+"&sizePerPage="+sizePerPage+"'>"+pageNo+"</a>&nbsp;"; 
+				pageBar += "&nbsp;<a href='"+url+"&currentShowPageNo="+(currentShowPageNo+1)+"&sizePerPage="+sizePerPage+"'>"+pageNo+"</a>&nbsp;"; 
 			}
 			
 			loop++;
@@ -124,7 +134,7 @@ public class FAQController {
 		
 		// *** [다음] 만들기 *** //
 		if( !(pageNo>totalPage) ) {
-			pageBar += "&nbsp;<a href='"+url+"&currentShowPageNo="+pageNo+"&sizePerPage="+sizePerPage+"'>[다음]</a>&nbsp;"; 
+			pageBar += "&nbsp;<a href='"+url+"&currentShowPageNo="+pageNo+"&sizePerPage="+sizePerPage+"'>&raquo;</a>&nbsp;"; 
 		}
 		
 		pageBar += "</ul>";
@@ -247,4 +257,56 @@ public class FAQController {
 	}
 	
 	
+	// ==== 스마트에디터. 드래그앤드롭을 사용한 다중사진 파일업로드 ====
+   @RequestMapping(value="/image/multiplePhotoUpload.st", method={RequestMethod.POST})
+   public void multiplePhotoUpload(HttpServletRequest req, HttpServletResponse res) {
+
+	HttpSession session = req.getSession();
+	String root = session.getServletContext().getRealPath("/"); 
+	String path = root + "resources"+File.separator+"photo_upload";
+		
+	System.out.println(">>>> 확인용 path ==> " + path); 
+	  
+		
+	File dir = new File(path);
+	if(!dir.exists())
+	    dir.mkdirs();
+		
+	String strURL = "";
+		
+	try {
+		if(!"OPTIONS".equals(req.getMethod().toUpperCase())) {
+		    String filename = req.getHeader("file-name"); //파일명을 받는다 - 일반 원본파일명
+	    		
+	        System.out.println(">>>> 확인용 filename ==> " + filename); 
+	        
+	        
+	    	   InputStream is = req.getInputStream();
+	    	
+	    	   String newFilename = fileManager.doFileUpload(is, filename, path);
+	    	
+		   int width = fileManager.getImageWidth(path+File.separator+newFilename);
+			
+		   if(width > 600)
+		      width = 600;
+				
+		   System.out.println(">>>> 확인용 width ==> " + width);
+
+		   
+		   String CP = req.getContextPath(); 
+			
+		   strURL += "&bNewLine=true&sFileName="; 
+            	   strURL += newFilename;
+            	   strURL += "&sWidth="+width;
+            	   strURL += "&sFileURL="+CP+"/resources/photo_upload/"+newFilename;
+	    	}
+		
+		   PrintWriter out = res.getWriter();
+		   out.print(strURL);
+	} catch(Exception e){
+			e.printStackTrace();
+	}
+   
+   }
+
 }

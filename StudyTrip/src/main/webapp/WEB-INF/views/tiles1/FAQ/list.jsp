@@ -30,6 +30,24 @@ img {
 	margin: 0 5px 0 7px ;
 }
 
+
+.pagination a {
+  color: black;
+  float: left;
+  padding: 8px 16px;
+  text-decoration: none;
+  transition: background-color .3s;
+}
+
+.pagination a.active {
+  background-color: #ffa64d;
+  color: white;
+}
+
+.pagination a:hover:not(.active) {
+  background-color: #ffd9b3;
+}
+
 </style>
 
 <script type="text/javascript">
@@ -62,16 +80,15 @@ img {
 </script>    
 
 <div style="padding-left: 3%;">
-	<h2 style="margin-bottom: 30px;">자주 묻는 질문</h2>
+	<img src="/studytrip/resources/images/FAQ/headFAQ.PNG" style="margin-top: -40px; width: 100%;">
 	
 	<table id="table">
-	    <c:forEach begin="1" end="3">
-		<%-- <c:forEach var="boardvo" items="${boardList}" varStatus="status"> --%>
+		<c:forEach var="boardvo" items="${boardList}" varStatus="status">
 			<tr>
 			   <td align="left">
 			   	<img src="/studytrip/resources/images/FAQ/chat-bubbles.png" style="width: 3%;">
-			   	<span class="subject" onclick="goView('${boardvo.seq}');">글제목</span>
-				<%-- <span class="subject" onclick="goView('${boardvo.seq}');">${boardvo.subject}</span> --%>
+			   	<span class="subject" onclick="goView('${boardvo.seq}');" style="color: orange; font-weight: bold;">[ ${boardvo.kind} ]</span>
+				<span class="subject" onclick="goView('${boardvo.seq}');">${boardvo.subject}</span>
 			   </td>				
 		    </tr>
 		</c:forEach>
@@ -87,5 +104,9 @@ img {
 	<div align="center" style="">
 		${pageBar}
 	</div>
+	
+	<%-- <c:if test="${sessionScope.loginuser.userid == 'admin'}"> --%>
+		<button type="button" onClick="javascript:location.href='<%= request.getContextPath() %>/FAQ_add.st'">글쓰기</button>
+	<%-- </c:if> --%>
 	
 </div>
