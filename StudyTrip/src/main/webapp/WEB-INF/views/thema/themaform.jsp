@@ -191,7 +191,6 @@ align-items: flex-start;
 </head>
 <body>
 	<div class="contentWrapper">
-		<div> ? </div>
 		<div class="contentView">
 			<form>
 				<div class="exportForm">
@@ -312,7 +311,7 @@ align-items: flex-start;
 										
 										</div>
 									</div>
-									<button type="button">다음</button>										
+									<button type="button"><a class="start-link" href="<%=ctxPath%>/themasearch.st">다음</button>										
 								</div>
 							</div>								
 						</div>

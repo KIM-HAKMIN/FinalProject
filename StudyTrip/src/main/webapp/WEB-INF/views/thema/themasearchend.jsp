@@ -227,12 +227,24 @@ align-items: flex-start;
 	display: block;
 }
 
+.viewFormContentHeader {   /* --------- */
+	border-top: none;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    background-color: #fff;
+    border: 1px solid #dadce0;
+    border-radius: 8px;
+    margin-bottom: 12px;
+    padding: 24px;
+    margin-top: 0;
+    page-break-inside: avoid;
+}
+
 </style>
 
 </head>
 <body>
-	<div class="contentWrapper">
-		<div> ? </div>
+	<div class="contentWrapper">		
 		<div class="contentView">
 			<form>
 				<div class="exportForm">
@@ -243,28 +255,23 @@ align-items: flex-start;
 							</div>
 							<div class="headerTitle">
 								<div class="headerTitleView">
-								[스터디서치] 234기 신규멤버 Welcome Party 신청서🎉
+								[파티신청서] 12월31일, 2020카운트다운 Party!🎉
 								</div>
 							</div>
 							<div class="headerTitleProduct">
-							[공지사항]<br>🔥선착순 마감임박 Hurry-up!🔥<br>해당 폼이 닫히면 더이상 신청이 불가합니다.
+							[공지사항]<br>신청이 모두 마감되었습니다! ❤️<br>남은 연말 잘보내시고
+							내년 연말파티에서 다시 만나요~ Happy New Year! 🎉
 							</div>
+
 							<div class="headerTitleBanner">
 							</div>
-							<div class="headerTitleLegend" aria-hidden="true" dir="auto">* 필수항목
+							<div class="headerTitleLegend" aria-hidden="true" dir="auto">
 							</div>
 						</div>
-						<!----------------- 신청서 --------------------->
-						
-						<div class="themasearchTitle">
-							
-								
-							
-							</div>
-						</div>
-						<button type="button">뒤로</button>
-						<button type="button">제출</button>	
-					</div>													
+												
+					</div>
+					<button type="button">뒤로</button>					
+				</div>													
 			</form>		
 		</div>		
 	</div>	
