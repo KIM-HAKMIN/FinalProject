@@ -89,64 +89,7 @@
 		           }                
 		       });   // 캘린더 종료-------------------------------------- 
 			
-
-				<%-- === #153. 스마트에디터 구현 시작 ===--%>
-			    //전역변수
-			    var obj = [];
-			    
-			    //스마트에디터 프레임생성
-			    nhn.husky.EZCreator.createInIFrame({
-			        oAppRef: obj,
-			        elPlaceHolder: "content",
-			        sSkinURI: "<%= ctxPath%>/resources/smarteditor/SmartEditor2Skin.html",
-			        htParams : {
-			            // 툴바 사용 여부 (true:사용/ false:사용하지 않음)
-			            bUseToolbar : true,            
-			            // 입력창 크기 조절바 사용 여부 (true:사용/ false:사용하지 않음)
-			            bUseVerticalResizer : true,    
-			            // 모드 탭(Editor | HTML | TEXT) 사용 여부 (true:사용/ false:사용하지 않음)
-			            bUseModeChanger : true,
-			        }
-			    });
-			    
-				<%-- === #153. 스마트에디터 구현 끝 === --%>
-				
-				<%-- === #153. 스마트에디터 구현 시작 ===--%>
-			    //전역변수
-			    
-			    //스마트에디터 프레임생성
-			    nhn.husky.EZCreator.createInIFrame({
-			        oAppRef: obj,
-			        elPlaceHolder: "introduce",
-			        sSkinURI: "<%= ctxPath%>/resources/smarteditor/SmartEditor2Skin.html",
-			        htParams : {
-			            // 툴바 사용 여부 (true:사용/ false:사용하지 않음)
-			            bUseToolbar : true,            
-			            // 입력창 크기 조절바 사용 여부 (true:사용/ false:사용하지 않음)
-			            bUseVerticalResizer : true,    
-			            // 모드 탭(Editor | HTML | TEXT) 사용 여부 (true:사용/ false:사용하지 않음)
-			            bUseModeChanger : true,
-			        }
-			    });
-			    
-				<%-- === #153. 스마트에디터 구현 끝 === --%>
-				
-		<%-- 일주일에 몇일 수업하는지 가져오기 --%>
-		$('.studyWeek').click(function(){
 			
-	
-			var i = $("input:checkbox[name=studyWeek]:checked").length;
-			$('#weekPer').val(i); 	
-			
-			if($("input:checkbox[id=sun]").is(":checked") == true ||$("input:checkbox[id=sat]").is(":checked") == true ){
-				$('#selectDay').val("주말"); 	
-
-			}
-			else{
-				$('#selectDay').val("평일"); 					
-			}
-
-		});
 			
 	});
 
@@ -252,17 +195,17 @@
 						<th>스터디 타이틀</th>
 						<td>
 						    <div style="width: 50%;">
-								<input type="text" class="form-control" name="title" />
+								<input type="text" class="form-control" />
 							</div>
 						</td>
 					</tr>
 					<tr>
 						<th>스터디소개</th>
-						<td><textarea name="content" id="content" rows="10" cols="100" style="width: 95%; height: 412px;"></textarea></td>
+						<td><textarea class="form-control" rows="5" cols="10"></textarea></td>
 					</tr>
 					<tr>
 						<th>리더소개</th>
-						<td><textarea name="introduce" id="introduce" class="form-control" rows="5" cols="10"></textarea></td>
+						<td><textarea class="form-control" rows="5" cols="10"></textarea></td>
 					</tr>
 					
 					<tr>
@@ -270,13 +213,12 @@
 						<td>
 							<div style="width: 30%;">
 							  <select class="form-control">
-							  	<option value ="" selected="selected">선택</option>
-								<option value="강남">강남</option>
-								<option value="신촌">신촌</option>
-								<option value="홍대">홍대</option>
-								<option value="부평">부평</option>
-								<option value="종각">종각</option>
-								<option value="노원">노원</option>
+								<option>강남</option>
+								<option>신촌</option>
+								<option>홍대</option>
+								<option>부평</option>
+								<option>종각</option>
+								<option>노원</option>
 							  </select>
 							</div> 						
 						</td>
@@ -286,11 +228,10 @@
 						<td>
 							<div style="width: 30%;">
 							  <select class="form-control">
-							  	<option value="" selected="selected">선택</option>
-								<option value="입문">입문</option>
-								<option value="초급">초급</option>
-								<option value="중급">중급</option>
-								<option value="고급">고급</option>
+								<option>입문</option>
+								<option>초급</option>
+								<option>중급</option>
+								<option>고급</option>
 							  </select>
 							</div> 						
 						</td>
@@ -303,9 +244,8 @@
 						<td>
 							<div style="width: 30%;">
 							  <select class="form-control">
-							  	<option selected="selected">선택</option>
-							  	<option value="포함">포함</option>
-								<option value="미포함">미포함</option>
+								<option>포함</option>
+								<option>미포함</option>
 							  </select>
 							</div> 						
 						</td>
@@ -315,7 +255,7 @@
 						<th>참가비</th>
 						<td>
 							<div style="width: 30%; border: solid 0px red; display: inline-block;">
-								<input type="text" name="price" class="form-control" />
+								<input type="text" name="saleprice" class="form-control" />
 							</div>
 							<div style="width: 5%; border: solid 0px red; display: inline-block;">
 								원
@@ -333,7 +273,7 @@
 					<tr>
 						<th>스터디 주</th>
 						<td>
-							<input type="text" name="week" id="week" />
+							<input type="text" />
 						</td>
 					</tr>
 
@@ -342,13 +282,13 @@
 						<th>스터디 요일</th>
 						<td>
 							<div>
-								<div class="studyCheck"><input type="checkbox" name="studyWeek" class="studyWeek" id="mon" value="월"><label for="mon" style="margin-left: 10px;">월</label></div>
-								<div class="studyCheck"><input type="checkbox" name="studyWeek" class="studyWeek" id="tue" value="화"><label for="tue" style="margin-left: 10px;">화</label></div>
-								<div class="studyCheck"><input type="checkbox" name="studyWeek" class="studyWeek" id="wed" value="수"><label for="wed" style="margin-left: 10px;">수</label></div>
-								<div class="studyCheck"><input type="checkbox" name="studyWeek" class="studyWeek" id="thu" value="목"><label for="thu" style="margin-left: 10px;">목</label></div>
-								<div class="studyCheck"><input type="checkbox" name="studyWeek" class="studyWeek" id="fri" value="금"><label for="fri" style="margin-left: 10px;">금</label></div>
-								<div class="studyCheck"><input type="checkbox" name="studyWeek" class="studyWeek" id="sat" value="토"><label for="sat" style="margin-left: 10px;">토</label></div>
-								<div class="studyCheck"><input type="checkbox" name="studyWeek" class="studyWeek" id="sun" value="일"><label for="sun" style="margin-left: 10px;">일</label></div>
+								<div class="studyCheck"><input type="checkbox" name="studyWeek" class="studyWeek" id="mon"><label for="mon" style="margin-left: 10px;">월</label></div>
+								<div class="studyCheck"><input type="checkbox" name="studyWeek" class="studyWeek" id="tue"><label for="tue" style="margin-left: 10px;">화</label></div>
+								<div class="studyCheck"><input type="checkbox" name="studyWeek" class="studyWeek" id="wed"><label for="wed" style="margin-left: 10px;">수</label></div>
+								<div class="studyCheck"><input type="checkbox" name="studyWeek" class="studyWeek" id="thu"><label for="thu" style="margin-left: 10px;">목</label></div>
+								<div class="studyCheck"><input type="checkbox" name="studyWeek" class="studyWeek" id="fri"><label for="fri" style="margin-left: 10px;">금</label></div>
+								<div class="studyCheck"><input type="checkbox" name="studyWeek" class="studyWeek" id="sat"><label for="sat" style="margin-left: 10px;">토</label></div>
+								<div class="studyCheck"><input type="checkbox" name="studyWeek" class="studyWeek" id="sun"><label for="sun" style="margin-left: 10px;">일</label></div>
 							</div>							
 						</td>
 					</tr>		
@@ -357,10 +297,9 @@
 						<th>스터디 주말 유무</th>
 						<td>
 							<div style="width: 30%;">
-							  <select class="form-control" id="selectDay">
-							   	<option selected="selected">선택</option>
-							  	<option value="주말">주말</option>
-								<option value="평일">평일</option>
+							  <select class="form-control">
+								<option>주말</option>
+								<option>평일</option>
 							  </select>
 							</div> 						
 						</td>
@@ -370,7 +309,7 @@
 						<th>주당 수업일수</th>
 						<td>
 							<div style="width: 30%;">
-								<input type="text" name="weekPer" id="weekPer"/>
+								<input type="text" />
 							</div> 						
 						</td>
 					</tr>
@@ -379,7 +318,7 @@
 					<tr>
 						<th>스터디 시간</th>
 						<td>
-							<div style="display: inline-block;"><input type="text" name="fromTime" id="fromTime" lang="5"/></div>&nbsp~&nbsp<div style="display: inline-block;"><input name="toTime" id="toTime" type="text"/></div>							
+							<div style="display: inline-block;"><input type="text" id="fromTime" lang="5"/></div>&nbsp~&nbsp<div style="display: inline-block;"><input id="toTime" type="text"/></div>							
 						</td>
 					</tr>
 					
@@ -397,8 +336,8 @@
 				</table>
 				<br/>
 				
-				<button type="button" class="btn warning" style="margin-right: 10px;">스터디등록</button>
-				<button type="button" class="btn warning" style="margin-right: 10px;">취소</button>
+				<button type="button" class="btn warning" style="margin-right: 10px;" onClick="goAdd();">스터디등록</button>
+				<button type="button" class="btn warning" style="margin-right: 10px;" onClick="goReset();">취소</button>
 			
 			</form>		
 

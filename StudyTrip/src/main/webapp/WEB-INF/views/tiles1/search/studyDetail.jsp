@@ -136,7 +136,16 @@ a:hover{
 
 </style>
 
+<script type="text/javascript">
+$(document).ready(function(){
 
+	
+	
+})
+
+
+
+</script>
 
 
 </head>
@@ -296,7 +305,7 @@ a:hover{
 			<div style="border-bottom: solid 1px #ccc; width: 93%;"></div>
 			
 				<div style="display: inline-block; width: 24%; float: left; padding: 30px 30px 30px 30px; position: relative; left: 20px;">
-					<div style="border: solid 1px #ccc; height: 110px; width: 110px; background: #ef6c00; position: relative; right: 30px;">
+					<div style="border: solid 1px #ccc; height: 110px; width: 110px; background: #ef6c00; position: relative; right: 25px;">
 						<div style="margin-top: 26px; color: #ffeb3b; font-weight: 700; font-size: 1pc;">Level</div>
 						<div style="margin-top: 3px; font-size: 2pc; color: #fff;">입문2</div>
 					</div>
@@ -463,8 +472,8 @@ a:hover{
 		
 
 		
-		<div style="float: right; background-color: #ebebeb; width: 30%;">
-			<div style="margin-left: 30px; height: 800px; background-color: #ebebeb;">
+		<div style="float: right; background-color: #ebebeb; width: 30%;" >
+			<div id="sideMenu"style="margin-left: 30px; height: 800px; background-color: #ebebeb;">
 				<div style="height: 480px; background-color: white; text-align: left; padding: 10px 10px 10px 10px;">
 					<div id="side" style="margin-top: 30px;">캐나다에서 온 Helen의 기초튼튼! 즐거운 영어 회화!</div>
 					<div style="margin-top: 50px; margin-left: 40px;">
