@@ -42,6 +42,12 @@ public class LevelTestController {
 		return mav;
 	}
 	
-	
+	@RequestMapping(value="/leveltestend.st")
+	public ModelAndView Test3(ModelAndView mav) {
+		
+		mav.setViewName("leveltest/leveltestend.tiles1");	
+		
+		return mav;
+	}
 	
 }

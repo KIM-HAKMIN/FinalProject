@@ -19,7 +19,7 @@ public class themaController {
 	
 	
 	@RequestMapping(value="/thema.st")
-	public ModelAndView Test3(ModelAndView mav) {
+	public ModelAndView Test4(ModelAndView mav) {
 		
 		mav.setViewName("thema/thema.tiles1");
 		
@@ -28,7 +28,7 @@ public class themaController {
 	}
 	
 	@RequestMapping(value="/themaform.st")
-	public ModelAndView Test4(ModelAndView mav) {
+	public ModelAndView Test5(ModelAndView mav) {
 		
 		mav.setViewName("thema/themaform");
 		
@@ -37,7 +37,7 @@ public class themaController {
 	}
 	
 	@RequestMapping(value="/themasearch.st")
-	public ModelAndView Test5(ModelAndView mav) {
+	public ModelAndView Test6(ModelAndView mav) {
 		
 		mav.setViewName("thema/themasearch");
 		
@@ -46,7 +46,7 @@ public class themaController {
 	}
 	
 	@RequestMapping(value="/themasearchend.st")
-	public ModelAndView Test6(ModelAndView mav) {
+	public ModelAndView Test7(ModelAndView mav) {
 		
 		mav.setViewName("thema/themasearchend");
 		
@@ -55,7 +55,7 @@ public class themaController {
 	}
 	
 	@RequestMapping(value="/themasearchcheck.st")
-	public ModelAndView Test7(ModelAndView mav) {
+	public ModelAndView Test8(ModelAndView mav) {
 		
 		mav.setViewName("thema/themasearchcheck");
 		
