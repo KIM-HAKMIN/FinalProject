@@ -1,5 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
+<%
+	String ctxPath = request.getContextPath();
+%>
+    
+    
 <!DOCTYPE html>
 <html>
 <head>
@@ -22,7 +28,7 @@
     margin: 0 auto;
     width: 60pc;
     height: 100%;
-    padding-top: 300px;
+    
 }
 
  .content-wrap .content {
@@ -36,7 +42,9 @@ div {
 
 .header-title-icon {
     font-size: 14px;
-    color: #fff;
+    font-family: Apple SD Gothic Neo,notokr,dotum,serif!important;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
 }
 
  .content-wrap .content .swiper-with-buttons-wrap {
@@ -192,20 +200,34 @@ display: inline-block;
     background: transparent url(https://cdn.studysearch.co.kr/static/images/theme_study_regram.adde7affa090.png)no-repeat center;
 }
 
+
+.header-title{
+	margin-top: 9pt;
+    font-size: 60px;
+    line-height: 60px;
+    font-weight: 800;
+}
+
+
+.header-sub-title{
+	margin-top: 8px;
+    font-size: 18px;
+    line-height: 1.44em;
+    font-weight: 400;
+    letter-spacing: -.29px;
+}
+
 </style>
 </head>
 <body>
 	<div class="page-header">
-		<!-- <div class="video-contain">
-			<div data-vjs-player="true" id="vjs_video_3" class="video-js vjs-controls-disabled vjs-workinghover vjs-v7 vjs_video_3-dimensions vjs-playing vjs-has-started vjs-user-inactive" tabindex="-1" lang="ko-kr" role="region" aria-label="Video Player"><video class="vjs-tech" id="vjs_video_3_html5_api" tabindex="-1" loop="" muted="muted" playsinline="playsinline" autoplay="" src="https://cdn.studysearch.co.kr/static/desktop-theme-study-top-video.mp4"></video>
-			</div>
-		</div> -->	
+		
 	
 		<div class="header-title-wrap">
 			<div class="header-title-icon">
-				<span class="new">
+				<span class="new">NEW 
 				</span>·
-				<span class="only-member">
+				<span class="only-member"> MEMBER ONLY
 				</span>
 			</div>
 			<div class="header-title">테마스터디
@@ -224,7 +246,7 @@ display: inline-block;
 				<div class="swiper-wrapper">
 				<div class="content">
 					<div class="study-wrap swiper-slide swiper-slide-active">
-						<a href="https://docs.google.com/forms/d/e/1FAIpQLSd75xMjccX8Waxm6XzgiHdasWV9fhsieomdLiTIYFOYAsNtQA/viewform?usp=sf_link" target="_blank">
+						<a href="<%=ctxPath%>/themasearchend.st" target="_blank">
 						<div class="date-label">종료된 테마스터디
 						</div>
 						<div class="study-thumbnail" style="background-image: url(&quot;https://cdn.studysearch.co.kr/images/theme-study/25/1568894015.21?v=1568894015&quot;);">
@@ -236,7 +258,7 @@ display: inline-block;
 						</a>
 					</div>
 					<div class="study-wrap swiper-slide swiper-slide-next">
-						<a href="https://docs.google.com/forms/d/e/1FAIpQLSdLwBnT_o5ZlekPhTjD6OLFSpbdYDoUksQSz6GsHGHnQbgERw/viewform?usp=sf_link" target="_blank">
+						<a href="#" target="_blank">
 						<div class="date-label">종료된 테마스터디
 						</div>
 						<div class="study-thumbnail" style="background-image: url(&quot;https://cdn.studysearch.co.kr/images/theme-study/28/1576724775.06?v=1576724775&quot;);">
@@ -247,7 +269,7 @@ display: inline-block;
 						</a>
 					</div>
 					<div class="study-wrap swiper-slide">
-						<a href="https://docs.google.com/forms/d/e/1FAIpQLSdUOyk0chCcXlO4fQa3ci5yF-Zim9yjxPi7W9B2DVpfBxv2Lg/viewform?usp=sf_link" target="_blank">
+						<a href="#" target="_blank">
 						<div class="date-label">종료된 테마스터디
 						</div>
 						<div class="study-thumbnail" style="background-image: url(&quot;https://cdn.studysearch.co.kr/images/theme-study/16/1557076677.34?v=1557076677&quot;);">
@@ -270,7 +292,7 @@ display: inline-block;
 						<div id="with-member-studies-wrap" class="theme-study-list-wrap swiper-container-horizontal">
 							<div class="swiper-wrapper">
 								<div class="study-wrap swiper-slide swiper-slide-active">
-									<a href="https://docs.google.com/forms/d/e/1FAIpQLSfXQQcBFtE56DRl7Az_U8D4Y2YdKZQlHjbphZ4Nb-cNz3gV_A/viewform?usp=sf_link" target="_blank">
+									<a href="<%=ctxPath%>/themaform.st" target="_blank">
 									<div class="date-label">1월 매주 금/토
 									</div>
 									<div class="study-thumbnail" style="background-image: url(&quot;https://cdn.studysearch.co.kr/images/theme-study/27/1577871192.97?v=1577871193&quot;);">
@@ -284,7 +306,7 @@ display: inline-block;
 									</a>
 								</div>
 								<div class="study-wrap swiper-slide swiper-slide-next">
-									<a href="https://docs.google.com/forms/d/e/1FAIpQLSe1UboS1JRK1Ix6GOg43WJA5AJ4nj83pAHv6kSw6WoGa5lKXA/viewform?usp=send_form" target="_blank">
+									<a href="#" target="_blank">
 									<div class="date-label">1월 18일(토)
 									</div>
 									<div class="study-thumbnail" style="background-image: url(&quot;https://cdn.studysearch.co.kr/images/theme-study/30/1578668433.35?v=1578668433&quot;);">
@@ -298,7 +320,7 @@ display: inline-block;
 									</a>
 								</div>
 								<div class="study-wrap swiper-slide">
-									<a href="https://docs.google.com/forms/d/e/1FAIpQLSeVPnat6ncGe-rm7t5PVAY3Ao6X7aV5oaXlFmJfyOePWcn9Lg/viewform?usp=sf_link" target="_blank">
+									<a href="#" target="_blank">
 									<div class="date-label">종료된 테마스터디</div>
 									<div class="study-thumbnail" style="background-image: url(&quot;https://cdn.studysearch.co.kr/images/theme-study/26/1570444195.81?v=1570444195&quot;);">
 										<div class="recruiting-label off">완료됨
@@ -319,7 +341,7 @@ display: inline-block;
 				      <div class="middle-title-wrap">
 				      	 <div class="middle-title">스터디서치에서는<br>즐거운 만남이 끊이지 않는다!</div>
 				      	 <div class="middle-sub-title">이제 여러분도 함께 해요!</div>
-				      	 <a class="start-link" href="/product/level/1/test/?s=tlm&amp;c=1">스터디 시작하기</a>
+				      	 <a class="start-link" href="<%=ctxPath%>/leveltest.st">스터디 시작하기</a>
 				      </div>
 				   </div>
 		   
