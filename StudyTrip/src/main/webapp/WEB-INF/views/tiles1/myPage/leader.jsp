@@ -271,7 +271,13 @@ tr:nth-child(even) {
 						
 		});
 		
+		
+		$("#study_num").click(function(){
+			location.href="/myPage_leader_student.st?study_num="+$('#study_num').val();
+		});
+		
 	}); // end of $(document).ready ---------------------------------------------------------------------
+
 
 </script>
 
@@ -291,7 +297,7 @@ tr:nth-child(even) {
 		<div class="tab">
 		  <button class="tablinks" onclick="openCity(event, 'mystudy')" id="defaultOpen">내 스터디 관리</button>
 		  <button class="tablinks" onclick="openCity(event, 'profile')">내 프로필</button>
-		  <button class="tablinks" onclick="#">새로운 스터디 등록</button>
+		  <button class="tablinks" onclick="javascript:location.href='<%= request.getContextPath() %>/studyRegister.st'">새로운 스터디 등록</button>
 		</div>
 		
 		
@@ -326,8 +332,9 @@ tr:nth-child(even) {
 			    <div class="flip-box-back">
 			      <div>
 			      	<input type="button" value="수강생 목록 보기" onclick="document.getElementById('id01').style.display='block'" class="btn warning backL" />
+			      	<input type="hidden" id="study_num" value="${studyVO.study_num}" />
 			      </div>
-			     	<input type="button" value="스터디 수정하러 가기" onclick="수정페이지주소" class="btn warning backO" />
+			     	<input type="button" value="스터디 수정하러 가기" onclick="javascript:location.href='<%= request.getContextPath() %>/studyRegister.st'?seq=${studyvo.seq}" class="btn warning backO" />
 			      <div>
 			      </div>
 			      <div>

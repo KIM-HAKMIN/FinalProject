@@ -6,10 +6,11 @@
 <style type="text/css">
 
 #table {
-    width: 90%; 
+    width: 97%; 
     border-collapse: collapse;
     background-color: white;
     border-radius: 20px;
+    margin-top: 3%;
 }
      
 .subjectStyle {
@@ -26,7 +27,7 @@ td {
 	padding: 10px;
 }
 
-img {
+#img {
 	margin: 0 5px 0 7px ;
 }
 
@@ -80,14 +81,14 @@ img {
 </script>    
 
 <div style="padding-left: 3%;">
-	<img src="/studytrip/resources/images/FAQ/headFAQ.PNG" style="margin-top: -40px; width: 100%;">
+	<img src="/studytrip/resources/images/FAQ/headFAQ.PNG" style="margin-top: -40px; width: 103%; margin-left: -3%;">
 	
 	<table id="table">
 		<c:forEach var="boardvo" items="${boardList}" varStatus="status">
 			<tr>
 			   <td align="left">
-			   	<img src="/studytrip/resources/images/FAQ/chat-bubbles.png" style="width: 3%;">
-			   	<span class="subject" onclick="goView('${boardvo.seq}');" style="color: orange; font-weight: bold;">[ ${boardvo.kind} ]</span>
+			   	<img src="/studytrip/resources/images/FAQ/chat-bubbles.png" style="width: 3%;" id="img">
+			   	<span style="color: orange; font-weight: bold;">[ ${boardvo.kind} ]</span>
 				<span class="subject" onclick="goView('${boardvo.seq}');">${boardvo.subject}</span>
 			   </td>				
 		    </tr>

@@ -121,7 +121,7 @@ form {
 			// 회원가입 	
 			var frm = document.form-horizontal;			
 			frm.action = "register_leaderEnd.st";
-			frm.method = "post";
+			frm.method = "POST";
 			frm.submit();
 			
 		}); // end of 유효성 검사 -----------------------------------------------------------------
