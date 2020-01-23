@@ -34,7 +34,7 @@ public class FAQController {
 	@RequestMapping(value="/FAQ_view.st")
 	public ModelAndView FAQ_view(HttpServletRequest request, ModelAndView mav) {
 		
-		/*String seq = request.getParameter("seq");
+		String seq = request.getParameter("seq");
 		
 		String gobackURL = request.getParameter("gobackURL");
 		mav.addObject("gobackURL", gobackURL);
@@ -44,7 +44,7 @@ public class FAQController {
 		boardvo = service.getViewWithNoAddCount(seq);
 
 		mav.addObject("boardvo", boardvo);
-*/		
+		
 		mav.setViewName("FAQ/view.tiles1");
 		
 		return mav;

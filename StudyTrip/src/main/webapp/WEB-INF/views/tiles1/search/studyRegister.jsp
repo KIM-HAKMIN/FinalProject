@@ -15,6 +15,10 @@
 
 <script src='//cdn.rawgit.com/fgelinas/timepicker/master/jquery.ui.timepicker.js'></script>
 
+<!-- swal 라이브러리 -->
+<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css" /> 
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
+
 
 <!-- 스피터 라이브러리 -->
 <link rel="stylesheet" type="text/css" href="<%= request.getContextPath() %>/resources/jquery-ui-1.12.1.custom/jquery-ui.css" />
@@ -25,6 +29,7 @@
 
 	$(document).ready(function(){
  		
+		/* swal("ㅇㅇ"); */
 		
 	    $('#fromTime').timepicker();
 	    $('#toTime').timepicker();
@@ -133,10 +138,7 @@
 				
 		<%-- 일주일에 몇일 수업하는지 가져오기 --%>
 		$('.studyWeek').click(function(){
-			
-	
-			var i = $("input:checkbox[name=studyWeek]:checked").length;
-			$('#weekPer').val(i); 	
+				
 			
 			if($("input:checkbox[id=sun]").is(":checked") == true ||$("input:checkbox[id=sat]").is(":checked") == true ){
 				$('#selectDay').val("주말"); 	
@@ -147,8 +149,37 @@
 			}
 
 		});
+		
+		
+		$("#btnRegister").click(function(){
 			
-	});
+			swal("등록버튼을 누르셨습니다.");	
+			
+		});
+		
+		$("#btnCancel").click(function(){
+						
+			history.go(-1);
+		});
+	
+		// 체크박스 여러개중 하나만 선택가능하게 하는것
+		 $("input:checkbox[name=studyWeek]").click(function(){
+			 /*	
+		    	var bool = $(this).is(":checked");
+		    	        // $(this).is(":checked"); 은 체크박스에 체크가 되어진 경우라면 true 
+		    	        // $(this).is(":checked"); 은 체크박스에 체크가 해제되어진 경우라면 false 
+		    	if(bool) {
+		    		alert( $(this).val() );
+		    	}
+		    */	 
+		    	$("input:checkbox[name=studyWeek]").prop("checked", false);
+		        $(this).prop("checked", true);
+		 });
+		
+		
+		
+		
+}); // end of $(document).ready(function(){--------------------------------------------------
 
 
 
@@ -234,6 +265,8 @@
 .ui-state-default:hover{
 	cursor: pointer;
 }
+
+
 </style>
 
 
@@ -247,7 +280,7 @@
 		<div style="width: 75%; padding-bottom: 50px;" align="center">
 		
 			<form name="addFrm" method="post" enctype="multipart/form-data" >
-				<table id="table" class="table table-bordered" style="width: 70%; margin-top: 50px;">
+				<table id="table" class="table table-bordered" style="width: 80%; margin-top: 50px;">
 					<tr>
 						<th>스터디 타이틀</th>
 						<td>
@@ -258,18 +291,18 @@
 					</tr>
 					<tr>
 						<th>스터디소개</th>
-						<td><textarea name="content" id="content" rows="10" cols="100" style="width: 95%; height: 412px;"></textarea></td>
+						<td><textarea name="content" id="content" class="form-control" style="min-height: 200px;"></textarea></td>
 					</tr>
 					<tr>
 						<th>리더소개</th>
-						<td><textarea name="introduce" id="introduce" class="form-control" rows="5" cols="10"></textarea></td>
+						<td><textarea name="introduce" id="introduce" class="form-control"  style="min-height: 200px;"></textarea></td>
 					</tr>
 					
 					<tr>
 						<th>스터디 지역</th>
 						<td>
 							<div style="width: 30%;">
-							  <select class="form-control">
+							  <select class="form-control" name="area">
 							  	<option value ="" selected="selected">선택</option>
 								<option value="강남">강남</option>
 								<option value="신촌">신촌</option>
@@ -285,7 +318,7 @@
 						<th>스터디 난이도</th>
 						<td>
 							<div style="width: 30%;">
-							  <select class="form-control">
+							  <select class="form-control" name="level">
 							  	<option value="" selected="selected">선택</option>
 								<option value="입문">입문</option>
 								<option value="초급">초급</option>
@@ -367,16 +400,6 @@
 					</tr>
 					
 					<tr>
-						<th>주당 수업일수</th>
-						<td>
-							<div style="width: 30%;">
-								<input type="text" name="weekPer" id="weekPer"/>
-							</div> 						
-						</td>
-					</tr>
-					
-
-					<tr>
 						<th>스터디 시간</th>
 						<td>
 							<div style="display: inline-block;"><input type="text" name="fromTime" id="fromTime" lang="5"/></div>&nbsp~&nbsp<div style="display: inline-block;"><input name="toTime" id="toTime" type="text"/></div>							
@@ -397,8 +420,8 @@
 				</table>
 				<br/>
 				
-				<button type="button" class="btn warning" style="margin-right: 10px;">스터디등록</button>
-				<button type="button" class="btn warning" style="margin-right: 10px;">취소</button>
+				<button type="button" class="btn warning" style="margin-right: 10px;" id="btnRegister">스터디등록</button>
+				<button type="button" class="btn warning" style="margin-right: 10px;" id="btnCancel">취소</button>
 			
 			</form>		
 
