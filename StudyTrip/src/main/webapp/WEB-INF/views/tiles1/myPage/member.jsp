@@ -173,7 +173,7 @@ th, td {
 		}); // end of 유효성 검사 -----------------------------------------------------------------
 			
 		$("#delBtn").click(function(){
-			
+			location.href="/myPage_del.st";
 		});
 		
 	}); // end of $(document).ready ---------------------------------------------------------------------
@@ -234,18 +234,20 @@ th, td {
 			    <th>결제액</th>
 			    <th>결제일</th>
 			  </tr>
-			  <tr>
-			    <td>Jill</td> <!-- db select -->
-			    <td>Smith</td>
-			    <td>50</td>
-			  </tr>
+			  <c:forEach var="paymentvo" items="${paymentList}">			  
+				<tr>
+				    <td>${study_name}</td> 
+				    <td>${price}</td>
+				    <td>${pay_date}</td>
+				</tr>
+			 </c:forEach>
 			</table> 		
 		  </div>
 		</div>
 		
 		<div id="wishlist" class="tabcontent">
 		  <c:forEach begin="1" end="3" varStatus="status">  <!-- db 갯수 수정 -->
-			<div style=" width: 290px; display: inline-block; margin-left: 40px;" id="myWish" onclick="상세페이지주소">>
+			<div style=" width: 290px; display: inline-block; margin-left: 40px;" id="myWish" onclick="상세페이지주소">
 				
 				<div>
 					<img src="/studytrip/resources/images/myPage/love.png" class="wish" style="width: 10%; float: right;">
@@ -277,21 +279,13 @@ th, td {
 				    <th>발급일</th>
 				    <th>만료일</th>
 				  </tr>
-				  <tr>
-				    <td>Jill</td> <!-- Ajax -->
-				    <td>Smith</td>
-				    <td>50</td>
-				  </tr>
-				  <tr>
-				    <td>Eve</td>
-				    <td>Jackson</td>
-				    <td>94</td>
-				  </tr>
-				  <tr>
-				    <td>Adam</td>
-				    <td>Johnson</td>
-				    <td>67</td>
-				  </tr>
+				  <c:forEach var="couponvo" items="${couponList}">			  
+				  	<tr>
+				    	<td>${coupon_name}</td> 
+				    	<td>${issudate}</td>
+				    	<td>${expi_date}</td>
+				  	</tr>
+				  </c:forEach>
 			</table> 
 		  </div>
 		</div>
@@ -303,21 +297,21 @@ th, td {
 			    <div class="form-group">
 			      <label class="control-label col-sm-4" for="name">이름</label>
 			      <div class="col-sm-4">
-			     	<input type="text" class="form-control" id="name" value="로그인한 사람의 이름"  name="name" readonly> 
+			     	<input type="text" class="form-control" id="name" value=""  name="name" readonly> 
 			      </div>
 			    </div>
 			    
 			    <div class="form-group">
 			      <label class="control-label col-sm-4" for="email">이메일</label>
 			      <div class="col-sm-4">
-			        <input type="email" class="form-control" id="email" value="로그인한 사람의 이메일" name="email" readonly>
+			        <input type="email" class="form-control" id="email" value="" name="email" readonly>
 			      </div>
 			    </div>
 			    
 			    <div class="form-group">
 			      <label class="control-label col-sm-4" for="pwd">비밀번호</label>
 			      <div class="col-sm-4">          
-			        <input type="password" class="form-control" id="pwd" placeholder="숫자,영문자,특수문자가 각 1개씩 포함 6자리 이상" name="pwd">
+			        <input type="password" class="form-control" id="pwd" value="" placeholder="숫자,영문자,특수문자가 각 1개씩 포함 6자리 이상" name="pwd">
 			      </div>
 			    </div>
 			    
@@ -331,7 +325,7 @@ th, td {
 			     <div class="form-group">
 			      <label class="control-label col-sm-4" for="phone">핸드폰</label>
 			      <div class="col-sm-4">  
-			      	<input type="tel" class="form-control" placeholder="-를 제외한 핸드폰번호를 쓰세요" id="phone" name="phone">
+			      	<input type="tel" class="form-control" value="" placeholder="-를 제외한 핸드폰번호를 쓰세요" id="phone" name="phone">
 			      </div>
 			    </div>
 			    

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="member"> 
+
+	<insert id="register_member" parameterType="com.spring.model.MemberVO"> 
+	 	insert into members (useremail, name, pwd, hp, profile, route, registerday, status, fk_auth_num, fk_coupon_num)
+		values(#{useremail}, #{name}, #{pwd}, #{hp}, default, #{route}, default, default, 1, default)
+	</insert>
+
+
+	<insert id="register_leader" parameterType="com.spring.model.MemberVO"> 
+	 	insert into members (useremail, name, pwd, hp, profile, qualifi, registerday, status, fk_auth_num, fk_coupon_num)
+		values(#{useremail}, #{name}, #{pwd}, #{hp}, default, #{qualifi}, default, default, 2, default)
+	</insert>
+	
+
+	<select id="checkPW" parameterType="String" resultType="int">
+		select count(*)
+		from members
+		where useremail = #{email}
+	</select>
+	
+</mapper>

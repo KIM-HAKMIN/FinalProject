@@ -2,7 +2,7 @@ show user;
 
 select * from user_all_tables;
 
-<<<<<<< HEAD
+
 -- 스토리 테이블
 create table story  
 (story_num      NVARCHAR2(20)     --  (P.K)  권한번호
@@ -14,7 +14,6 @@ create table story
 ,fk_seq         number default 0       not null     -- 부모글번호
 , constraint PK_story_story_num primary key(story_num)
 );
-
 
 -- 스토리 테이블 시퀀스
 create sequence seq_story
@@ -33,8 +32,6 @@ create table story_image
 , constraint PK_story_image primary key(story_num)
 , constraint FK_story_image foreign key(story_num) references story(story_num)
 );
-
-
 
 
 -- 권한 테이블
@@ -94,7 +91,6 @@ create table members
 , constraint FK_member_fk_coupon_num foreign key(fk_coupon_num) references coupon (coupon_num)
 );
 
-
 -- 회원 테이블 시퀀스
 create sequence seq_members
 start with 1
@@ -103,10 +99,6 @@ nomaxvalue
 nominvalue
 nocycle
 nocache;
-
-
-
-
 
 
 -- QnA 테이블
@@ -122,7 +114,6 @@ create table qna
 , constraint PK_qna_qna_num primary key(qna_num)
 , constraint FK_qna_fk_useremail foreign key(fk_useremail) references members (useremail)
 );
-
 
 -- QnA 테이블 시퀀스
 create sequence seq_story
@@ -156,6 +147,7 @@ nomaxvalue
 nominvalue
 nocycle
 nocache;
+
 
 -- 후기 테이블
 create table review
@@ -200,8 +192,7 @@ nocycle
 nocache;
 
 
-
--- 자주묻는질문 테이블
+-- FAQ 테이블
 create table faq
 (seq            NVARCHAR2(20)              --  (P.K)  faq번호(컬럼명 변경)
 ,subject        NVARCHAR2(300)          not null    -- 타이틀  
@@ -239,7 +230,6 @@ create table research
 , constraint CK_research_gender check( gender in(0,1) )
 );
 
-
 -- 상세조사 테이블 시퀀스
 create sequence seq_research
 start with 1
@@ -250,8 +240,6 @@ nocycle
 nocache;
 
 
-
-
 -- 파티매칭 테이블
 create table party_matching
 (partymat_num    NVARCHAR2(20)              --  (P.K)파티매칭번호
@@ -260,7 +248,6 @@ create table party_matching
 , constraint PK_party_matching primary key(partymat_num)
 ,constraint FK_party_matching_fk_useremail foreign key(fk_useremail) references members (useremail)
 );
-
 
 
 -- 파티 테이블
@@ -283,7 +270,6 @@ nomaxvalue
 nominvalue
 nocycle
 nocache;
-
 
 
 -- 파티 이미지 테이블
@@ -317,7 +303,6 @@ create table study
 , constraint CK_study_status check( status in(0,1) )
 );
 
-
 -- 스터디 테이블 시퀀스
 create sequence seq_study
 start with 1
@@ -327,6 +312,7 @@ nominvalue
 nocycle
 nocache;
 
+
 -- 스터디 이미지 테이블 
 create table study_image
 (study_num            nvarchar2(20)                     --  (P.K)  스토리번호
@@ -334,6 +320,7 @@ create table study_image
 , constraint PK_study_image primary key(study_num)
 , constraint FK_study_image foreign key(study_num) references study(study_num)
 );
+
 
 -- 스터디 qna 테이블 
 create table study_qna  
@@ -348,7 +335,6 @@ create table study_qna
 , constraint PK_study_qna primary key(study_qna_num)
 , constraint FK_fk_study_num foreign key(fk_study_num) references study (study_num)
 );
-
 
 
 -- 스터디 매칭 테이블
@@ -370,6 +356,7 @@ nominvalue
 nocycle
 nocache;
 
+
 -- 위시리스트 테이블
 create table wishlist
 (wishlist_num nvarchar2(50) --  (P.K) 위시리스트 매칭번호
@@ -378,7 +365,6 @@ create table wishlist
 , constraint FK_wishlist_fk_useremail foreign key(fk_useremail) references members (useremail)
 , constraint FK_wishlist_fk_study_num foreign key(fk_study_num) references study (study_num)
 );
-
 
 -- 위시리스트 테이블 시퀀스
 create sequence seq_wishlist
@@ -390,6 +376,7 @@ nocycle
 nocache;
 
 
+-- 결제 테이블
 create table payment_complete
 (pay_num        nvarchar2(20)     --  (P.K)  게시판번호
 ,fk_useremail   nvarchar2(50)          not null    -- (F.K) 유저이메일
@@ -404,6 +391,7 @@ create table payment_complete
 , constraint FK_payment_fk_useremail foreign key(fk_useremail) references members (useremail)
 );
 
+-- 결제 테이블 시퀀스
 create sequence seq_payment_complete
 start with 1
 increment by 1
@@ -411,5 +399,9 @@ nomaxvalue
 nominvalue
 nocycle
 nocache;
-=======
->>>>>>> branch 'master' of https://github.com/KIM-HAKMIN/FinalProject.git
+
+
+
+
+
+
