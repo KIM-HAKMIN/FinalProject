@@ -27,7 +27,11 @@ public class RegisterController {
 	private GoogleMail mail;
 	
 	
+<<<<<<< HEAD
 	@RequestMapping(value="/register_member.st", method= {RequestMethod.POST ,RequestMethod.GET})
+=======
+	@RequestMapping(value="/register_member.st", method= {RequestMethod.POST, RequestMethod.GET})
+>>>>>>> branch 'master' of https://github.com/KIM-HAKMIN/FinalProject.git
 	public ModelAndView register_member(ModelAndView mav, HttpServletRequest request) {	
 	
 		mav.setViewName("register/member.tiles2");
@@ -35,7 +39,11 @@ public class RegisterController {
 		return mav;
 	}
 	
+<<<<<<< HEAD
 	@RequestMapping(value="/register_leader.st", method= {RequestMethod.POST,RequestMethod.GET})
+=======
+	@RequestMapping(value="/register_leader.st", method= {RequestMethod.POST, RequestMethod.GET})
+>>>>>>> branch 'master' of https://github.com/KIM-HAKMIN/FinalProject.git
 	public ModelAndView register_leader(ModelAndView mav) {
 		
 		mav.setViewName("register/leader.tiles2");
@@ -44,7 +52,11 @@ public class RegisterController {
 	}
 
 	
+<<<<<<< HEAD
 	@RequestMapping(value="/register_memberEnd.st", method= {RequestMethod.POST,RequestMethod.GET})
+=======
+	@RequestMapping(value="/register_memberEnd.st", method= {RequestMethod.POST, RequestMethod.GET})
+>>>>>>> branch 'master' of https://github.com/KIM-HAKMIN/FinalProject.git
 	public ModelAndView register_memberEnd(HttpServletRequest request, ModelAndView mav) {	
 	
 		String name = request.getParameter("name");
@@ -78,7 +90,11 @@ public class RegisterController {
 	}
 	
 	
+<<<<<<< HEAD
 	@RequestMapping(value="/register_leaderEnd.st", method= {RequestMethod.POST,RequestMethod.GET})
+=======
+	@RequestMapping(value="/register_leaderEnd.st", method= {RequestMethod.POST, RequestMethod.GET})
+>>>>>>> branch 'master' of https://github.com/KIM-HAKMIN/FinalProject.git
 	public ModelAndView register_leaderEnd(HttpServletRequest request, ModelAndView mav) {	
 	
 		String name = request.getParameter("name");
@@ -115,7 +131,7 @@ public class RegisterController {
 	
 	// ===== 이메일 중복검사 ===== //
 	@ResponseBody
-	@RequestMapping(value="/emailExist.st", produces="text/plain;charset=UTF-8")
+	@RequestMapping(value="/emailExist.st", produces="text/plain;charset=UTF-8", method= {RequestMethod.POST, RequestMethod.GET})
 	public String emailExist(HttpServletRequest request) {
 	String email = request.getParameter("email");
 
@@ -131,7 +147,11 @@ public class RegisterController {
 	
 	
 	// ====== 인증메일 보내기 ====== //
+<<<<<<< HEAD
 	@RequestMapping(value="/emailSend.st", method={RequestMethod.POST,RequestMethod.GET} ) 
+=======
+	@RequestMapping(value="/emailSend.st", method= {RequestMethod.POST, RequestMethod.GET}) 
+>>>>>>> branch 'master' of https://github.com/KIM-HAKMIN/FinalProject.git
 	public String emailSend(HttpServletRequest request) throws Throwable {
 
 	    String emailAddress = request.getParameter("email");

@@ -134,14 +134,51 @@ a:hover{
     
 }
 
+.sticky {
+  position: fixed;
+  top: 0;
+  width: 19%; 
+  
+  
+}
+
+.sticky2{
+
+	width: 98%;
+
+	
+}
+
 </style>
 
 <script type="text/javascript">
 $(document).ready(function(){
 
+	// 헤더 상단 메뉴바 고정
+	var navbarTop = $("#sideMenu").offset().top;
+//	var navbarLeft = $("#navbar").offset().left;
+
+	 $("#sideMenu").addClass("sticky2"); 
+
+	
+	var scrollTop = 0;
+	$(window).scroll(function(event){
+		scrollTop = $(this).scrollTop();
+	 // alert("scrollTop : "+scrollTop);
+	//  alert("navbarTop : "+navbarTop);
+
+	    if(scrollTop >= navbarTop) {
+			$("#sideMenu").addClass("sticky");
+			$("#sideMenu").removeClass("sticky2");
+		}
+		else {
+			$("#sideMenu").removeClass("sticky");
+			$("#sideMenu").addClass("sticky2");
+		}
+	}); // end of $(window).scroll(function(event)-----------------------------
 	
 	
-})
+});
 
 
 
@@ -448,11 +485,20 @@ $(document).ready(function(){
 						</c:if>
 						<c:if test="true">
 						<c:forEach begin="1" end="3">
+						<c:if test="true">
 						<div style="text-align: left; border-top: solid 1px #ccc; margin-top: 40px; padding: 20px 0 20px 0; min-height: 200px;">
 							<img style="width: 50px; height: 50px;" src="<%= ctxPath%>/resources/images/studyDetail/qa.png"/><span style="margin-left: 15px; font-size: 11pt; font-weight: bold;">김학민</span><div class="edit" style="margin-left: 200px;">수정</div><img style="width: 20px; height: 20px;" src="<%= ctxPath%>/resources/images/studyDetail/pencil.png"/><div class="edit">삭제</div><img style="width: 20px; height: 20px;" src="<%= ctxPath%>/resources/images/studyDetail/paper-bin.png"/>
 							<br/><br/>
 							<span style="margin-top: 20px;">정말 영어를 잘하고 싶은데 뭐부터 해야할지 모르고 막상 시작하려니 많이 막막했는데 스터디 서치를 보고 용기내서 신총을 해서 Helen Lee수업을 들으면서 영어에 대한 자신감도 많이 생기고 영어실력도 많이 늘었어요 그리고 Helen Lee쌤이 정말 생활에 필요한 영어를 잘 알려주셔서 너무 좋았고 친절하고 꼼꼼하게 알려주셔서 정말 좋았어요~!!! 지금 사정이 생겨서 신청을 못 했지만 다음에도 Helen Lee쌤한테 배우고 싶어요~!!!</span>
 						</div>
+						</c:if>
+						<c:if test="false"> <!-- 대댓글인 경우 -->
+						<div style="text-align: left; border-top: solid 1px #ccc; margin-top: 40px; padding: 20px 0 20px 0; min-height: 200px;">
+							<img src="<%= ctxPath%>/resources/images/1508821271.jpg" style="height: 60px; width: 60px; border-radius: 100px; position: relative; border: solid 2px white;"/><span style="margin-left: 15px; font-size: 11pt; font-weight: bold; color: #ef6c00;">김학민님의 답변 :</span><div class="edit" style="margin-left: 120px;">수정</div><img style="width: 20px; height: 20px;" src="<%= ctxPath%>/resources/images/studyDetail/pencil.png"/><div class="edit">삭제</div><img style="width: 20px; height: 20px;" src="<%= ctxPath%>/resources/images/studyDetail/paper-bin.png"/>
+							<br/><br/>
+							<span style="margin-top: 20px;">정말 영어를 잘하고 싶은데 뭐부터 해야할지 모르고 막상 시작하려니 많이 막막했는데 스터디 서치를 보고 용기내서 신총을 해서 Helen Lee수업을 들으면서 영어에 대한 자신감도 많이 생기고 영어실력도 많이 늘었어요 그리고 Helen Lee쌤이 정말 생활에 필요한 영어를 잘 알려주셔서 너무 좋았고 친절하고 꼼꼼하게 알려주셔서 정말 좋았어요~!!! 지금 사정이 생겨서 신청을 못 했지만 다음에도 Helen Lee쌤한테 배우고 싶어요~!!!</span>
+						</div>
+						</c:if>
 						</c:forEach>
 						</c:if>
 				</div>
@@ -472,8 +518,8 @@ $(document).ready(function(){
 		
 
 		
-		<div style="float: right; background-color: #ebebeb; width: 30%;" >
-			<div id="sideMenu"style="margin-left: 30px; height: 800px; background-color: #ebebeb;">
+		<div style="display:inline-block; width: 30%">
+			<div id="sideMenu"style="margin-left: 30px; height: 800px;">
 				<div style="height: 480px; background-color: white; text-align: left; padding: 10px 10px 10px 10px;">
 					<div id="side" style="margin-top: 30px;">캐나다에서 온 Helen의 기초튼튼! 즐거운 영어 회화!</div>
 					<div style="margin-top: 50px; margin-left: 40px;">
@@ -492,8 +538,8 @@ $(document).ready(function(){
 						</button>
 					</div>
 				</div>
-				<div style="height: 290px; background-color: #ebebeb; margin-top: 30px;">
-				</div>
+				<!-- <div style="height: 290px; margin-top: 30px;">
+				</div> -->
 			</div>
 		</div>	
 			

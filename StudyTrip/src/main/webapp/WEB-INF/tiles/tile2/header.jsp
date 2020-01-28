@@ -41,6 +41,8 @@
 
 <div class="topnav">
   <a class="active" href="#home">스터디서치</a>
+  <a href="/studytrip/search.st">스터디찾기</a>
+  <a href="#">추천받기</a>
   <a href="#">스터디찾기</a>
   <a href="<%=ctxPath%>/leveltest.st">추천받기</a>
   <a href="#">스터디후기</a>

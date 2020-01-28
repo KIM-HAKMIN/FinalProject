@@ -8,7 +8,7 @@
 table {
     width: 80%; 
     border-collapse: collapse; 
-    margin-top: 10%;
+    margin-top: 5%;
 }
 
 th, td {
@@ -67,6 +67,7 @@ a {
 </script>
 
 <div align="center">
+	<img src="/studytrip/resources/images/FAQ/headFAQ.PNG" style="margin-top: -40px; width: 100%;">
 
 	<table id="table" style="word-wrap: break-word; table-layout: fixed;">
 		<tr>
@@ -89,7 +90,7 @@ a {
 	
 	<br/>
 	
-	<button class="m" type="button" onClick="javascript:location.href='<%= request.getContextPath() %>/FAQ_list.st'">목록</button> 
+	<button class="m" type="button" onClick="javascript:location.href='<%= request.getContextPath() %>/FAQ_list.st'">목록으로</button> 
 	
 	<%-- <c:if test="${sessionScope.loginuser.userid == 'admin'}"> --%>
 		<button class="a" type="button" onClick="javascript:location.href='<%= request.getContextPath() %>/FAQ_edit.st?seq=${boardvo.seq}'">수정</button>
