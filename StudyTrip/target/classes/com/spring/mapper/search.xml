@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="search">
+
+
+		<!-- 모든 스터디 목록을 가져온다 -->
+		<select id="getStudyListAll" resultType="com.spring.model.StudyVO">
+	
+			select *
+			from study S join members M
+			on S.fk_useremail = M.useremail
+			
+		</select>
+
+		 <!--  조건에 맞는 스터디 목록을 모두 가져온다 -->
+	<!--<select id="getStudySearchListAll" parameterType="HashMap" resultType="com.spring.model.StudyVO" >
+			 
+		</select>  -->
+ 
+ 
+		<!-- 스터디 번호를 채번해온다 -->
+		<select id="getStudy_num" resultType="String">
+		select seq_study.nextval
+		from dual
+		</select>
+		
+		<!-- 스터디를 등록한다. -->
+		<insert id="addStudy" parameterType="HashMap">
+			insert into study(study_num, fk_useremail, title, study_info, teacher_info,  area, lv, price, startday, lastday, study_time  , study_day, study_week, study_holyday,  areacost, max_cnt) 
+			values(#{study_num}, #{fk_useremail}, #{title}, #{study_info}, #{teacher_info}, #{area}, #{lv}, #{price}, #{startday}, #{lastday}, #{study_time}, #{study_day}, #{study_week},#{study_holyday}, #{areacost}, #{max_cnt})		
+		</insert>
+		
+		<!-- 스터디 이미지 파일을 등록한다. -->
+		<insert id="addStudyimage"  parameterType="HashMap">
+			insert into study_image(seq_img, study_num, study_img, filename) 
+			values(seq_study_image.nextval, #{study_num}, #{imageOriginalname}, #{imagefilename})
+		</insert>	
+		
+		<!-- 스터디 테이블에 메인 이미지를 넣어준다. -->
+		<update id="addTitleimage" parameterType="HashMap">
+			update study set title_img =  #{imagefilename}
+			where study_num = #{study_num}
+		</update>
+		
+		<!-- 해당 스터디의 상세페이지 정보를 가져온다 -->
+		<select id="searchDetail" parameterType="String" resultType="com.spring.model.StudyVO">
+			select *
+			from study S join members M
+			on S.fk_useremail = M.useremail
+			where study_num = #{study_num}
+		</select>
+		
+		<!-- 스터디디테일 캐러셀 이미지를 가져온다 -->
+		<resultMap type="HashMap" id="viewStudyImageList">
+			<result property="filename" 	 	column="filename" 		javaType="String" />
+		</resultMap>    
+	    <select id="searchDetailImg" parameterType="String" resultMap="viewStudyImageList">
+			select filename
+			from study_image
+			where study_num = #{study_num}
+		</select>
+ 
+ 
+
+</mapper>

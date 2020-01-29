@@ -210,7 +210,7 @@
 			  }
 		    }// end of for------------------------------------
 		    
-		   area = checkBoxArr.join();
+		   area = checkBoxArr;
 		   
 		    
 		    
@@ -222,7 +222,7 @@
 				}
 			}
 		   
-		   level = checkBoxArr1.join();
+		   level = checkBoxArr1;
 		   
 
  		   length = $("input:checkbox[name=dayCheckbox]").length;
@@ -233,7 +233,7 @@
 				}
 			}
 		   
-		   day = checkBoxArr2.join();
+		   day = checkBoxArr2;
 	 
 
 		   location.href="/studytrip/search.st?area="+area+"&&level="+level+"&&day="+day;
@@ -375,41 +375,41 @@
 <div style="background: #ebebeb; width: 100%;" align="center">
 	<div align="left" style="width: 80%;">
 		<div style="text-align: left; color: #505050; font-size: 16pt; font-weight: bold; padding: 60px 0 40px 0; margin-left: 38px;"><span>1500개의 스터디</span></div>	
-		<c:forEach begin="1" end="5" varStatus="status" >
-		<input type="hidden" id="study_num" value="1" />
+		<c:forEach var="stvo" items="${listst}" >
+		<input type="hidden" id="study_num" name="study_num" value="${stvo.study_num}"/>
 		<div id style=" width: 290px; display: inline-block; margin-bottom: 30px; margin-left: 42px; cursor: pointer;" onclick="goDetail()">
 			<div align="center" style="background-color:white; width: 100%; height: 50px; text-align: center;">
-				<div style="padding-top: 20px;"><span style="color: #4c8def; font-weight: bold;">1월20일 (월)</span> <span style= "color: #787878;font-weight: bold;"> 17:00~19:00 첫 시작</span></div>
+				<div style="padding-top: 20px;"><span style="color: #4c8def; font-weight: bold;">${stvo.startday} (${stvo.study_day})</span> <span style= "color: #787878;font-weight: bold;"> ${stvo.study_time} 첫 시작</span></div>
 				<div style="border-top: solid 0.5px gray; width: 90%; margin: 0 auto; margin-top: 14px; position: relative;"></div>
 			</div>
 			<div style="height: 50px; background-color: white; text-align: center;">
-				<div><span style="margin-top:10px; color: #A0A0A0; font-size: 10pt; position: relative;top: 40px;">강남&nbsp; | &nbsp;초급</span></div>
+				<div><span style="margin-top:10px; color: #A0A0A0; font-size: 10pt; position: relative;top: 40px;">${stvo.area}&nbsp; | &nbsp;${stvo.lv}</span></div>
 			</div>
 			<div style="height: 110px; text-align: center; background-color: white; padding-top: 10px;">
-				<div style="margin-top: 20px;"><span style="color: #3c3c3c; font-size: 14pt; font-weight: bold;">노화우 가득한 리더 Jason의<br/> 꿀잼 스터디로 회화두려움 극복!</span></div>
+				<div style="margin-top: 20px;"><span style="color: #3c3c3c; font-size: 14pt; font-weight: bold;">${stvo.title}</span></div>
 			</div>	
 			<div style="height: 80px; background-color: white; text-align: center;">
-				<span style="color: #f48210; font-weight: 700; font-size: 14pt;">240,000원 </span><span style="color: #a0a0a0; font-size: 10pt;">12주</span>
+				<span style="color: #f48210; font-weight: 700; font-size: 14pt;">${stvo.price}원 </span><span style="color: #a0a0a0; font-size: 10pt;">${stvo.study_week }주</span>
 			</div>	
 			
 
 
-			<c:if test="true">
-			<div align="center" style="height: 220px; width: 100%; background-image:url('<%= ctxPath%>/resources/images/6035-1508821271.jpg'); background-size:cover; background-position: center;">
-				<img src="<%= ctxPath%>/resources/images/1508821271.jpg" style="height: 100px; width: 100px; border-radius: 100px; position: relative; bottom: 35px; border: solid 2px white;"/>
+			<c:if test="${stvo.studyStatus==0}">
+			<div align="center" style="height: 220px; width: 100%; background-image:url('<%= ctxPath%>/resources/files/${stvo.title_img}'); background-size:cover; background-position: center;">
+				<img src="<%= ctxPath%>/resources/files/${stvo.profile}" style="height: 100px; width: 100px; border-radius: 100px; position: relative; bottom: 35px; border: solid 2px white;"/>
 				<div style="width: 100%; height: 50px; background-color: rgba(0,0,0,.5); margin-top: 70px; text-align: center;"><div style="color: white; font-size: 11pt; font-weight:bold; position: relative; top: 13px;">마감 되었습니다.</div></div>		
 			</div>
 			</c:if>
-			<c:if test="false">
-			<div align="center" style="height: 220px; width: 100%; background-image:url('<%= ctxPath%>/resources/images/6035-1508821271.jpg');background-size:cover; background-position: center;">
-				<img src="<%= ctxPath%>/resources/images/1508821271.jpg" style="height: 100px; width: 100px; border-radius: 100px; position: relative; bottom: 35px; border: solid 2px white;"/>
+			<c:if test="${stvo.studyStatus==2}">
+			<div align="center" style="height: 220px; width: 100%; background-image:url('<%= ctxPath%>/resources/files/${stvo.title_img}');background-size:cover; background-position: center;">
+				<img src="<%= ctxPath%>/resources/files/${stvo.profile}" style="height: 100px; width: 100px; border-radius: 100px; position: relative; bottom: 35px; border: solid 2px white;"/>
 				<div style="width: 100%; height: 50px; background-color: rgba(220,0,0,.6); margin-top: 70px; text-align: center;"><div style="color: white; font-size: 11pt; font-weight: bold; position: relative; top: 13px;">마감임박</div></div>		
 			</div>
 			</c:if>
-			<c:if test="false">
-			<div align="center" style="height: 220px; width: 100%; background-image:url('<%= ctxPath%>/resources/images/6035-1508821271.jpg');background-size:cover; background-position: center;">
-				<img src="<%= ctxPath%>/resources/images/1508821271.jpg" style="height: 100px; width: 100px; border-radius: 100px; position: relative; bottom: 35px; border: solid 2px white;"/>
-				<div style="width: 100%; height: 50px; background-color: rgba(239,108,0,.8); margin-top: 70px; text-align: center;"><div style="color: white; font-size: 11pt; font-weight: bold; position: relative; top: 13px;">신규모집</div></div>		
+			<c:if test="${stvo.studyStatus==1}">
+			<div align="center" style="height: 220px; width: 100%; background-image:url('<%= ctxPath%>/resources/files/${stvo.title_img}');background-size:cover; background-position: center;">
+				<img src="<%= ctxPath%>/resources/files/${stvo.profile}" style="height: 100px; width: 100px; border-radius: 100px; position: relative; bottom: 35px; border: solid 2px white;"/>
+				<div style="width: 100%; height: 50px; background-color: rgba(239,108,0,.6); margin-top: 70px; text-align: center;"><div style="color: white; font-size: 11pt; font-weight: bold; position: relative; top: 13px;">신규모집</div></div>		
 			</div>
 			</c:if>
 		</div>
