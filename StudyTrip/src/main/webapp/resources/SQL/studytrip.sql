@@ -230,6 +230,9 @@ create table research
 , constraint CK_research_gender check( gender in(0,1) )
 );
 
+select *
+from research;
+
 -- 상세조사 테이블 시퀀스
 create sequence seq_research
 start with 1
@@ -239,6 +242,7 @@ nominvalue
 nocycle
 nocache;
 
+------------------------------------
 
 -- 파티매칭 테이블
 create table party_matching
@@ -280,6 +284,7 @@ create table party_image
 , constraint FK_party_image foreign key(party_num) references party(party_num)
 );
 
+------------------------------------
 
 -- 스터디 테이블
 create table study

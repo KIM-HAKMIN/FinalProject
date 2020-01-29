@@ -229,6 +229,22 @@ align-items: flex-start;
 
 </style>
 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script type="text/javascript">
+	
+	$(document).ready(function(){	
+		
+		/* 체크박스 한개만 선택가능하도록 한것. */
+		$("input:checkbox[name=area_etc]").click(function(){
+			$("input:checkbox[name=area_etc]").prop("checked",false);
+			$(this).prop("checked",true);
+		});
+	
+		
+	}); //end of $(document).ready -------
+
+</script>
+
 </head>
 <body>
 	<div class="contentWrapper">
@@ -444,11 +460,11 @@ align-items: flex-start;
 								<div class="themasearch-itemcontainer">
 									<div class="themasearch-item">
 										<div class="themasearch-itemitem">
-											<div class="themasearch-friend">⚠️ 이후 모든 안내는 @스터디서치 플러스친구로 진행되니 꼭 친구 추가해주세요! *							
+											<div class="themasearch-friend">⚠️ 이후 모든 안내는 개별연락되오니 2틀내로 연락이 안오면 꼭!연락바랍니다!							
 											</div>
-											<div style="font-size: 8pt;">🚨 추가하지 않으면 안내에서 누락되며, 그로 인해 발생하는 문제는 책임지지 않습니다ㅠㅠ...!
+											<div style="font-size: 10pt;">🚨 일주일까지 연락이 없어 참여불가능하는 문제는 책임지지 않습니다ㅠㅠ...!
 											</div>
-											<div class= "themasearch-friend">																									
+											<!-- <div class= "themasearch-friend">																									
 												<label class="themasearch-friend1">
 													<input type="checkbox" name="area_etc" value="">
 													<span class="mock-radio"></span>
@@ -460,7 +476,7 @@ align-items: flex-start;
 													<span class="label-text">(신청서를 제출하시면 @플러스친구 친구추가 URL이 안내됩니다)</span>														
 												</label>
 																															
-											</div>																				
+											</div> -->																				
 										</div>									
 									</div>
 								</div>
