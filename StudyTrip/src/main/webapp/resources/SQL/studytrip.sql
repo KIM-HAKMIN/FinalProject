@@ -452,7 +452,7 @@ create table members
 , hp         nvarchar2(200) not null -- 휴대전화
 , name          nvarchar2(20) not null -- 이름
 , profile       varchar2(300) default 'anonymous.png' -- 섬네일(컬럼명 변경) 
-, qualifi       nvarchar2(50)       -- 자격조건
+, qualifi       nvarchar2(50)       -- 자격조건 
 , route         nvarchar2(50)       -- 알게된 경로
 , status        number(1) default 1     -- (C.K) 상태 (회원이라면:1 회원탈퇴:0)
 , registerday   date default sysdate -- 가입일자
@@ -466,6 +466,11 @@ create table members
 
 select *
 from members;
+
+update members set qualifi = '토익';
+
+commit
+
 
 insert into members(useremail, pwd, hp, name, profile, qualifi, route, status, fk_auth_num, fk_coupon_num)
 values('nahakmin@naver.com','qwer1234$','01022452600','김학민','1517293332.jpg','토익950점','인터넷',1,'2','2');
@@ -497,6 +502,12 @@ create table study
 , constraint FK_study foreign key(fk_useremail) references members (useremail)
 , constraint CK_study_status check( status in(0,1,2) )
 );
+
+
+commit;
+
+
+
 
 
 
@@ -563,34 +574,3 @@ on V.study_num = I.study_num;
 
 
 
-
-					select productno, pimage, productname\n"+
-					        , to_char(price, '999,999') as price\n"+
-					        , decode(fk_pcategoryno,2,'메탈',4,'메탈','가죽') as pcategory\n"+
-                            , statementday\n"+
-					        , decode(status,0,'출고중',1,'배송중','완료') as shipstatus\n"+
-					        , fk_userno as fk_userno\n"+
-					        , row_number() over (order by statementday desc) AS RNO\n"+
-					from\n"+
-					(\n"+
-					select productno, pimage, productname, price, fk_pcategoryno, to_char(statementday, 'yyyy-mm-dd') as statementday, status, fk_userno\n"+
-					from\n"+
-					(\n"+
-					select *\n"+
-					from(\n"+
-					select *   \n"+
-					from\n"+
-					(\n"+
-					select *\n"+
-					from tbl_semi_orderdetail A join tbl_semi_statement B \n"+
-					on A.fk_statementno = B.statementno\n"+
-					)V join tbl_semi_product C\n"+
-					on V.fk_productno = c.productno\n"+
-					)T join tbl_semi_orderlist D\n"+
-					on T.orderno = D.fk_orderdetailno\n"+
-					")M join tbl_semi_shipping E\n"+
-					"on M.fk_shippingno = E.shippingno   --\n"+
-					") O\n"+
-					"where fk_userno= ? and statementday between ? and ? \n"+
-					") P\n"+
-					"where RNO between ? and ? ";

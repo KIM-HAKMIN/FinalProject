@@ -345,7 +345,9 @@ $(document).ready(function(){
 					<div id="leader" align="left" style="width: 100%; height: 110px;">
 						<img style="width: 20px;height: 20px; " src="<%= ctxPath%>/resources/images/studyDetail/leadercheck.png"/>
 						<span style="font-weight: bold;"> &nbsp인증됨</span>
-						<div style="margin-top: 16px;"><span>학력:</span> <span style="margin-left: 100px; font-weight: bold;">Dan Robert College of Health Care</span></div>
+						<div style="margin-top: 16px;">
+							<c:if test="${stvo.qualifi=='토익'}"> <span>학력:</span> <span style="margin-left: 100px; font-weight: bold;">Dan Robert College of Health Care</span></c:if>
+						</div>
 					</div>
 					
 					<div  class="content" style="margin-top: 30px; font-size: 12pt;">
@@ -408,8 +410,8 @@ $(document).ready(function(){
 
 			<div style="width: 100%; min-height: 250px;">
 				<div style="display: inline-block; width: 24%; float: left; padding: 30px 30px 30px 30px;">
-				<c:if test="false"><span style="font-size: 16pt; font-weight: bold;">Q&A</span> </br>
-				<div align="left" style="margin-left: 50px; margin-top: 5px; color: #777;">0개</div></c:if>
+					<c:if test="false"><span style="font-size: 16pt; font-weight: bold;">Q&A</span> </br>
+					<div align="left" style="margin-left: 50px; margin-top: 5px; color: #777;">0개</div></c:if>
 				</div>
 				
 				<div align="right" style="background-color: white; display: inline-block; width: 75%; padding: 30px 30px 30px 30px; text-align: left;">
