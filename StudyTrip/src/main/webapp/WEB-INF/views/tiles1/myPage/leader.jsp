@@ -268,7 +268,7 @@ tr:nth-child(even) {
 		}); // end of 유효성 검사 -----------------------------------------------------------------
 			
 		$("#delBtn").click(function(){
-						
+			location.href="/myPage_del.st";
 		});
 		
 		

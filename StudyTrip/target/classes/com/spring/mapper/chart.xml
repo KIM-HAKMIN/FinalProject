@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="chart"> 
+
+	<resultMap type="HashMap" id="RouteMap">
+		<result property="ROUTE" column="ROUTE" javaType="String" />
+		<result property="CNT" column="CNT" javaType="String" />
+		<result property="PERCENTAGE" column="PERCENTAGE" javaType="String" />
+	</resultMap>
+	<select id="Route" resultMap="RouteMap"> 
+		select route AS ROUTE
+		     , count(*) AS CNT
+		     , round(count(*)/(select count(*) from route)*100, 2) AS PERCENTAGE  
+		from members 
+		group by route
+	</select>
+
+</mapper>

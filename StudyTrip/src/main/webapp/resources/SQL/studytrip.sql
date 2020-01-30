@@ -1,6 +1,10 @@
 show user;
 
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> branch 'master' of https://github.com/KIM-HAKMIN/FinalProject
 -- 스토리 테이블
 create table story  
 (story_num      NVARCHAR2(20)     --  (P.K)  권한번호
@@ -12,7 +16,6 @@ create table story
 ,fk_seq         number default 0       not null     -- 부모글번호
 , constraint PK_story_story_num primary key(story_num)
 );
-
 
 -- 스토리 테이블 시퀀스
 create sequence seq_story
@@ -34,6 +37,7 @@ create table story_image
 );
 
 
+<<<<<<< HEAD
 ALTER TABLE story_image ADD(imagefilename nvarchar2(30)); 
 ALTER TABLE story_image MODIFY imagefilename NOT NULL;
 
@@ -42,6 +46,8 @@ ALTER TABLE story_image MODIFY imagefilename NOT NULL;
 
 
 
+=======
+>>>>>>> branch 'master' of https://github.com/KIM-HAKMIN/FinalProject
 -- 권한 테이블
 create table authority  
 (auth_num        NVARCHAR2(20)     --  (P.K)  권한번호
@@ -98,6 +104,7 @@ create table members
 , constraint FK_member_fk_coupon_num foreign key(fk_coupon_num) references coupon (coupon_num)
 );
 
+<<<<<<< HEAD
 thumbnails
 
 select * from members;
@@ -108,6 +115,8 @@ alter table members modify(thumbnails null);
 alter table members RENAME COLUMN thumbnails to profile;
 
 
+=======
+>>>>>>> branch 'master' of https://github.com/KIM-HAKMIN/FinalProject
 -- 회원 테이블 시퀀스
 create sequence seq_members
 start with 1
@@ -116,10 +125,6 @@ nomaxvalue
 nominvalue
 nocycle
 nocache;
-
-
-
-
 
 
 -- QnA 테이블
@@ -135,7 +140,6 @@ create table qna
 , constraint PK_qna_qna_num primary key(qna_num)
 , constraint FK_qna_fk_useremail foreign key(fk_useremail) references members (useremail)
 );
-
 
 -- QnA 테이블 시퀀스
 create sequence seq_story
@@ -169,6 +173,7 @@ nomaxvalue
 nominvalue
 nocycle
 nocache;
+
 
 -- 후기 테이블
 create table review
@@ -213,9 +218,13 @@ nocycle
 nocache;
 
 
+<<<<<<< HEAD
 
 
 -- 자주묻는질문 테이블
+=======
+-- FAQ 테이블
+>>>>>>> branch 'master' of https://github.com/KIM-HAKMIN/FinalProject
 create table faq
 (seq            NVARCHAR2(20)              --  (P.K)  faq번호(컬럼명 변경)
 ,subject        NVARCHAR2(300)          not null    -- 타이틀  
@@ -253,6 +262,8 @@ create table research
 , constraint CK_research_gender check( gender in(0,1) )
 );
 
+select *
+from research;
 
 
 
@@ -265,8 +276,7 @@ nominvalue
 nocycle
 nocache;
 
-
-
+------------------------------------
 
 -- 파티매칭 테이블
 create table party_matching
@@ -276,7 +286,6 @@ create table party_matching
 , constraint PK_party_matching primary key(partymat_num)
 ,constraint FK_party_matching_fk_useremail foreign key(fk_useremail) references members (useremail)
 );
-
 
 
 -- 파티 테이블
@@ -301,7 +310,6 @@ nocycle
 nocache;
 
 
-
 -- 파티 이미지 테이블
 create table party_image
 (party_num            nvarchar2(20)     --  (P.K)(F.K) 스토리번호
@@ -310,6 +318,7 @@ create table party_image
 , constraint FK_party_image foreign key(party_num) references party(party_num)
 );
 
+------------------------------------
 
 -- 스터디 테이블
 create table study
@@ -337,7 +346,6 @@ create table study
 , constraint CK_study_status check( status in(0,1,2) )
 );
 
-
 -- 스터디 테이블 시퀀스
 create sequence seq_study
 start with 1
@@ -346,6 +354,7 @@ nomaxvalue
 nominvalue
 nocycle
 nocache;
+
 
 -- 스터디 이미지 테이블 
 create table study_image
@@ -357,12 +366,44 @@ create table study_image
 , constraint PK_study_image primary key(seq_img)
 );
 
+<<<<<<< HEAD
 select *
 from study_image;
+=======
+
+-- 스터디 qna 테이블 
+create table study_qna  
+(study_qna_num        NVARCHAR2(20)                 --  (P.K) 스터디qna번호
+,fk_study_num   nvarchar2(50)           not null    -- (F.K) 스터디번호
+,title          NVARCHAR2(300)          not null    -- 타이틀  
+,content        NVARCHAR2(500)          not null    -- 내용
+,write_date     date default sysdate                -- 작성일자 
+,groupno        number                not null      -- 그룹번호
+,depthno        number default 0      not null      -- 순서번호
+,fk_seq         number default 0       not null     -- 부모글번호
+, constraint PK_study_qna primary key(study_qna_num)
+, constraint FK_fk_study_num foreign key(fk_study_num) references study (study_num)
+);
+>>>>>>> branch 'master' of https://github.com/KIM-HAKMIN/FinalProject
 
 
+<<<<<<< HEAD
 -- 이미지 테이블 시퀀스
 create sequence seq_study_image
+=======
+-- 스터디 매칭 테이블
+create table study_matching
+(study_matnum nvarchar2(50) --  (P.K) 스터디 매칭번호
+,fk_useremail        NVARCHAR2(50)          not null    --(F.K) 회원이메일
+,fk_study_num   nvarchar2(50)           not null    -- (F.K) 스터디번호
+, constraint FK_study_matching_fk_useremail foreign key(fk_useremail) references members (useremail)
+, constraint FK_study_matching_fk_study_num foreign key(fk_study_num) references study (study_num)
+);
+
+
+-- 스터디 매칭 테이블 시퀀스
+create sequence seq_study
+>>>>>>> branch 'master' of https://github.com/KIM-HAKMIN/FinalProject
 start with 1
 increment by 1
 nomaxvalue
@@ -371,6 +412,7 @@ nocycle
 nocache;
 
 
+<<<<<<< HEAD
 
 
 select * 
@@ -399,6 +441,8 @@ create table study_qna
 );
 
 
+=======
+>>>>>>> branch 'master' of https://github.com/KIM-HAKMIN/FinalProject
 -- 위시리스트 테이블
 create table wishlist
 (wishlist_num nvarchar2(50) --  (P.K) 위시리스트 번호
@@ -417,7 +461,12 @@ nominvalue
 nocycle
 nocache;
 
+<<<<<<< HEAD
 -- 결제완료테이블
+=======
+
+-- 결제 테이블
+>>>>>>> branch 'master' of https://github.com/KIM-HAKMIN/FinalProject
 create table payment_complete
 (pay_num        nvarchar2(20)     --  (P.K)  게시판번호
 ,fk_useremail   nvarchar2(50)          not null    -- (F.K) 유저이메일
@@ -432,7 +481,11 @@ create table payment_complete
 , constraint FK_payment_fk_useremail foreign key(fk_useremail) references members (useremail)
 );
 
+<<<<<<< HEAD
 --결제완료 시퀀스 테이블
+=======
+-- 결제 테이블 시퀀스
+>>>>>>> branch 'master' of https://github.com/KIM-HAKMIN/FinalProject
 create sequence seq_payment_complete
 start with 1
 increment by 1
@@ -445,6 +498,7 @@ nocache;
 
 
 
+<<<<<<< HEAD
 -- 회원 테이블
 create table members
 ( useremail     nvarchar2(50)  -- (P.K) 이메일 
@@ -573,4 +627,6 @@ on V.study_num = I.study_num;
 
 
 
+=======
+>>>>>>> branch 'master' of https://github.com/KIM-HAKMIN/FinalProject
 

@@ -19,7 +19,7 @@ public class RegisterDAO implements InterRegisterDAO {
 
 	@Override
 	public int register_leader(MemberVO mvo) {
-		int n = sqlsession.insert("member.register_member", mvo);
+		int n = sqlsession.insert("member.register_leader", mvo);
 		return n;
 	}
 

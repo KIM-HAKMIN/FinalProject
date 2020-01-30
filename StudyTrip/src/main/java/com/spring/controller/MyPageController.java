@@ -1,6 +1,5 @@
 package com.spring.controller;
 
-import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -63,7 +62,7 @@ public class MyPageController {
 	}
 	
 	
-	// 위시리스트 삭제 --> 학민씨꺼 가져다 쓰기
+	// 위시리스트 삭제 
 
 	
 	
@@ -92,7 +91,11 @@ public class MyPageController {
 		return mav;
 	}
 
-	// Q&A 개수 알아오기 --> 학민씨꺼 가져다 쓰기
+	
+	
+	// Q&A 개수 알아오기 
+	
+	
 	
 	// 스터디별 수강생 조회
 	@RequestMapping(value="/myPage_leader_student.st")
@@ -111,10 +114,96 @@ public class MyPageController {
 	
 
 	
-	// 공통 : 스터디 목록  --> 학민씨꺼 가져다 쓰기
+	// 공통 : 스터디 목록  
 	
-	// 공통 : 회원정보수정(POST)
 	
-	// 공통 : 회원탈퇴(POST)
+	
+	// 공통 : 회원정보수정(POST)	- select --> update   // jsp에서 받아오기 위해 jsp 수정
+/*
+	@RequestMapping(value="/FAQ_edit.st",  method= {RequestMethod.POST, RequestMethod.GET})
+	public ModelAndView FAQ_edit(HttpServletRequest request, ModelAndView mav) {
+
+		String email = request.getParameter("email");
+		
+		MemberVO membervo = service.getViewWithNoAddCount(email);
+
+		mav.addObject("membervo", membervo);
+		mav.setViewName("FAQ/edit.tiles1");
+	
+		return mav;
+	}
+	
+	
+	@RequestMapping(value="/FAQ_editEnd.st",  method= {RequestMethod.POST, RequestMethod.GET})
+	public ModelAndView FAQ_editEnd(HttpServletRequest request, FAQVO boardvo, ModelAndView mav) {
+		
+		int n = service.edit(boardvo);
+		
+		if(n==0) {
+			mav.addObject("msg", "암호가 일치하지 않아 글 수정이 불가합니다.");
+		}
+		else {
+			mav.addObject("msg", "글수정 성공!!");
+		}
+		
+		mav.addObject("loc", request.getContextPath()+"/FAQ_view.st?seq="+boardvo.getSeq());
+		mav.setViewName("msg");
+	
+		return mav;
+	}
+	
+*/	
+
+	
+	// 공통 : 회원탈퇴(POST) - 비번 확인하기 - update
+	/*
+	 @RequestMapping(value="/myPage_del.st",  method= {RequestMethod.POST, RequestMethod.GET})
+	public ModelAndView myPage_del(HttpServletRequest request, ModelAndView mav) {
+
+		String seq = request.getParameter("seq");
+		
+		mav.addObject("seq", seq);
+		
+		mav.setViewName("FAQ/del.tiles1");
+	
+		return mav;
+	}
+	
+	
+	@RequestMapping(value="/myPage_delEnd.st",  method= {RequestMethod.POST, RequestMethod.GET})
+	public ModelAndView myPage_delEnd(HttpServletRequest request, ModelAndView mav) {
+
+		String seq = request.getParameter("seq");
+		String pw = request.getParameter("pw");
+		
+		FAQVO boardvo = new FAQVO();
+		boardvo.setSeq(seq);
+		boardvo.setPw(pw);
+		
+		int n = service.del(boardvo);  
+		
+		if(n == 0) {
+			 mav.addObject("msg", "암호가 일치하지 않아 글삭제가 불가합니다.");
+		}
+		else {
+			mav.addObject("msg", "글삭제 성공!!");
+		}
+		
+		mav.addObject("loc", request.getContextPath()+"/FAQ_list.st"); 
+		mav.setViewName("msg");
+	
+		return mav;
+	}
+	 */
+	
+	
+	
+	
+	
+	
+	
+	
+
+	
 	
 }

@@ -21,21 +21,25 @@ public class LevelTestController {
 	@RequestMapping(value="/leveltest.st")
 	public ModelAndView Test(ModelAndView mav, HttpServletRequest request) {
 		
+		//실시간
 		SimpleDateFormat format1 = new SimpleDateFormat ( "yyyy-MM-dd HH:mm:ss");				
 		Calendar time = Calendar.getInstance();		       
-		String format_time1 = format1.format(time.getTime());
-		        
-	//	System.out.println(format_time1);	
+		String format_time1 = format1.format(time.getTime());		        		
+		mav.addObject("format_time1",format_time1);		
 		
-		
-		mav.setViewName("leveltest/leveltest.tiles2");		
-		
+		mav.setViewName("leveltest/leveltest.tiles2");				
 		
 		return mav;
 	}
 	
 	@RequestMapping(value="/leveltestform.st")
 	public ModelAndView Test2(ModelAndView mav) {
+		
+		//실시간
+		SimpleDateFormat format2 = new SimpleDateFormat ( "yyyy-MM-dd HH:mm:ss");				
+		Calendar time = Calendar.getInstance();		       
+		String format_time2 = format2.format(time.getTime());		        		
+		mav.addObject("format_time2",format_time2);	
 		
 		mav.setViewName("leveltest/leveltestform.tiles2");	
 		

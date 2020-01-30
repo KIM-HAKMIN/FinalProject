@@ -6,7 +6,7 @@
 	String ctxPath = request.getContextPath();
 %>
     
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <!DOCTYPE html>
 <html>
@@ -43,6 +43,10 @@
   line-height: 60px;
   font-size: 14pt;
   font-weight: 400;
+  background-color: #00ffff;
+  font-family: Apple SD Gothic Neo,notokr,dotum,serif!important;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
  
   }
 
@@ -292,8 +296,80 @@ li {
 ul {
     list-style: none;
 }
+
+.select-list-wrap .row-1 {
+    display: inline-block;
+    width: 60%;
+
+}
+
+.select-list-wrap{
+display: inline-block;
+}
+
+.select-list-wrap .row-2 {
+    display: inline-block;
+    width: 60%;
+}
+
+#level-test-page .level-test-box .stage-wrap-name {
+    display: inline-block;
+    vertical-align: top;
+    width: 500px;
+    height: 100%;
+}
  
+#level-test-page .level-test-box .stage-wrap-name .name-stage .progress-bar {
+    width: 100%;
+    height: 4px;
+    background: #ef6c00;
+} 
+
+
+
 </style>
+
+<script>
+/* 
+$(document).ready(function (){
+	
+	
+	
+}); //-----------------------$(document).ready()---------------------------
+
+ function leveltestgo(){
+	
+	$.ajax({
+		url:"/leveltest.st",
+		type:"GET",
+		data:{},
+		dataType:"JSON",
+		success:function(json){
+			
+		},
+		error: function(request, status, error){
+			alert("code: "+request.status+"\n"+"message: "+request.responseText+"\n"+"error: "+error);
+	 	}
+	});
+	
+} // end of function leveltestgo() ------
+	*/
+
+	$(document).ready(function(){
+		
+		
+	});
+	
+	
+	function leveltestgo() {
+		
+		var i = i++;
+		
+		
+		
+	}
+	
+</script>
 
 </head>
 
@@ -310,10 +386,11 @@ ul {
 				<div class="time">
 					<div class="clock"></div>
 					<div class="text-time">
-						<span> 00:00:00 </span>
+						<span> <strong style="color: red;">실시간</strong> ${format_time1}</span>
 					</div>
 				</div>
 			</div>
+		
 			<div class="level-testbox">
 				<div class="page-image">
 					<div class="logo-wrap">
@@ -321,23 +398,24 @@ ul {
 						</div>
 					</div>
 				</div>
+	
 				<div class="stage-wrap">
-					<div class="stage">
+					<div class="stage">						
 						<div class="level-test-lavel">스터디상담신청</div>
 						<div class="question">나는 어떤 스터디가 좋을까?</div>
 						<div class="stage-title">스터디 상담 신청서!</div>
 						<div class="level-test-description">1분 완성! 11문항의 무료 레벨테스트를 완료하고<br>레벨, 분위기, 시간 등... 
 						<span class="orange">내게 꼭 맞는 스터디를 상담</span> 받으세요!
-						</div>
-						<a class="start-button" href="#">시작하기<span class="arrow"></span></a>				
+						</div>						
+						<a class="start-button" onclick="leveltestgo()">시작하기<span class="arrow"></span></a>
+								
 					</div>										
-				</div> 
-				<!--
+				</div>
+				  <!-- 1번문항 -->
 				<div class="stage-wrap">
 					<div class="stage">
 						<div class="progress-bar">
-							<div class="pass">
-							</div>
+						
 						</div>
 						<div class="question-wrap"><a class="previous" href="#"></a>
 							<div class="question">
@@ -350,11 +428,11 @@ ul {
 																					
 							<div class="select-list-wrap">
 								<ul class="select-list">
-									<li class="select-wrap"><label><input type="radio"><span class="mock-button"><span class="check-dot"></span></span><span class="select-content">이 정도는 바로 말할 수 있어요.</span></label>
+									<li class="select-wrap"><label><input type="radio" value="3"><span class="mock-button"><span class="check-dot"></span></span><span class="select-content">이 정도는 바로 말할 수 있어요.</span></label>
 									</li>
-									<li class="select-wrap"><label><input type="radio"><span class="mock-button"><span class="check-dot"></span></span><span class="select-content">해석은 되지만, 바로 말할 수 있을지 모르겠어요.</span></label>
+									<li class="select-wrap"><label><input type="radio" value="2"><span class="mock-button"><span class="check-dot"></span></span><span class="select-content">해석은 되지만, 바로 말할 수 있을지 모르겠어요.</span></label>
 									</li>
-									<li class="select-wrap"><label><input type="radio"><span class="mock-button"><span class="check-dot"></span></span><span class="select-content">무슨 뜻인지 해석이 안돼요.</span></label>
+									<li class="select-wrap"><label><input type="radio" value="1"><span class="mock-button"><span class="check-dot"></span></span><span class="select-content">무슨 뜻인지 해석이 안돼요.</span></label>
 									</li>
 								</ul>
 							</div>
@@ -362,79 +440,293 @@ ul {
 					</div>										
 				</div>
 				
-				  -->
-				<%--  아래내용은 11항에 대한 내용 (for문)
-							
-							2, Q.I went to school today.
-							3, Q.I can't help you. I'm driving
-							4, Q.I'll visit my friend's house to celebrate her birthday.
-							5, Q.This is the book that I'm reading recently.
-							6, Q.I haven't received your email. Have you sent it?
-							7, Q.If I was important to you, you should've told me the truth.
-							8, Q.There's no such thing as eternal love.
-							
-							
-							9,
-							
-							<div class="question-stage">
-								<div class="progress-bar">
-									<div class="pass">
-									</div>
-									<div class="pass">
-									</div>
-									<div class="pass">
-									</div>
-									<div class="pass">
-									</div>
-									<div class="pass">
-									</div>
-									<div class="pass">
-									</div>
-									<div class="pass">
-									</div>
-									<div class="pass">
-									</div>
-									<div class="pass">
-									</div>
-								</div>
-								<div class="question-wrap"><a class="previous" href="#"></a>
-									<div class="question"><span class="progress">[9 of 11]</span> <span class="question-content">1년 내 취득한 공인 인증 성적 중<br>가장 높은 점수를 골라주세요.</span>
-									</div>
-									<div class="help">(스피킹 점수를 우선으로 골라주세요)
-									</div>
-									<div class="select-list-wrap">
-										<ul class="select-list row-1">
-											<li class="select-wrap"><label><input type="radio"><span class="mock-button"><span class="check-dot"></span></span><span class="select-content">해당 사항 없어요!</span></label>
-											</li>
-											<li class="select-wrap"><label><input type="radio"><span class="mock-button"><span class="check-dot"></span></span><span class="select-content">토스 LV 6. / 오픽 IM1-2</span></label>
-											</li>
-											<li class="select-wrap"><label><input type="radio"><span class="mock-button"><span class="check-dot"></span></span><span class="select-content">토스 LV 7. / 오픽 IM3-IH</span></label>
-											</li>
-											<li class="select-wrap"><label><input type="radio"><span class="mock-button"><span class="check-dot"></span></span><span class="select-content">토스 LV 8. / 오픽 AL</span></label>
-											</li>
-											<li class="select-wrap"><label><input type="radio"><span class="mock-button"><span class="check-dot"></span></span><span class="select-content">아이엘츠 Speaking 6.5 이상</span></label>
-											</li>
-											<li class="select-wrap"><label><input type="radio"><span class="mock-button"><span class="check-dot"></span></span><span class="select-content">아이엘츠 Speaking 7.5 이상</span></label>
-											</li>
-										</ul>
-										<ul class="select-list row-2">
-											<li class="select-wrap"><label><input type="radio"><span class="mock-button"><span class="check-dot"></span></span><span class="select-content">토익 600점 이하</span></label>
-											</li>
-											<li class="select-wrap"><label><input type="radio"><span class="mock-button"><span class="check-dot"></span></span><span class="select-content">토익 600점 이상</span></label>
-											</li>
-											<li class="select-wrap"><label><input type="radio"><span class="mock-button"><span class="check-dot"></span></span><span class="select-content">토익 700점 이상</span></label>
-											</li>
-											<li class="select-wrap"><label><input type="radio"><span class="mock-button"><span class="check-dot"></span></span><span class="select-content">토익 800점 이상</span></label>
-											</li>
-											<li class="select-wrap"><label><input type="radio"><span class="mock-button"><span class="check-dot"></span></span><span class="select-content">토익 900점 이상</span></label>
-											</li>
-										</ul>
-									</div>
-								</div>
+				<!-- 2번문항 -->
+				<div class="stage-wrap">
+					<div class="stage">
+						<div class="progress-bar">
+						
+						</div>
+						<div class="question-wrap"><a class="previous" href="#"></a>
+							<div class="question">
+								<span class="progress">[2 of 11]</span> 
+								<span class="question-content">아래 문장을 외국인 앞에서<br>바로바로 말하실 수 있나요?</span>															
+							</div>
+							<div class="sentence-wrap"><span class="question-mark">Q.</span><span class="sentence">I went to school today.</span>											
 							</div>
 							
-							--%>	
+																					
+							<div class="select-list-wrap">
+								<ul class="select-list">
+									<li class="select-wrap"><label><input type="radio" value="3"><span class="mock-button"><span class="check-dot"></span></span><span class="select-content">이 정도는 바로 말할 수 있어요.</span></label>
+									</li>
+									<li class="select-wrap"><label><input type="radio" value="2"><span class="mock-button"><span class="check-dot"></span></span><span class="select-content">해석은 되지만, 바로 말할 수 있을지 모르겠어요.</span></label>
+									</li>
+									<li class="select-wrap"><label><input type="radio" value="1"><span class="mock-button"><span class="check-dot"></span></span><span class="select-content">무슨 뜻인지 해석이 안돼요.</span></label>
+									</li>
+								</ul>
+							</div>
+						</div>
+					</div>										
+				</div>
+				
+				<!-- 3번문항 -->
+				<div class="stage-wrap">
+					<div class="stage">
+						<div class="progress-bar">
+						
+						</div>
+						<div class="question-wrap"><a class="previous" href="#"></a>
+							<div class="question">
+								<span class="progress">[3 of 11]</span> 
+								<span class="question-content">아래 문장을 외국인 앞에서<br>바로바로 말하실 수 있나요?</span>															
+							</div>
+							<div class="sentence-wrap"><span class="question-mark">Q.</span><span class="sentence">I can't help you. I'm driving</span>											
+							</div>
+							
+																					
+							<div class="select-list-wrap">
+								<ul class="select-list">
+									<li class="select-wrap"><label><input type="radio" value="3"><span class="mock-button"><span class="check-dot"></span></span><span class="select-content">이 정도는 바로 말할 수 있어요.</span></label>
+									</li>
+									<li class="select-wrap"><label><input type="radio" value="2"><span class="mock-button"><span class="check-dot"></span></span><span class="select-content">해석은 되지만, 바로 말할 수 있을지 모르겠어요.</span></label>
+									</li>
+									<li class="select-wrap"><label><input type="radio" value="1"><span class="mock-button"><span class="check-dot"></span></span><span class="select-content">무슨 뜻인지 해석이 안돼요.</span></label>
+									</li>
+								</ul>
+							</div>
+						</div>
+					</div>										
+				</div>
+				
+				<!-- 4번문항 -->
+				<div class="stage-wrap">
+					<div class="stage">
+						<div class="progress-bar">
+						
+						</div>
+						<div class="question-wrap"><a class="previous" href="#"></a>
+							<div class="question">
+								<span class="progress">[4 of 11]</span> 
+								<span class="question-content">아래 문장을 외국인 앞에서<br>바로바로 말하실 수 있나요?</span>															
+							</div>
+							<div class="sentence-wrap"><span class="question-mark">Q.</span><span class="sentence">I'll visit my friend's house to celebrate her birthday.</span>											
+							</div>
+							
+																					
+							<div class="select-list-wrap">
+								<ul class="select-list">
+									<li class="select-wrap"><label><input type="radio" value="3"><span class="mock-button"><span class="check-dot"></span></span><span class="select-content">이 정도는 바로 말할 수 있어요.</span></label>
+									</li>
+									<li class="select-wrap"><label><input type="radio" value="2"><span class="mock-button"><span class="check-dot"></span></span><span class="select-content">해석은 되지만, 바로 말할 수 있을지 모르겠어요.</span></label>
+									</li>
+									<li class="select-wrap"><label><input type="radio" value="1"><span class="mock-button"><span class="check-dot"></span></span><span class="select-content">무슨 뜻인지 해석이 안돼요.</span></label>
+									</li>
+								</ul>
+							</div>
+						</div>
+					</div>										
+				</div>
+				
+				<!-- 5번문항 -->
+				<div class="stage-wrap">
+					<div class="stage">
+						<div class="progress-bar">
+							
+						</div>
+						<div class="question-wrap"><a class="previous" href="#"></a>
+							<div class="question">
+								<span class="progress">[5 of 11]</span> 
+								<span class="question-content">아래 문장을 외국인 앞에서<br>바로바로 말하실 수 있나요?</span>															
+							</div>
+							<div class="sentence-wrap"><span class="question-mark">Q.</span><span class="sentence">This is the book that I'm reading recently.</span>											
+							</div>
+							
+																					
+							<div class="select-list-wrap">
+								<ul class="select-list">
+									<li class="select-wrap"><label><input type="radio" value="3"><span class="mock-button"><span class="check-dot"></span></span><span class="select-content">이 정도는 바로 말할 수 있어요.</span></label>
+									</li>
+									<li class="select-wrap"><label><input type="radio" value="2"><span class="mock-button"><span class="check-dot"></span></span><span class="select-content">해석은 되지만, 바로 말할 수 있을지 모르겠어요.</span></label>
+									</li>
+									<li class="select-wrap"><label><input type="radio" value="1"><span class="mock-button"><span class="check-dot"></span></span><span class="select-content">무슨 뜻인지 해석이 안돼요.</span></label>
+									</li>
+								</ul>
+							</div>
+						</div>
+					</div>										
+				</div>
+				
+				<!-- 6번문항 -->
+				<div class="stage-wrap">
+					<div class="stage">
+						<div class="progress-bar">
+							
+						</div>
+						<div class="question-wrap"><a class="previous" href="#"></a>
+							<div class="question">
+								<span class="progress">[6 of 11]</span> 
+								<span class="question-content">아래 문장을 외국인 앞에서<br>바로바로 말하실 수 있나요?</span>															
+							</div>
+							<div class="sentence-wrap"><span class="question-mark">Q.</span><span class="sentence">I haven't received your email. Have you sent it?</span>											
+							</div>
+							
+																					
+							<div class="select-list-wrap">
+								<ul class="select-list">
+									<li class="select-wrap"><label><input type="radio" value="3"><span class="mock-button"><span class="check-dot"></span></span><span class="select-content">이 정도는 바로 말할 수 있어요.</span></label>
+									</li>
+									<li class="select-wrap"><label><input type="radio" value="2"><span class="mock-button"><span class="check-dot"></span></span><span class="select-content">해석은 되지만, 바로 말할 수 있을지 모르겠어요.</span></label>
+									</li>
+									<li class="select-wrap"><label><input type="radio" value="1"><span class="mock-button"><span class="check-dot"></span></span><span class="select-content">무슨 뜻인지 해석이 안돼요.</span></label>
+									</li>
+								</ul>
+							</div>
+						</div>
+					</div>										
+				</div>
+				
+				<!-- 7번문항 -->
+				<div class="stage-wrap">
+					<div class="stage">
+						<div class="progress-bar">
+							
+						</div>
+						<div class="question-wrap"><a class="previous" href="#"></a>
+							<div class="question">
+								<span class="progress">[7 of 11]</span> 
+								<span class="question-content">아래 문장을 외국인 앞에서<br>바로바로 말하실 수 있나요?</span>															
+							</div>
+							<div class="sentence-wrap"><span class="question-mark">Q.</span><span class="sentence">If I was important to you, you should've told me the truth.</span>											
+							</div>
+							
+																					
+							<div class="select-list-wrap">
+								<ul class="select-list">
+									<li class="select-wrap"><label><input type="radio" value="3"><span class="mock-button"><span class="check-dot"></span></span><span class="select-content">이 정도는 바로 말할 수 있어요.</span></label>
+									</li>
+									<li class="select-wrap"><label><input type="radio" value="2"><span class="mock-button"><span class="check-dot"></span></span><span class="select-content">해석은 되지만, 바로 말할 수 있을지 모르겠어요.</span></label>
+									</li>
+									<li class="select-wrap"><label><input type="radio" value="1"><span class="mock-button"><span class="check-dot"></span></span><span class="select-content">무슨 뜻인지 해석이 안돼요.</span></label>
+									</li>
+								</ul>
+							</div>
+						</div>
+					</div>										
+				</div>
+				
+				<!-- 8번문항 -->
+				<div class="stage-wrap">
+					<div class="stage">
+						<div class="progress-bar">
+							
+						</div>
+						<div class="question-wrap"><a class="previous" href="#"></a>
+							<div class="question">
+								<span class="progress">[8 of 11]</span> 
+								<span class="question-content">아래 문장을 외국인 앞에서<br>바로바로 말하실 수 있나요?</span>															
+							</div>
+							<div class="sentence-wrap"><span class="question-mark">Q.</span><span class="sentence">There's no such thing as eternal love.</span>											
+							</div>
+							
+																					
+							<div class="select-list-wrap">
+								<ul class="select-list">
+									<li class="select-wrap"><label><input type="radio" value="3"><span class="mock-button"><span class="check-dot"></span></span><span class="select-content">이 정도는 바로 말할 수 있어요.</span></label>
+									</li>
+									<li class="select-wrap"><label><input type="radio" value="2"><span class="mock-button"><span class="check-dot"></span></span><span class="select-content">해석은 되지만, 바로 말할 수 있을지 모르겠어요.</span></label>
+									</li>
+									<li class="select-wrap"><label><input type="radio" value="1"><span class="mock-button"><span class="check-dot"></span></span><span class="select-content">무슨 뜻인지 해석이 안돼요.</span></label>
+									</li>
+								</ul>
+							</div>
+						</div>
+					</div>										
+				</div>
+				
+				<div class="stage-wrap">
+					<div class="stage">
+						<div class="question-stage">
+							<div class="progress-bar">
+							</div>
+							<div class="question-wrap"><a class="previous" href="#"></a>
+								<div class="question"><span class="progress">[9 of 11]</span> <span class="question-content">1년 내 취득한 공인 인증 성적 중<br>가장 높은 점수를 골라주세요.</span>
+								</div>
+								<div class="help">(스피킹 점수를 우선으로 골라주세요)
+								</div>
+								<div class="select-list-wrap">
+									<ul class="select-list row-1">
+										<li class="select-wrap"><label><input type="radio" value="1"><span class="mock-button"><span class="check-dot"></span></span><span class="select-content">해당 사항 없어요!</span></label>
+										</li>
+										<li class="select-wrap"><label><input type="radio" value="5"><span class="mock-button"><span class="check-dot"></span></span><span class="select-content">토스 LV 6. / 오픽 IM1-2</span></label>
+										</li>
+										<li class="select-wrap"><label><input type="radio" value="5"><span class="mock-button"><span class="check-dot"></span></span><span class="select-content">토스 LV 7. / 오픽 IM3-IH</span></label>
+										</li>
+										<li class="select-wrap"><label><input type="radio" value="6"><span class="mock-button"><span class="check-dot"></span></span><span class="select-content">토스 LV 8. / 오픽 AL</span></label>
+										</li>
+										<li class="select-wrap"><label><input type="radio" value="6"><span class="mock-button"><span class="check-dot"></span></span><span class="select-content">아이엘츠 Speaking 6.5 이상</span></label>
+										</li>
+										<li class="select-wrap"><label><input type="radio" value="7"><span class="mock-button"><span class="check-dot"></span></span><span class="select-content">아이엘츠 Speaking 7.5 이상</span></label>
+										</li>
+									</ul>
+									<ul class="select-list row-2">
+										<li class="select-wrap"><label><input type="radio" value="2"><span class="mock-button"><span class="check-dot"></span></span><span class="select-content">토익 600점 이하</span></label>
+										</li>
+										<li class="select-wrap"><label><input type="radio" value="2"><span class="mock-button"><span class="check-dot"></span></span><span class="select-content">토익 600점 이상</span></label>
+										</li>
+										<li class="select-wrap"><label><input type="radio" value="3"><span class="mock-button"><span class="check-dot"></span></span><span class="select-content">토익 700점 이상</span></label>
+										</li>
+										<li class="select-wrap"><label><input type="radio" value="3"><span class="mock-button"><span class="check-dot"></span></span><span class="select-content">토익 800점 이상</span></label>
+										</li>
+										<li class="select-wrap"><label><input type="radio" value="4"><span class="mock-button"><span class="check-dot"></span></span><span class="select-content">토익 900점 이상</span></label>
+										</li>
+									</ul>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
 			
+				<div class="stage-wrap">
+					<div class="stage">
+						<div class="question-stage">
+							<div class="progress-bar">
+							</div>
+							<div class="question-wrap"><a class="previous" href="#"></a>
+								<div class="question"><span class="progress">[10 of 11]</span> <span class="question-content">영어로 자주 말할 환경에 놓여 계시거나,말하기 연습을 활발히 하신지 얼마나 되셨나요?</span>
+								</div>
+								<div class="help">(스피킹 점수를 우선으로 골라주세요)
+								</div>
+								<div class="select-list-wrap">
+									<ul class="select-list row-1">
+										<li class="select-wrap"><label><input type="radio"><span class="mock-button"><span class="check-dot"></span></span><span class="select-content">영어로"말하기"를 거의 해본적이 없어요.</span></label>
+										</li>
+										<li class="select-wrap"><label><input type="radio"><span class="mock-button"><span class="check-dot"></span></span><span class="select-content">6개월 이내</span></label>
+										</li>
+										<li class="select-wrap"><label><input type="radio"><span class="mock-button"><span class="check-dot"></span></span><span class="select-content">6개월 -1년</span></label>
+										</li>
+										<li class="select-wrap"><label><input type="radio"><span class="mock-button"><span class="check-dot"></span></span><span class="select-content">1년 넘개 지났어요.</span></label>
+										</li>									
+									</ul>							
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="stage-wrap">
+					<div class="stage">
+						<div class="stage-wrap-name">
+							<div class="name-stage">
+								<div class="progress-bar"></div>
+								<div class="question-wrap">
+									<div class="question"><strong>레벨테스트 완료!</strong><br><span class="bold"><strong>성함이 어떻게 되시나요? :D</strong></span></div>
+									<input style="margin-top: 20px;" class="name-input" type="text" placeholder="이름 입력"><button class="submit">레벨테스트 종료</button>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				
+				
 			</div>
 		
 		</div>
