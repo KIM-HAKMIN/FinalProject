@@ -127,11 +127,7 @@ public class SearchDAO implements InterSearchDAO {
 	
 	@Override
 	public int AnswerLeaderBoard(LeaderBoardVO leaderVO) {
-		System.out.println("~~~~~~~~~~~~~~groupno : "+leaderVO.getGroupno());
-		System.out.println("~~~~~~~~~~~~~~~~Fk_study_num : "+leaderVO.getFk_study_num());
-		System.out.println("~~~~~~~~~~~~~~depthno : " + leaderVO.getDepthno());
-		System.out.println("~~~~~~~~~~~~~~content : " + leaderVO.getContent());
-		
+
 		int n = sqlsession.insert("search.AnswerLeaderBoard",leaderVO);
 		
 		return n;

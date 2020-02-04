@@ -117,10 +117,10 @@ public class SearchService implements InterSearchService {
 	public int AnswerLeaderBoard(LeaderBoardVO leaderVO) {
 		
 		
-		System.out.println("서비스단!!!");
 		String content = leaderVO.getContent();
-		System.out.println("서비스단 content : " + content);
-		leaderVO = dao.SearchGroupNo(leaderVO);		
+		
+		leaderVO = dao.SearchGroupNo(leaderVO);	
+		
 		leaderVO.setContent(content);
 		int n = dao.AnswerLeaderBoard(leaderVO);
 		
