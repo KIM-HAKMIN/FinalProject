@@ -195,10 +195,10 @@ nocache;
 -- FAQ 테이블
 create table faq
 (seq            NVARCHAR2(20)              --  (P.K)  faq번호(컬럼명 변경)
-,subject        NVARCHAR2(300)          not null    -- 타이틀  
-,content        NVARCHAR2(500)          not null    -- 내용
-,write_date     date default sysdate                -- 작성일자 
-,pw             NVARCHAR2(20)           
+,subject        NVARCHAR2(300) not null    -- 타이틀  
+,content        NVARCHAR2(500) not null    -- 내용
+,kind           NVARCHAR2(50)              -- 글분류
+,pw             NVARCHAR2(20)              -- 비밀번호(글작성 시)
 , constraint PK_faq_seq primary key(seq)
 );
 
@@ -399,6 +399,37 @@ nomaxvalue
 nominvalue
 nocycle
 nocache;
+
+--------------------------------------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------------------------------------
+
+select *
+from faq;
+
+alter table faq modify content NVARCHAR2(1000);
+
+insert into faq(seq, subject, content, kind, pw)
+values(seq_faq.nextval,'결제수단 추가나 삭제는 어떻게 하나요?','결제수단 추가는 결제 단계에서 "카드 추가"를 눌러서 진행해주시면 됩니다. 결제수단 삭제는 help.studysearch@gmail.com으로 아이디와 삭제를 원하시는 결제수단을 보내주시면 바로 삭제 도와드리겠습니다.','결제', '1234');
+
+commit;
+
+--------------------------------------------------------------------------------------------------------------------------------
+
+select * 
+from members;
+
+insert into members (useremail, name, pwd, hp, profile, route, registerday, status, fk_auth_num, fk_coupon_num)
+values ('samss@gmail.com', '삼순신', 'qwer1234$', '01012345678', default, '지인', default, default, 1, default);
+
+commit;
+
+select count(*)
+from members
+where useremail = 'eom@naver.com';
+
+--------------------------------------------------------------------------------------------------------------------------------
+
+
 
 
 

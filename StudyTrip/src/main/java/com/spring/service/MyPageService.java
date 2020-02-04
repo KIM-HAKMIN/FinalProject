@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.spring.model.CouponVO;
 import com.spring.model.InterMyPageDAO;
+import com.spring.model.MemberVO;
 import com.spring.model.PaymentVO;
 import com.spring.model.WishListVO;
 
@@ -45,6 +46,7 @@ public class MyPageService implements InterMyPageService {
 		List<PaymentVO> studentList = dao.myPage_leader_student(study_num);
 		return studentList;
 	}
+
 
 	
 }

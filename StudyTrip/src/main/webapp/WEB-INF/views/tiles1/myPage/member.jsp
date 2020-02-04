@@ -166,7 +166,7 @@ th, td {
 
 			// 회원정보 수정하기	
 			var frm = document.form-horizontal;			
-			frm.action = "";
+			frm.action = "/member_edit.st";
 			frm.method = "post";
 			frm.submit();
 			
@@ -297,14 +297,14 @@ th, td {
 			    <div class="form-group">
 			      <label class="control-label col-sm-4" for="name">이름</label>
 			      <div class="col-sm-4">
-			     	<input type="text" class="form-control" id="name" value=""  name="name" readonly> 
+			     	<input type="text" class="form-control" id="name" value="${membervo.name}"  name="name" readonly> 
 			      </div>
 			    </div>
 			    
 			    <div class="form-group">
 			      <label class="control-label col-sm-4" for="email">이메일</label>
 			      <div class="col-sm-4">
-			        <input type="email" class="form-control" id="email" value="" name="email" readonly>
+			        <input type="email" class="form-control" id="email" value="${membervo.email}" name="email" readonly>
 			      </div>
 			    </div>
 			    
@@ -325,13 +325,13 @@ th, td {
 			     <div class="form-group">
 			      <label class="control-label col-sm-4" for="phone">핸드폰</label>
 			      <div class="col-sm-4">  
-			      	<input type="tel" class="form-control" value="" placeholder="-를 제외한 핸드폰번호를 쓰세요" id="phone" name="phone">
+			      	<input type="tel" class="form-control" value="${membervo.hp}" placeholder="-를 제외한 핸드폰번호를 쓰세요" id="phone" name="phone">
 			      </div>
 			    </div>
 			    
 			    <div class="form-group">
 			    	<label class="control-label col-sm-4">프로필사진 등록(선택)</label>
-			    	<input type="file" class="col-sm-4" />
+			    	<input type="file" class="col-sm-4" value="${membervo.profile}" name="attach" />
 			    </div>
 			    
 			</form>

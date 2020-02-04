@@ -4,14 +4,14 @@
 
 <mapper namespace="mypage"> 
 
-    <select id="myPage_member_pay" parameterType="String" resultType="com.spring.model.PaymentVO">
+    <!-- <select id="myPage_member_pay" parameterType="String" resultType="com.spring.model.PaymentVO">
 		select study_name, price, pay_date
      	from payment_complete
      	where useremail = #{email}
 	</select> 
 	
 	
-	<select id="myPage_member_wish" parameterType="String" resultType="com.spring.model.WishListVO"> <!-- 로그인한 유저(이메일)의 위시리스트테이블에서 위시리스트를 스터디 번호를 통해 스터디 테이블 정보를 가져오기 -->
+	<select id="myPage_member_wish" parameterType="String" resultType="com.spring.model.WishListVO"> 로그인한 유저(이메일)의 위시리스트테이블에서 위시리스트를 스터디 번호를 통해 스터디 테이블 정보를 가져오기
 		select 
      	from wishlist
      	
@@ -22,7 +22,7 @@
 	</select> 
 	
 	
-	<select id="myPage_member_coupon" parameterType="String" resultType="com.spring.model.CouponVO"> <!-- 로그인한 유저(이메일)의 쿠폰 정보를 쿠폰 테이블에서 가져오기 -->
+	<select id="myPage_member_coupon" parameterType="String" resultType="com.spring.model.CouponVO"> 로그인한 유저(이메일)의 쿠폰 정보를 쿠폰 테이블에서 가져오기
 		select coupon_name, issuedate, expi_date
      	from coupon
      	
@@ -33,14 +33,14 @@
 	</select> 
 	
 	
-	<select id="myPage_leader_student" parameterType="String" resultType="com.spring.model.PaymentVO"> <!-- 결제테이블/매칭테이블테이블에서 스터디 번호를 통해 회원테이블의 회원(권한:1)의 이름, 이메일, 핸드폰 번호 알아오기 -->
+	<select id="myPage_leader_student" parameterType="String" resultType="com.spring.model.PaymentVO"> 결제테이블/매칭테이블테이블에서 스터디 번호를 통해 회원테이블의 회원(권한:1)의 이름, 이메일, 핸드폰 번호 알아오기
 		select name, fk_useremail, hp
      	from payment_complete
      	
      	   	
      	
      	where study_num = #{study_num}
-	</select> 
+	</select>  -->
 
  
 	<update id="myPage_update" parameterType="com.spring.model.MemberVO">
