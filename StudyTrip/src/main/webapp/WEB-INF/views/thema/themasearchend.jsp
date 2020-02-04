@@ -249,7 +249,7 @@ align-items: flex-start;
 							</div>
 							<div class="headerTitle">
 								<div class="headerTitleView">
-								[파티신청서] 12월31일, 2020카운트다운 Party!🎉
+								종료된 파티입니다. T.T <br>아쉽지만, 다음 파티에 참여해주요!!
 								</div>
 							</div>
 							<div class="headerTitleProduct">
@@ -264,7 +264,7 @@ align-items: flex-start;
 						</div>
 												
 					</div>
-					<button type="button">뒤로</button>					
+					<button type="button"><a class="previous" href="/studytrip/thema.st">뒤로</a></button>					
 				</div>													
 			</form>		
 		</div>		

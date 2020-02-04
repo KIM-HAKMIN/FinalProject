@@ -65,6 +65,7 @@ input[type=text]:focus {
 
 </head>
 <body>
+<<<<<<< HEAD
 	<div class="topnav">
 	  <a class="active" href="<%=ctxPath%>/main.st">스터디서치</a>
 	  <a href="#">스터디찾기</a>
@@ -90,5 +91,6 @@ input[type=text]:focus {
 	 <!--테스트  -->
 	</div>
 	</div>
+
 </body>
 </html>

@@ -245,7 +245,7 @@ nominvalue
 nocycle
 nocache;
 
-
+-------------------------------------------------
 -- 자료상세조사 테이블
 create table research
 (research_num         nvarchar2(20)     --  (P.K)  상세조사번호
@@ -263,7 +263,9 @@ create table research
 );
 
 select *
-from research;
+from research
+----------------------------------------------------
+
 
 
 

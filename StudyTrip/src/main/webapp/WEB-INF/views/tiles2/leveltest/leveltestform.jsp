@@ -151,7 +151,18 @@ form {
     font-weight: 300;
 }  
   
-
+.comp{
+    margin-top: 36px;
+    width: 100%;
+    height: 60px;
+    box-sizing: border-box;
+    background: #ff6c00;
+    font-size: 1pc;
+    font-weight: 600;
+    border-radius: 30px;
+    color: #fff;
+    border: none;
+}
   
 </style>
 
@@ -186,9 +197,6 @@ form {
 		});
 		
 		
-		
-		
-		
 	}); //end of $(document).ready -------
 	
 	/* 데이터피커(달력) */
@@ -196,6 +204,8 @@ form {
 	    $( "#datepicker" ).datepicker();
 	});
 	  
+	
+	
 
 </script>
 
@@ -230,7 +240,7 @@ form {
 					<input type="hidden" name="ltrt" value="D">
 					<div class="form-header">
 						<div class="form-title">(2/2)<br>이제 거의 끝났어요!</div>
-						<div class="description"> XXX님을 위한 스터디, 곧 추천드릴게요!</div>
+						<div class="description"><span style="color:red;"><strong>${name_sub}</strong></span>님을 위한 스터디, 곧 추천드릴게요!</div>
 					</div>
 					<dl class="form-fields">
 						<dt class="field-title">기본 정보<span class="description">성비와 나이대는 중요해요! 스터디 분위기에 영향을 준답니다.</span></dt>
@@ -238,7 +248,7 @@ form {
 							<ul class="basic-info-list">
 								<li class="field-wrap name">
 									<div class="basic-info-field-name">이름</div>
-									<input class="text-input name" type="text" name="name" value="11">
+									<input class="text-input name" type="text" name="name" value="${name_sub}">
 								</li>
 								<li class="field-wrap gender">
 									<div class="basic-info-field-name">성별</div>
@@ -313,7 +323,7 @@ form {
 								
 							</dd>
 								<dt class="field-title">참여 가능한 지역<span class="description">
-								<span class="orange">복수 선택</span>이 가능해요!</span>
+								<span class="orange"></span>을 선택하세요</span>
 								</dt>
 									<dd class="field-content area">
 										<div class="area-list-1-wrap">
@@ -373,7 +383,7 @@ form {
 									</div>
 								</dd>
 							<dt class="field-title">시간
-								<span class="description">참여 가능한 시간을 알려주세요! <span class="orange">복수 선택</span>이 가능해요!</span>
+								<span class="description">참여 가능한 시간을 알려주세요! <span class="orange"></span></span>
 							</dt>
 							<dd class="field-content available-time">
 								<ul class="time-list">
@@ -430,12 +440,13 @@ form {
 									<div class="terms-detail">개인정보의 수집 및 이용목적
 									</div>
 			 			  	 	</div>
-					      	</div>							
+					      	</div>
+					      	<button type="button" class="comp" ><a style="color: white;" href="/studytrip/leveltestend.st">상담신청완료</a></button>				   						      			
 						</form>				
 				</div>
 			</div>
 		</div>
 		
-
+ 
 </body>
 </html>

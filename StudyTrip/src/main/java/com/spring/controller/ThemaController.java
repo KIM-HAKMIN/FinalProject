@@ -1,8 +1,5 @@
 package com.spring.controller;
 
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +9,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.spring.service.InterMainService;
 @Controller
-public class themaController {	
+public class ThemaController {	
 		
 	@Autowired   // Type에 따라 알아서 Bean 을 주입해준다.
 	private InterMainService service;
@@ -20,15 +17,14 @@ public class themaController {
 	
 	@RequestMapping(value="/thema.st")
 	public ModelAndView Test4(ModelAndView mav) {
-		
-		mav.setViewName("thema/thema.tiles1");
-		
+
+		mav.setViewName("thema/thema.tiles1");	
 		
 		return mav;
 	}
 	
 	@RequestMapping(value="/themaform.st")
-	public ModelAndView Test5(ModelAndView mav) {
+	public ModelAndView Test5(ModelAndView mav, HttpServletRequest request) {
 		
 		mav.setViewName("thema/themaform");
 		
