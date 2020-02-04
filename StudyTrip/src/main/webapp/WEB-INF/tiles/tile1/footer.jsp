@@ -2,64 +2,167 @@
     pageEncoding="UTF-8"%>
 
 
-
-
-<div align="center" style="color: #999999; padding: 7px;">
+<style>
+	#head{
+		margin: 0 auto;
+		height: 30px;
+		width: 50%;
+	}
 	
-	풋터입니다.
+	#main_container{
+		border-bottom: solid 1px #363636;
+		margin: 0 auto;
+		height: 250px;
+		width: 50%;
+		overflow:hidden;
+	}
 	
-	<!-- 	<div class="footer-content">
-			<div class="sitemap-wrap">
-				<div class="logo">스터디서치</div>
-				<ul class="links">
-					<li><h1 class="title company">COMPANY</h1>
-						<ul><li><a href="/guide/?s=f">이용 방법</a></li>
-						<li><a href="" target="_blank">언론 보도</a></li></ul>
-					</li>
-					<li><h1 class="title support">SUPPORT</h1>
-					<ul>
-						<li><a href="" target="_blank">스터디 상담받기 <span class="hot">hot</span></a></li>
-						<li><a href="/host-apply/">스터디 리더 지원</a></li>
-					</ul>
-					</li>
-					<li><h1 class="title policies">POLICIES</h1>
-						<ul><li><a href="/terms/">서비스 이용약관</a></li>
-							<li><a href="/policy/"><b>개인정보 처리방침</b></a></li>
-							<li><a href="/leader-terms/">리더 약관</a></li>
-							<li><a href="/participant-terms/">참가자 약관</a></li>
-							<li><a href="/refund-policy/">환불 약관</a></li>
-						</ul>
-					</li>
-					<li class="customer-center-wrap"><h1 class="title customer-center">CUSTOMER CENTER</h1>
-						<div class="description">스터디서치 고객센터</div>
-						<div class="operation-hours">평일 10:00-21:00<br>주말 10:00-20:00</div>
-						<ul class="customer-center-links">
-							<li class="link-wrap"><a class="link" href="/faq/">자주 묻는 질문</a></li>
-							<li class="link-wrap"><a class="link" href="/faq/#inquiry">1:1 문의</a></li>
-						</ul>
-						</li>
-				</ul>
-			</div><div class="company-info">
-			<div class="column">㈜ 스터디트립</div>
-			<span class="slash">/</span>
-			<div class="column">대표 오조다</div>
-			<span class="slash">/</span>
-			<div class="column">통신판매업 2015-서울강남-xxxx</div>
-			<span class="slash">/</span>
-			<div class="column">사업자등록 100-xx-xxxxx</div>
-			<span class="slash">/</span>
-			<div class="column">대표번호 1999-9999</div>
-			<span class="slash">/</span>
-			<div class="column">서울시 강남구 땅값비싼 28 W&amp;H빌딩 전층</div>
-			<span class="slash">/</span>
-			<div class="column">help.studytrip@gmail.com</div>
+	#first{
+		margin: 0 auto;
+		width: 10%;
+		height: 250px;
+		float: left;
+	}
+	
+	#second{
+		margin: 0 auto;
+		width: 30%;
+		height: 250px;
+		float: left;
+		
+	}
+	#third{
+		margin: 0 auto;
+		width: 30%;
+		height: 250px;
+		float: left;
+	}
+	#fourth{
+		margin: 0 auto;
+		width: 30%;
+		height: 250px;
+		float: left;
+	}
+	ul{
+		list-style: none;
+		margin: 0;
+		padding: 0;
+	}
+	li{
+		margin: 5px 0 0 0;
+	}
+	a{	
+		font-size: 13px;
+		color: #b4b4b4;
+		text-align: left;	
+	}
+
+ 	a:hover { color: #b4b4b4; 
+ 			  text-decoration: none;
+ 			  cursor: pointer;
+ 			}
+
+	.titles{
+		color: white;
+		font-weight: bolder;
+		margin-bottom: 10px;
+	}
+	#worktime{
+	    font-size: 15pt;
+    	line-height: 1.3em;
+    	color: #fff;
+    	font-weight: 600;
+    	margin-top: 20px;
+	}
+	h4{
+		margin: 0;
+		padding: 0;
+	}
+	.link{
+		display: block;
+	    padding: 0 9pt;
+	    height: 40px;
+	    background: #282828 url(https://cdn.studysearch.co.kr/static/images/icon_asset_3.340e69ee1287.png)183px -159px no-repeat;
+	    border: 1px solid #363636;
+	    border-radius: 2px;
+	    line-height: 40px;
+	    font-weight: 600;
+	    color: #fff;
+	    width: 220px;
+    }
+    
+    #tile{
+    		margin:10px; 
+    		text-align:center;
+    		color: #747474; 
+    		font-size: 9pt;
+    	}
+</style>
+
+<div id="head"></div>
+
+<div id="main_container">
+	
+	
+	<div id="first" style="font-size: 25px; font-weight: bolder;">
+			스터디 <br/>
+			  트랩
+	</div>
+	
+	<div id="second" >
+		<h4 class="titles">COMPANY</h4>
+		<ul>
+			<li>
+				<a>이용방법</a>
+			</li>
+			
+			<li>
+				<a>언론보도</a>
+			</li>
+		</ul>
+	</div>
+	
+	<div id ="third" class="titles">
+		<h4 class="titles">POLICIES</h4>
+		<ul>
+			<li>
+				<a>서비스 이용약관</a>
+			</li>
+			<li>
+				<a>개인정보 처리방법</a>
+			</li>
+			<li>
+				<a>리더 약관</a>
+			</li>
+			<li>
+				<a>참가자 약관</a>
+			</li>
+			<li>
+				<a>환불약관</a>
+			</li>
+		</ul>
+	</div>
+	
+	<div id= "fourth" class="titles">
+		<h4 class="titles">CUSTOMER CENTER</h4>
+		<div>
+		고객센터 이용시간<br/>
+			<div id="worktime">
+			평일 10:00-21:00<br/>
+			주말 10:10-21:00<br/>
 			</div>
-			<div class="sns"><a href="" target="_blank" class="link facebook">페이스북</a>
-				<a href="https://www.instagram.com/study_search/" target="_blank" class="link instagram">인스타그램</a>
-				<a href="https://www.youtube.com/channel/UCB1o6KRf2q2MjuOwusi_geA" target="_blank" class="link youtube">유튜브</a>
-				<a href="https://blog.naver.com/studysearch" target="_blank" class="link blog">블로그</a>
-				<a href="https://post.naver.com/studysearch" target="_blank" class="link post">포스트</a>
-			</div>
-		</div> -->
+			<ul style="margin-top: 20px;">
+				<li>
+					<a class="link">자주묻는질문</a>
+				</li>
+				<li>
+					<a class="link">1:1문의</a>
+				</li>
+			</ul>	
+		</div>
+	</div>	
+	
 	
 </div>
+<div id="tile">㈜ 펜브코퍼레이션/대표 방소정/통신판매업 2015-서울마포-1130/사업자등록 105-88-04987/대표번호 1899-4074/서울시 마포구 잔다리로 28 W&H빌딩 7층</div>
+

@@ -14,13 +14,12 @@ table {
 th, td {
 	padding: 10px;
 	border: 1px solid;
-	background-color: white;
 }
 
 th{
 	width: 10%; 
+	background-color: #DDDDDD;
 	text-align: center;
-	background-color: #ffa64d;
 }
 	
 .move {
@@ -48,11 +47,6 @@ a {
 	margin-left:10%;
 }
 
-.h {
-	color: white;
-	font-size: 13pt;
-}
-
 </style>
 
 <script type="text/javascript">
@@ -77,15 +71,15 @@ a {
 
 	<table id="table" style="word-wrap: break-word; table-layout: fixed;">
 		<tr>
-           	<th><span class="h">제목</span></th>
+           	<th>제목</th>
            	<td>${boardvo.subject}</td>
         </tr>
         <tr>
-           	<th><span class="h">분류</span></th>
+           	<th>분류</th>
            	<td>${boardvo.kind}</td>
         </tr>
 		<tr>
-			<th><span class="h">내용</span></th>
+			<th>내용</th>
 			<td>${boardvo.content}</td> 
 		</tr>		
 	</table>

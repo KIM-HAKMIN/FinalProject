@@ -119,12 +119,10 @@ form {
 			}
 
 			// 회원가입 	
-			var frm = document.formhorizontal;			
+			var frm = document.form-horizontal;			
 			frm.action = "register_leaderEnd.st";
 			frm.method = "POST";
 			frm.submit();
-			
-			swal("가입을 축하합니다~!");
 			
 		}); // end of 유효성 검사 -----------------------------------------------------------------
 
@@ -149,9 +147,7 @@ form {
 						$("#email").val("");
 					}
 					else { 
-						location.href="<%= request.getContextPath()%>/emailSend.st";
-						
-						swal("인증번호를 보냈습니다");
+						swal("인증번호를 보냈습니다");  // 이메일 보내는 기능 만들기
 					}
 				},
 				error: function(request, status, error){
@@ -180,7 +176,7 @@ form {
 
 <div class="container" align="center">
 
- <form class="form-horizontal" name="formhorizontal" enctype="multipart/form-data">
+  <form class="form-horizontal">
     
     <div class="form-group">
       <label class="control-label col-sm-4" for="name">이름</label>
@@ -228,7 +224,7 @@ form {
     
     <div class="form-group">
     	<label class="control-label col-sm-4">프로필사진 등록(선택)</label>
-    	<input type="file" class="col-sm-4 " name="attach"/>
+    	<input type="file" class="col-sm-4 " name="profile"/>
     </div>
     
     <div class="form-group">
@@ -236,30 +232,30 @@ form {
 		
 		<div class="col-sm-5">
 			<label for="rd1" class="rdlb">토익 950점 이상</label>
-			<input type="radio" name="qualifi" id="rd1" value="토익 950점 이상" />
+			<input type="radio" name="qualifi" id="rd1" />
 			&nbsp;&nbsp;&nbsp;&nbsp;
 			<label for="rd2" class="rdlb">토플 110점 이상</label>
-			<input type="radio" name="qualifi" id="rd2" value="토플 110점 이상" />
+			<input type="radio" name="qualifi" id="rd2" />
 			&nbsp;&nbsp;&nbsp;&nbsp;
 			<label for="rd3" class="rdlb">IELTS 8.0 이상</label>
-			<input type="radio" name="qualifi" id="rd3" value="IELTS 8.0 이상" />	
+			<input type="radio" name="qualifi" id="rd3" />	
 			&nbsp;&nbsp;&nbsp;&nbsp;
 			<label for="rd4" class="rdlb">토스 Level 7 이상</label>
-			<input type="radio" name="qualifi" id="rd4" value="토스 Level 7 이상" />
+			<input type="radio" name="qualifi" id="rd4" />
 			&nbsp;&nbsp;&nbsp;&nbsp;
 			<label for="rd5" class="rdlb">OPIC IH 이상</label>
-			<input type="radio" name="qualifi" id="rd5" value="OPIC IH 이상" />
+			<input type="radio" name="qualifi" id="rd5" />
 			&nbsp;&nbsp;&nbsp;&nbsp;
 			<label for="rd6" class="rdlb">해외 대학교 혹은 해외 대학원 졸업</label>
-			<input type="radio" name="qualifi" id="rd6" value="해외 대학교 혹은 해외 대학원 졸업" />
+			<input type="radio" name="qualifi" id="rd6" />
 			&nbsp;&nbsp;&nbsp;&nbsp;
 			<label for="rd7" class="rdlb">해외 직장 3년 이상 경험</label>
-			<input type="radio" name="qualifi" id="rd7" value="해외 직장 3년 이상 경험" />
+			<input type="radio" name="qualifi" id="rd7" />
 		</div>
     </div>
 
 	<div align="center" style="margin-top: 5%;">
-    	<button type="button" class="btn btn-default" id="submitBtn">회원가입</button>
+    	<button type="submit" class="btn btn-default" id="submitBtn">회원가입</button>
     </div>
   </form>
   

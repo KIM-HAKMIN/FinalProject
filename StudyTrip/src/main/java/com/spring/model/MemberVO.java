@@ -1,7 +1,5 @@
 package com.spring.model;
 
-import org.springframework.web.multipart.MultipartFile;
-
 public class MemberVO {
 
 	private String useremail;     // 이메일
@@ -30,11 +28,7 @@ public class MemberVO {
 
 	private int lastlogindategap;  // 로그인시 현재날짜와 최근 마지막으로 로그인한 날짜와의 개월수 차이 (12개월 동안 로그인을 안 했을 경우 해당 로그인계정을 비활성화 시키려고 함) 
 	private int pwdchangegap;      // 로그인시 현재날짜와 최근 마지막으로 암호를 변경한 날짜와의 개월수 차이 (3개월 동안 암호를 변경 안 했을시 암호를 변경하라는 메시지를 보여주기 위함) 
-	/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	
-	private MultipartFile attach;
-	
-	/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	
 	public MemberVO() { }
 
@@ -233,13 +227,7 @@ public class MemberVO {
 		this.pwdchangegap = pwdchangegap;
 	}
 	
-	public MultipartFile getAttach() {
-		return attach;
-	}
-
-	public void setAttach(MultipartFile attach) {
-		this.attach = attach;
-	}
+	
 
 
 	

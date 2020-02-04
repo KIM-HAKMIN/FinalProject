@@ -241,7 +241,7 @@ public class FAQController {
 		boardvo.setSubject(MyUtil.replaceParameter(boardvo.getSubject()));
 		boardvo.setContent(MyUtil.replaceParameter(boardvo.getContent()));  	   
 		boardvo.setContent(boardvo.getContent().replaceAll("\r\n", "<br/>"));
-
+		
 		int n = service.edit(boardvo);
 		
 		if(n==0) {

@@ -34,7 +34,7 @@ form {
 
 		/*유효성 검사  */	
 		$("#submitBtn").click(function(){  
-            
+
 			// 이름 검사하기
 			var name = $("#name").val();
 			var regExp = /^[가-힣]+$/;
@@ -118,19 +118,16 @@ form {
 				return false; 
 			}
 
-			
 			// 회원가입 	
-			var frm = document.formhorizontal;			
+			var frm = document.form-horizontal;			
 			frm.action = "register_memberEnd.st";
 			frm.method = "POST";
 			frm.submit();
 			
-			swal("가입을 축하합니다~!");
-			
 		}); // end of 유효성 검사 -----------------------------------------------------------------
 			
 	}); // end of $(document).ready ---------------------------------------------------------------------
-	
+
 	
 	function dupCheck() {	
 		if($("#email").val() == "") {
@@ -150,9 +147,7 @@ form {
 						$("#email").val("");
 					}
 					else { 
-						location.href="<%= request.getContextPath()%>/emailSend.st";
-						
-						swal("인증번호를 보냈습니다"); 
+						swal("인증번호를 보냈습니다");  // 이메일 보내는 기능 만들기
 					}
 				},
 				error: function(request, status, error){
@@ -181,7 +176,7 @@ form {
 
 <div class="container" align="center">
 
-  <form class="form-horizontal" name="formhorizontal" enctype="multipart/form-data">
+  <form class="form-horizontal">
     
     <div class="form-group">
       <label class="control-label col-sm-4" for="name">이름</label>
@@ -229,7 +224,7 @@ form {
     
     <div class="form-group">
     	<label class="control-label col-sm-4">프로필사진 등록(선택)</label>
-    	<input type="file" class="col-sm-4" name="attach"/>
+    	<input type="file" class="col-sm-4" name="profile"/>
     </div>
     
     <div class="form-group">
@@ -254,7 +249,7 @@ form {
     </div>
 
 	<div align="center" style="margin-top: 5%;">
-    	<button type="button" class="btn btn-default" id="submitBtn">회원가입</button>
+    	<button type="submit" class="btn btn-default" id="submitBtn">회원가입</button>
     </div>
   </form>
   

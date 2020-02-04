@@ -8,8 +8,6 @@
 <%
 	String ctxPath = request.getContextPath();
 %>
-
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -19,6 +17,7 @@
 
 .topnav {
   overflow: hidden;
+  margin: 0 auto;
 }
 
 .topnav a {
@@ -28,29 +27,68 @@
   padding: 14px 16px;
   text-decoration: none;
   font-size: 17px;
+  margin: 0 auto;
 }
 
 .topnav a.active {
   color: orange;
   font-weight: bolder;
 }
+.searchbar{
+	float:right;
+  display: block;
+}
+#mypage{
+	float:right;
+}
 
+input[name=search] {
+  width: 15px;
+  box-sizing: border-box;
+  border: 2px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+  background-color: white;
+  background-image: url('./resources/images/search.png');
+  background-position: 10px 10px; 
+  background-repeat: no-repeat;
+  padding: 12px 20px 12px 40px;
+  -webkit-transition: width 0.4s ease-in-out;
+  transition: width 0.4s ease-in-out;
+}
 
+input[type=text]:focus {
+  width: 200px;
+}
 
 </style>
 
 </head>
 <body>
-
-<div class="topnav">
-  <a id="logo-link" class="active" href="#home" >스터디서치</a> 
-  <a href="/studytrip/search.st">스터디찾기</a>
-  <a href="<%=ctxPath%>/leveltest.st">추천받기</a>
-  <a href="#">스터디후기</a>
-  <span class="bar"></span>
-  <a href="<%=ctxPath%>/thema.st">테마스터디</a>
-  <a href="#">후기</a>
-</div>
-
+	<div class="topnav">
+	  <a class="active" href="<%=ctxPath%>/main.st">스터디서치</a>
+	  <a href="#">스터디찾기</a>
+	  <a href="#">추천받기</a>
+	  <a href="#">스터디후기</a>
+	  <a href="#">테마스터디</a>
+	  <a href="#">후기</a>
+	  <div class="searchbar">
+		<form>
+		  <input type="text" name="search" placeholder="검색">
+		</form>
+	</div>
+	<div class="topnav" id="mypage">
+	  <c:if test="${sessionScope.loginuser == null}">
+		 <a href="<%=ctxPath%>/login.st">로그인 </a>
+		 <a href="#">회원가입</a>
+	  </c:if>
+				
+	  <c:if test="${sessionScope.loginuser != null}">
+		  <a href="#">나의정보</a>
+		  <a href="<%=ctxPath%>/logout.st">로그아웃 </a>
+	  </c:if>
+	 
+	</div>
+	</div>
 </body>
 </html>

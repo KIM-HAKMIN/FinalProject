@@ -142,70 +142,21 @@ a:hover{
   
 }
 
-.question-cancel{
-    float: left;
-    color: #a0a0a0;
-    background-color: #f2f2f2;
-    
-    border: none;
-    padding: 10px 20px;
-    border-radius: 1px;
-    font-size: 9pt;
-    font-weight: 700;
-    cursor: pointer;
-}
-
 .sticky2{
+
 	width: 98%;
-}
 
-.question-editend{
-
-	float: right;
-    background-color: #ef6c00;
-    color: #fff;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 1px;
-    font-size: 9pt;
-    font-weight: 700;
-    cursor: pointer;
-    
-}
-
-.question-answer{
-
-	float: right;
-    background-color: #ef6c00;
-    color: #fff;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 1px;
-    font-size: 9pt;
-    font-weight: 700;
-    cursor: pointer; 
-
+	
 }
 
 </style>
 
 <script type="text/javascript">
-
-
-
 $(document).ready(function(){
-	
-
-	
-	
-	wishSearch(); // 위시여부 알아오기
-	
-	leaderQnAList();	// 질문 리스트보기
-	
-	
 
 	// 헤더 상단 메뉴바 고정
 	var navbarTop = $("#sideMenu").offset().top;
+//	var navbarLeft = $("#navbar").offset().left;
 
 	 $("#sideMenu").addClass("sticky2"); 
 
@@ -213,7 +164,8 @@ $(document).ready(function(){
 	var scrollTop = 0;
 	$(window).scroll(function(event){
 		scrollTop = $(this).scrollTop();
-
+	 // alert("scrollTop : "+scrollTop);
+	//  alert("navbarTop : "+navbarTop);
 
 	    if(scrollTop >= navbarTop) {
 			$("#sideMenu").addClass("sticky");
@@ -228,338 +180,15 @@ $(document).ready(function(){
 	
 });
 
-	// 위시리스트에 추가하고 삭제해주는 함수
-	function wishAddRemove(){
-		
-		$.ajax({ 
-			url : "<%= request.getContextPath()%>/wishAddRemove.st", 	
-			type : "GET",
-			data : {fk_useremail:"${stvo.fk_useremail}"		//유저이메일로 바꿔야함
-	  		       ,fk_study_num:"${stvo.study_num}"},  
-			dataType : "JSON",  
-			success: function(json) { 
-				
-				if(json.flag==1){
-					
-					var html = "<img src='<%= ctxPath%>/resources/images/studyDetail/like.png' style='width: 20px; height: 20px;'/> <span style='font-size: 13pt; font-weight: bold;'>찜하기</span>";
-					
-					$("#wishStatus").html(html);
-				}
-				else{
-					
-					var html = "<img src='<%= ctxPath%>/resources/images/studyDetail/love.png' style='width: 20px; height: 20px;'/> <span style='font-size: 13pt; font-weight: bold;'>찜 취소</span>";
-					
-					$("#wishStatus").html(html); 
-
-				}
-				
-			}, // end of success: function(data) ---------------------
-			
-			error: function(request, status, error){
-		        alert("code: "+request.status+"\n"+"message: "+request.responseText+"\n"+"error: "+error);
-		    } // end of error: function(request,status,error)
-			
-		}); // end of $.ajax --------------------
-		
-		
-		
-	}
-	
-	// 위시여부를 알아오는 함수
-	function wishSearch(){
-		
-		$.ajax({ 
-			url : "<%= request.getContextPath()%>/searchWishList.st", 	
-			type : "GET",
-			data : {fk_useremail:"${stvo.fk_useremail}"		//유저이메일로 바꿔야함
-	  		       ,fk_study_num:"${stvo.study_num}"},  
-			dataType : "JSON",  
-			success: function(json) { 
-				
-				if(json.n==1){
-					
-					var html = "<img src='<%= ctxPath%>/resources/images/studyDetail/love.png' style='width: 20px; height: 20px;'/> <span style='font-size: 13pt; font-weight: bold;'>찜 취소</span>";
-					
-					$("#wishStatus").html(html);
-				}
-				else{
-					
-					var html = "<img src='<%= ctxPath%>/resources/images/studyDetail/like.png' style='width: 20px; height: 20px;'/> <span style='font-size: 13pt; font-weight: bold;'>찜하기</span>";
-					$("#wishStatus").html(html); 
-
-				}
-			
-				
-				
-			}, // end of success: function(data) ---------------------
-			
-			error: function(request, status, error){
-		        alert("code: "+request.status+"\n"+"message: "+request.responseText+"\n"+"error: "+error);
-		    } // end of error: function(request,status,error)
-			
-		}); // end of $.ajax --------------------
-		
-	}
-
-	
-	// 리더에게 질문 완료 버튼시 보드에 질문 넣어주기
- 	function questionSubmit(){
-		
-		
-		if($("#questionContent").val().trim()== null ||$("#questionContent").val().trim()== "" ){	
-			alert("내용을 입력하세요");
-			return false;
-		}
-		
-		else {
-			questionContent = $("#questionContent").val();
-			
-			
-			$.ajax({ 
-				url : "<%= request.getContextPath()%>/AddLeaderBoard.st", 	
-				type : "GET",
-				data : {fk_useremail:"${stvo.fk_useremail}"		// 유저이메일로 바꿔야함
-		  		       ,fk_study_num:"${stvo.study_num}"
-		  		       ,questionContent:questionContent},  
-				dataType : "JSON",  
-				success: function(json) { 
-					
-					
-					 $("#questionContent").val("");
-					
-					leaderQnAList();
-					
-				}, // end of success: function(data) ---------------------
-				
-				error: function(request, status, error){
-			        alert("code: "+request.status+"\n"+"message: "+request.responseText+"\n"+"error: "+error);
-			    } // end of error: function(request,status,error)
-				
-			}); // end of $.ajax --------------------
-			
-		}
-		
-
-	}
-	
-	
-	//리더 QnA리스트를 보여주는 함수
-	function leaderQnAList(){
-		
-		
-		$.ajax({ 
-			url : "<%= request.getContextPath()%>/ListLeaderBoard.st", 	
-			type : "GET",
-			data : {fk_study_num:"${stvo.study_num}"},  
-			dataType : "JSON",  
-			success: function(json) { 
-				
-				var html = "";
 
 
-				if(json.length==0){
-				
-					
-					
-					html = "";
-					html = "<div style='text-align: center;  border-bottom: solid 1px #ccc;  border-top: solid 1px #ccc; margin-top: 40px; padding: 20px 0 20px 0;' >";
-					html += "<span class='title'>아직 Q&A가 없습니다.</span><br/>";
-					html += "<span class='subtitle'>스터디에 대해 궁금한 점이 있으신가요? 스터디 리더에게 무엇이든 물어보세요!</span></div>";
-				
-					
-					$("#emptyBoard").html(html);
-					$("#leaderBoard").html("");
-					
-					$("#boardCounter").html("0개");
-					
-				}
-				
-				else{
-					for(var i=0; i<json.length; i++){
-						
-						
-						
-							html +="<div board style='text-align: left; border-top: solid 1px #ccc; margin-top: 40px; padding: 20px 0 20px 0; min-height: 200px;'>";
-							html += "<img style='width: 50px; height: 50px;' src='<%= ctxPath%>/resources/images/studyDetail/qa.png'/><span style='margin-left: 15px; font-size: 11pt; font-weight: bold;'>"+json[i].name+"</span>";
-							html += "<div class='edit' style='margin-left: 200px; cursor: pointer;' onclick='editBoard("+json[i].study_qna_num+", \""+json[i].content+"\")'>수정</div><img onclick='editBoard("+json[i].study_qna_num+", \""+json[i].content+"\")' style='width: 20px; height: 20px; cursor: pointer;' src='<%= ctxPath%>/resources/images/studyDetail/pencil.png'/><div style='cursor: pointer;' class='edit' onclick='deleteBoard("+json[i].study_qna_num+")'>삭제</div><img onclick='deleteBoard("+json[i].study_qna_num+")' style='width: 20px; height: 20px; cursor: pointer;' src='<%= ctxPath%>/resources/images/studyDetail/paper-bin.png'/>";
-							html +="<br/><br/>";
-							html +="<div id="+json[i].study_qna_num+"board style='width:90%; margin: 0 auto;'><table style='margin-top: 20px; width:80%;'><td style='word-break: break-all'>"+json[i].content+"</td></table>";
-							html +="<button type='button' class=question-answer onclick='quetion_answer("+json[i].study_qna_num+")'>답변하기</button>";
-							html +="<div id='qusetionanswer"+json[i].study_qna_num+"' style='margin-top:20px;'></div>"
-							html += "</div></div>";
-							
-							
-							
-						
-					}
-					$("#leaderBoard").html(html);
-					$("#emptyBoard").html("");
-					
-					$("#boardCounter").html(json.length+"개");
-
-				}
-				
-				
-			}, // end of success: function(data) ---------------------
-			
-			error: function(request, status, error){
-		        alert("code: "+request.status+"\n"+"message: "+request.responseText+"\n"+"error: "+error);
-		    } // end of error: function(request,status,error)
-			
-		}); // end of $.ajax --------------------
-		
-		
-	}
-	
-	// 댓글을 삭제하는 함수
-	function deleteBoard(study_qna_num){
-		
-		$.ajax({ 
-			url : "<%= request.getContextPath()%>/DeleteLeaderBoard.st", 	
-			type : "GET",
-			data : {study_qna_num:study_qna_num},  
-			dataType : "JSON",  
-			success: function(json) { 
-				
-				leaderQnAList();
-				
-				
-			}, // end of success: function(data) ---------------------
-			
-			error: function(request, status, error){
-		        alert("code: "+request.status+"\n"+"message: "+request.responseText+"\n"+"error: "+error);
-		    } // end of error: function(request,status,error)
-			
-		}); // end of $.ajax --------------------
-		
-		
-	}
-
-	/* 수정버튼 눌렀을 때 나오는 함수 */
-	function editBoard(study_qna_num, content){
-				
-		var boardid = study_qna_num+"board";
-		var html = "";
-		
-		var textid = study_qna_num+"textarea";
-		
-		//alert("수정버튼 눌렀습니다");
-		
-		html+="<textarea type='textarea' rows='6' class='form-control' id='"+study_qna_num+"textarea'/>";
-		html+="<div style='margin-top: 5px;'><button type='button' class=question-cancel onclick='cancel_btn()'>취소</button>"
-		html+="<button type='button' class=question-editend onclick='editEnd_btn("+study_qna_num+", \""+content+"\")'>수정완료</button></div>";
-		 
-		
-	 	$("#"+boardid+"").html(html);
-			 	
-		$("#"+textid).html(content); 
-			
-	}
-	
-	// 댓글 수정 취소버튼을 눌렀을 때 동작하는 함수
-	function cancel_btn(){
-		
-		leaderQnAList();
-		
-	}
-	
-	// 댓글 수정 수정완료 버튼을 눌렀을 때 동작하는 함수
-	function editEnd_btn(study_qna_num, content){
-		
-
-
-		
-		content = $("#"+study_qna_num+"textarea").val();
-		
-		
-		$.ajax({ 
-			url : "<%= request.getContextPath()%>/EditLeaderBoard.st", 	
-			type : "GET",
-			data : {study_qna_num:study_qna_num		
-	  		       ,content:content},  
-			dataType : "JSON",  
-			success: function(json) { 
-	
-				leaderQnAList();
-				
-			}, // end of success: function(data) ---------------------
-			
-			error: function(request, status, error){
-		        alert("code: "+request.status+"\n"+"message: "+request.responseText+"\n"+"error: "+error);
-		    } // end of error: function(request,status,error)
-			
-		}); // end of $.ajax --------------------
-		
-		
-
-	}
-	
-	// 리더질문에 답하는 함수
-	function quetion_answer(study_qna_num){
-		
-		
-		var html = "";
-		
-		html += "<div style='margin-top: 80px;'><textarea id='answer' type='textarea' rows='6' class='form-control'/></div>"
-		
-		html+="<div style='margin-top: 25px;'><button type='button' class=question-cancel onclick='cancel_btn()'>취소</button>"
-		html+="<button type='button' class=question-editend onclick='answer_btn("+study_qna_num+")'>답변완료</button></div>";
-		
-		$("#qusetionanswer"+study_qna_num).html(html);
-		
-	}
-	
-	// 답변완료 버튼을 눌렀을 때 호출되는 함수
-	function answer_btn(study_qna_num){
-		
-		alert("글번호는 : " + study_qna_num);
-		
-		if($("#answer").val().trim()== null ||$("#answer").val().trim()== "" ){	
-			alert("내용을 입력하세요");
-			return false;
-		}
-		
-		else {
-			content = $("#answer").val();
-			
-			
-			$.ajax({ 
-				url : "<%= request.getContextPath()%>/AnswerLeaderBoard.st", 	
-				type : "GET",
-				data : {fk_useremail:"${stvo.fk_useremail}"		// 유저이메일로 바꿔야함
-		  		       ,study_qna_num:study_qna_num
-		  		       ,content:content},  
-				dataType : "JSON",  
-				success: function(json) { 
-									
-					
-					leaderQnAList();
-					
-				}, // end of success: function(data) ---------------------
-				
-				error: function(request, status, error){
-			        alert("code: "+request.status+"\n"+"message: "+request.responseText+"\n"+"error: "+error);
-			    } // end of error: function(request,status,error)
-				
-			}); // end of $.ajax --------------------
-			
-		}
-		
-	}
-	
-	
 </script>
-
 
 
 </head>
 <body>
 
-
-
-
-<div style="margin: 0 auto;" ></div>
-<div style="background: #ebebeb;" align="center">
+<div style="background: #ebebeb;" align="center" >
 	<div style="width: 77%; padding-top: 30px; display: inline-block;">
 	
 		<div style="float: left; background-color: white; width: 70%; ">
@@ -643,6 +272,7 @@ $(document).ready(function(){
 
 			<div style="width:100%; background-color: white;">
 			<div style="border-bottom: solid 1px #ccc; width: 93%"></div>
+			
 				<div style="display: inline-block; width: 24%; float: left; padding: 50px 30px 50px 30px;">
 					<div style="font-size: 11pt;color: #787878; font-weight: bold;">상세정보</div>
 				</div>
@@ -728,7 +358,7 @@ $(document).ready(function(){
 
 
 			<div style="width: 100%;">
-				<div style="border-bottom : solid 1px #ccc; width: 93%; margin: 0 auto; margin-top: 30px;"></div>
+				<div style="border-bottom: solid 1px #ccc; width: 93%; margin: 0 auto; margin-top: 30px;"></div>
 				<div style="display: inline-block; width: 24%; float: left; padding: 30px 0 30px 0;">
 					<div style="width: 150px; font-size: 12pt; color: #333; font-weight: bold;">리더에 대한 후기</div>
 				</div>
@@ -756,26 +386,24 @@ $(document).ready(function(){
 						<div style="margin-top: 20px;">정말 영어를 잘하고 싶은데 뭐부터 해야할지 모르고 막상 시작하려니 많이 막막했는데 스터디 서치를 보고 용기내서 신총을 해서 Helen Lee수업을 들으면서 영어에 대한 자신감도 많이 생기고 영어실력도 많이 늘었어요 그리고 Helen Lee쌤이 정말 생활에 필요한 영어를 잘 알려주셔서 너무 좋았고 친절하고 꼼꼼하게 알려주셔서 정말 좋았어요~!!! 지금 사정이 생겨서 신청을 못 했지만 다음에도 Helen Lee쌤한테 배우고 싶어요~!!!</div>
 						<div style="font-size: 9pt; color: #ef6c00; margin-top: 10px;">캐나다에서 온 Helen의 기초튼튼! 즐거운 영어 회화!</div>
 						<div style="margin-top: 10px;">2019년 11월</div>
+						<div style="border-bottom: solid 1px #ccc; width: 100%; margin-top: 30px;"></div>
 					</div>
 				</div>
-			</div>
-			<div style="width: 100%;">
-				<div style="border-top : solid 1px #ccc; width: 93%; margin: 0 auto; margin-top: 30px;"></div>		
 			</div>		
 			</c:forEach>
 			
-			<c:if test="true">
+			<c:if test="false">
 			<div style="width: 100%; min-height: 250px;">
 				<div style="display: inline-block; width: 24%; float: left; padding: 30px 30px 30px 30px;">
 				<span style="font-size: 16pt; font-weight: bold;">Q&A</span> </br>
-				<div align="left" style="margin-left: 50px; margin-top: 5px; color: #777; "id="boardCounter">개</div>
+				<div align="left" style="margin-left: 50px; margin-top: 5px; color: #777;">0개</div>
 				</div>
 				
 				<div align="right" style="background-color: white; display: inline-block; width: 75%; padding: 30px 30px 30px 30px; text-align: left;">
 
-						<div align="right"><textarea type="text" style="width: 100%;" rows="8" class="form-control" id="questionContent"  placeholder="스터디에 대해 궁금한 점이 있으신가요?"></textarea></div>
+						<div align="right"><textarea type="text" style="width: 100%;" rows="8" class="form-control"  placeholder="스터디에 대해 궁금한 점이 있으신가요?"></textarea></div>
 						
-						<div align="right"><input id="question-submit" type="submit" value="완료" onclick="questionSubmit()"  /></div>
+						<div align="right"><input id="question-submit" type="submit" value="완료" /></div>
 				</div>
 			</div>
 			</c:if>
@@ -788,36 +416,46 @@ $(document).ready(function(){
 				
 				<div align="right" style="background-color: white; display: inline-block; width: 75%; padding: 30px 30px 30px 30px; text-align: left;">
 
-						<c:if test="false"><div style="font-size: 11pt;">질문을 작성하시려면 <a class="auth-link">로그인</a>또는 <a class="auth-link">회원가입</a>이 필요합니다.</div>
+						<c:if test="true"><div style="font-size: 11pt;">질문을 작성하시려면 <a class="auth-link">로그인</a>또는 <a class="auth-link">회원가입</a>이 필요합니다.</div>
 						</c:if>
-						<c:if test="true">
-						<div id="emptyBoard">
+						<c:if test="false">
+						<div style="text-align: center; border-bottom: solid 1px #ccc; border-top: solid 1px #ccc; margin-top: 40px; padding: 20px 0 20px 0;">
+							<span class="title">아직 Q&A가 없습니다.</span><br/>
+							<span class="subtitle">스터디에 대해 궁금한 점이 있으신가요? 스터디 리더에게 무엇이든 물어보세요!</span>
 						</div>
 						</c:if>
 						<c:if test="true">
+						<c:forEach begin="1" end="3">
 						<c:if test="true">
-						<div id="leaderBoard">
+						<div style="text-align: left; border-top: solid 1px #ccc; margin-top: 40px; padding: 20px 0 20px 0; min-height: 200px;">
+							<img style="width: 50px; height: 50px;" src="<%= ctxPath%>/resources/images/studyDetail/qa.png"/><span style="margin-left: 15px; font-size: 11pt; font-weight: bold;">김학민</span><div class="edit" style="margin-left: 200px;">수정</div><img style="width: 20px; height: 20px;" src="<%= ctxPath%>/resources/images/studyDetail/pencil.png"/><div class="edit">삭제</div><img style="width: 20px; height: 20px;" src="<%= ctxPath%>/resources/images/studyDetail/paper-bin.png"/>
+							<br/><br/>
+							<span style="margin-top: 20px;">정말 영어를 잘하고 싶은데 뭐부터 해야할지 모르고 막상 시작하려니 많이 막막했는데 스터디 서치를 보고 용기내서 신총을 해서 Helen Lee수업을 들으면서 영어에 대한 자신감도 많이 생기고 영어실력도 많이 늘었어요 그리고 Helen Lee쌤이 정말 생활에 필요한 영어를 잘 알려주셔서 너무 좋았고 친절하고 꼼꼼하게 알려주셔서 정말 좋았어요~!!! 지금 사정이 생겨서 신청을 못 했지만 다음에도 Helen Lee쌤한테 배우고 싶어요~!!!</span>
 						</div>
-						<div id="leaderEdit">
-						</div>
-						
-						
-						
 						</c:if>
-						<c:if test="true"> <!-- 대댓글인 경우 -->
+						<c:if test="false"> <!-- 대댓글인 경우 -->
 						<div style="text-align: left; border-top: solid 1px #ccc; margin-top: 40px; padding: 20px 0 20px 0; min-height: 200px;">
 							<img src="<%= ctxPath%>/resources/images/1508821271.jpg" style="height: 60px; width: 60px; border-radius: 100px; position: relative; border: solid 2px white;"/><span style="margin-left: 15px; font-size: 11pt; font-weight: bold; color: #ef6c00;">김학민님의 답변 :</span><div class="edit" style="margin-left: 120px;">수정</div><img style="width: 20px; height: 20px;" src="<%= ctxPath%>/resources/images/studyDetail/pencil.png"/><div class="edit">삭제</div><img style="width: 20px; height: 20px;" src="<%= ctxPath%>/resources/images/studyDetail/paper-bin.png"/>
 							<br/><br/>
 							<span style="margin-top: 20px;">정말 영어를 잘하고 싶은데 뭐부터 해야할지 모르고 막상 시작하려니 많이 막막했는데 스터디 서치를 보고 용기내서 신총을 해서 Helen Lee수업을 들으면서 영어에 대한 자신감도 많이 생기고 영어실력도 많이 늘었어요 그리고 Helen Lee쌤이 정말 생활에 필요한 영어를 잘 알려주셔서 너무 좋았고 친절하고 꼼꼼하게 알려주셔서 정말 좋았어요~!!! 지금 사정이 생겨서 신청을 못 했지만 다음에도 Helen Lee쌤한테 배우고 싶어요~!!!</span>
 						</div>
 						</c:if>
+						</c:forEach>
 						</c:if>
 				</div>
 			</div>		
+
+
+
+
 	
 		</div> <!-- left 마지막 div -->
 		
 	
+			
+
+		
+		
 		
 
 		
@@ -835,8 +473,9 @@ $(document).ready(function(){
 						<button style="width: 95%; height:60px; margin-top: 10px; background-color: #ef6c00;"><span style="color: white; font-size: 13pt; font-weight: bold;">참여 신청하기</span></button>
 					</div>
 					<div align="center">
-						<button style="width: 95%; height: 60px; margin-top: 10px; border: 1px solid #dcdcdc;" onclick="wishAddRemove()">
-							<div id="wishStatus"></div>
+						<button style="width: 95%; height: 60px; margin-top: 10px; border: 1px solid #dcdcdc;">
+							<c:if test="false"> <img src="<%= ctxPath%>/resources/images/studyDetail/like.png" style="width: 20px; height: 20px;"/> <span style="font-size: 13pt; font-weight: bold;">찜하기</span></c:if>
+							<c:if test="true"> <img src="<%= ctxPath%>/resources/images/studyDetail/love.png" style="width: 20px; height: 20px;"/> <span style="font-size: 13pt; font-weight: bold;">찜 취소</span></c:if>
 						</button>
 					</div>
 				</div>

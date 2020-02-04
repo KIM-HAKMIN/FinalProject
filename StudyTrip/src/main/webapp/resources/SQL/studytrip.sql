@@ -1,7 +1,10 @@
 show user;
 
 
+<<<<<<< HEAD
+=======
 
+>>>>>>> branch 'master' of https://github.com/KIM-HAKMIN/FinalProject
 -- 스토리 테이블
 create table story  
 (story_num      NVARCHAR2(20)     --  (P.K)  권한번호
@@ -34,6 +37,7 @@ create table story_image
 );
 
 
+<<<<<<< HEAD
 ALTER TABLE story_image ADD(imagefilename nvarchar2(30)); 
 ALTER TABLE story_image MODIFY imagefilename NOT NULL;
 
@@ -42,6 +46,8 @@ ALTER TABLE story_image MODIFY imagefilename NOT NULL;
 
 
 
+=======
+>>>>>>> branch 'master' of https://github.com/KIM-HAKMIN/FinalProject
 -- 권한 테이블
 create table authority  
 (auth_num        NVARCHAR2(20)     --  (P.K)  권한번호
@@ -98,6 +104,7 @@ create table members
 , constraint FK_member_fk_coupon_num foreign key(fk_coupon_num) references coupon (coupon_num)
 );
 
+<<<<<<< HEAD
 thumbnails
 
 select * from members;
@@ -108,6 +115,8 @@ alter table members modify(thumbnails null);
 alter table members RENAME COLUMN thumbnails to profile;
 
 
+=======
+>>>>>>> branch 'master' of https://github.com/KIM-HAKMIN/FinalProject
 -- 회원 테이블 시퀀스
 create sequence seq_members
 start with 1
@@ -209,23 +218,19 @@ nocycle
 nocache;
 
 
+<<<<<<< HEAD
 
 
 -- 자주묻는질문 테이블
+=======
 -- FAQ 테이블
+>>>>>>> branch 'master' of https://github.com/KIM-HAKMIN/FinalProject
 create table faq
 (seq            NVARCHAR2(20)              --  (P.K)  faq번호(컬럼명 변경)
-<<<<<<< HEAD
-,subject        NVARCHAR2(300) not null    -- 타이틀  
-,content        NVARCHAR2(500) not null    -- 내용
-,kind           NVARCHAR2(50)              -- 글분류
-,pw             NVARCHAR2(20)              -- 비밀번호(글작성 시)
-=======
 ,subject        NVARCHAR2(300)          not null    -- 타이틀  
 ,content        NVARCHAR2(500)          not null    -- 내용
 ,kind           NVARCHAR2(50)                -- 글분류 
 ,pw             NVARCHAR2(20)           
->>>>>>> branch 'master' of https://github.com/KIM-HAKMIN/FinalProject.git
 , constraint PK_faq_seq primary key(seq)
 );
 
@@ -361,9 +366,10 @@ create table study_image
 , constraint PK_study_image primary key(seq_img)
 );
 
+<<<<<<< HEAD
 select *
 from study_image;
-
+=======
 
 -- 스터디 qna 테이블 
 create table study_qna  
@@ -378,10 +384,13 @@ create table study_qna
 , constraint PK_study_qna primary key(study_qna_num)
 , constraint FK_fk_study_num foreign key(fk_study_num) references study (study_num)
 );
+>>>>>>> branch 'master' of https://github.com/KIM-HAKMIN/FinalProject
 
+
+<<<<<<< HEAD
 -- 이미지 테이블 시퀀스
 create sequence seq_study_image
-
+=======
 -- 스터디 매칭 테이블
 create table study_matching
 (study_matnum nvarchar2(50) --  (P.K) 스터디 매칭번호
@@ -394,6 +403,7 @@ create table study_matching
 
 -- 스터디 매칭 테이블 시퀀스
 create sequence seq_study
+>>>>>>> branch 'master' of https://github.com/KIM-HAKMIN/FinalProject
 start with 1
 increment by 1
 nomaxvalue
@@ -402,6 +412,7 @@ nocycle
 nocache;
 
 
+<<<<<<< HEAD
 
 
 select * 
@@ -430,7 +441,8 @@ create table study_qna
 );
 
 
-
+=======
+>>>>>>> branch 'master' of https://github.com/KIM-HAKMIN/FinalProject
 -- 위시리스트 테이블
 create table wishlist
 (wishlist_num nvarchar2(50) --  (P.K) 위시리스트 번호
@@ -449,10 +461,12 @@ nominvalue
 nocycle
 nocache;
 
+<<<<<<< HEAD
 -- 결제완료테이블
-
+=======
 
 -- 결제 테이블
+>>>>>>> branch 'master' of https://github.com/KIM-HAKMIN/FinalProject
 create table payment_complete
 (pay_num        nvarchar2(20)     --  (P.K)  게시판번호
 ,fk_useremail   nvarchar2(50)          not null    -- (F.K) 유저이메일
@@ -467,9 +481,11 @@ create table payment_complete
 , constraint FK_payment_fk_useremail foreign key(fk_useremail) references members (useremail)
 );
 
+<<<<<<< HEAD
 --결제완료 시퀀스 테이블
-
+=======
 -- 결제 테이블 시퀀스
+>>>>>>> branch 'master' of https://github.com/KIM-HAKMIN/FinalProject
 create sequence seq_payment_complete
 start with 1
 increment by 1
@@ -478,41 +494,11 @@ nominvalue
 nocycle
 nocache;
 
---------------------------------------------------------------------------------------------------------------------------------
---------------------------------------------------------------------------------------------------------------------------------
-
-select *
-from faq;
-
-alter table faq modify content NVARCHAR2(1000);
-
-insert into faq(seq, subject, content, kind, pw)
-values(seq_faq.nextval,'결제수단 추가나 삭제는 어떻게 하나요?','결제수단 추가는 결제 단계에서 "카드 추가"를 눌러서 진행해주시면 됩니다. 결제수단 삭제는 help.studysearch@gmail.com으로 아이디와 삭제를 원하시는 결제수단을 보내주시면 바로 삭제 도와드리겠습니다.','결제', '1234');
-
-commit;
-
---------------------------------------------------------------------------------------------------------------------------------
-
-select * 
-from members;
-
-insert into members (useremail, name, pwd, hp, profile, route, registerday, status, fk_auth_num, fk_coupon_num)
-values ('samss@gmail.com', '삼순신', 'qwer1234$', '01012345678', default, '지인', default, default, 1, default);
-
-commit;
-
-select count(*)
-from members
-where useremail = 'eom@naver.com';
-
---------------------------------------------------------------------------------------------------------------------------------
 
 
 
 
-
-
-
+<<<<<<< HEAD
 -- 회원 테이블
 create table members
 ( useremail     nvarchar2(50)  -- (P.K) 이메일 
@@ -638,108 +624,9 @@ on S.fk_useremail = M.useremail
 )V join study_image I
 on V.study_num = I.study_num;
 
-select *
-from study S join members M
-on S.fk_useremail = M.useremail
-where study_num is not null
-and area in('강남','노원');
 
 
 
--- 위시리스트 테이블
-create table wishlist
-(wishlist_num nvarchar2(50) --  (P.K) 위시리스트 번호
-,fk_useremail        NVARCHAR2(50)          not null    --(F.K) 회원이메일
-,fk_study_num   nvarchar2(50)           not null    -- (F.K) 스터디번호
-, constraint FK_wishlist_fk_useremail foreign key(fk_useremail) references members (useremail)
-, constraint FK_wishlist_fk_study_num foreign key(fk_study_num) references study (study_num)
-);
-
--- 위시리스트 테이블 시퀀스
-create sequence seq_wishlist
-start with 1
-increment by 1
-nomaxvalue
-nominvalue
-nocycle
-nocache;
-
-select *
-from wishlist;
-
-delete from wishlist
-where wishlist_num = 2;
-
-
-commit;
-
-insert into wishlist(wishlist_num, fk_useremail, fk_study_num)
-values(seq_wishlist.nextval, 'nahakmin@naver.com', '50');
-
-insert into wishlist(wishlist_num, fk_useremail, fk_study_num)
-values(seq_wishlist.nextval, 'nahakmin@naver.com', '48');
-
-
--- 회원 테이블
-create table members
-( useremail     nvarchar2(50)  -- (P.K) 이메일 
-, pwd      varchar2(200) not null-- 비밀번호 
-, hp         nvarchar2(200) not null -- 휴대전화
-, name          nvarchar2(20) not null -- 이름
-, profile       varchar2(300) default 'anonymous.png' -- 섬네일(컬럼명 변경) 
-, qualifi       nvarchar2(50)       -- 자격조건 
-, route         nvarchar2(50)       -- 알게된 경로
-, status        number(1) default 1     -- (C.K) 상태 (회원이라면:1 회원탈퇴:0)
-, registerday   date default sysdate -- 가입일자
-, fk_auth_num   nvarchar2(20) not null  -- 권한번호
-, fk_coupon_num    nvarchar2(20) not null  -- 권한번호
-, constraint PK_member_email primary key( useremail )  
-, constraint CK_member_status check( status in(0,1) )
-, constraint FK_member_fk_auth_num foreign key(fk_auth_num) references authority (auth_num)
-, constraint FK_member_fk_coupon_num foreign key(fk_coupon_num) references coupon (coupon_num)
-);
-
-select *
-from study_qna;
-
--- 스터디 qna 테이블 
-create table study_qna  
-(study_qna_num  number(20)                 --  (P.K) 스터디qna번호
-,fk_study_num   nvarchar2(50)           not null    -- (F.K) 스터디번호
-,fk_useremail   nvarchar2(50)           not null    -- (F.K) 유저이메일
-,content        NVARCHAR2(500)          not null    -- 내용
-,write_date     date default sysdate                -- 작성일자 
-,groupno        number                not null      -- 그룹번호
-,depthno        number default 0      not null      -- 순서번호
-,fk_seq         number default 0       not null     -- 부모글번호
-, constraint PK_study_qna primary key(study_qna_num)
-, constraint FK_fk_study_num foreign key(fk_study_num) references study (study_num)
-, constraint FK_fk_useremail foreign key(fk_useremail) references members(useremail)
-);
-
-
-
-insert into study_qna(study_qna_num, fk_study_num, fk_useremail, content, write_date, groupno, depthno, fk_seq)
-values(seq_study_qna.nextval, #{fk_study_num}, #{fk_useremail}, #{content}, default, #{groupno}, default, default)
-
-
-
-select *
-from study_qna Q join members M
-on Q.fk_useremail = M.useremail
-
-    update study_qna set content = '아메리카노를 좋아합니다'
-    where study_qna_num = 180;
-
-where fk_study_num = #{fk_study_num}
-
-
--- 스터디 qna 시퀀스
-create sequence seq_study_qna
-start with 1
-increment by 1
-nomaxvalue
-nominvalue
-nocycle
-nocache;
+=======
+>>>>>>> branch 'master' of https://github.com/KIM-HAKMIN/FinalProject
 

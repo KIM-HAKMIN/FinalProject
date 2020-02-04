@@ -10,4 +10,23 @@
 	  select to_char(sysdate, 'yyyy-mm-dd hh24:mi:ss') as today 
 	  from dual
 	</select>
+	
+	<!--  === #47. 로그인 처리하기 === -->	
+	<select id="getLoginMember" parameterType="HashMap" resultType="com.spring.model.MemberVO">
+	    select useremail, name, profile, fk_auth_num 
+			 , trunc( months_between(sysdate, lastLoginDate) ) AS lastlogindategap 
+			 , trunc( months_between(sysdate, lastPwdChangeDate) ) AS pwdchangegap 
+		from members 
+		where status = 1 and 
+		      useremail = #{userid} and
+		      pwd = #{pwd}
+	</select>	
+	<!-- 마지막으로 로그인 한 날짜시간 변경(기록)하기 -->
+	<update id="setLastLoginDate" parameterType="HashMap">
+		update members set lastLoginDate = sysdate
+		where useremail = #{userid}
+	</update>
+	
+	
+	
 </mapper>

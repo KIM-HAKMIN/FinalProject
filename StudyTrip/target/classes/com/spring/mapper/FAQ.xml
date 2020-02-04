@@ -13,9 +13,11 @@
 		    select lag(seq, 1) over(order by seq desc) as previousseq
 		         , lag(subject, 1) over(order by seq desc) as previoussubject
 		         , seq, subject, kind, content
+		         , readCount, to_char(regDate, 'yyyy-mm-dd hh24:mi:ss') as regDate
 		         , lead(seq, 1) over(order by seq desc) as nextseq
 		         , lead(subject, 1) over(order by seq desc) as nextsubject
 		    from faq
+		    where status = 1
 		) V
 		where V.seq = #{seq}
 	</select>	
@@ -24,19 +26,21 @@
 	<select id="getTotalCountWithNOsearch" resultType="int">
         select count(*)
         from faq
+        where status = 1
     </select>
     
     
     <select id="boardListWithPaging" parameterType="HashMap" resultType="com.spring.model.FAQVO"> 
-       select seq, subject, kind
+       select seq, subject
        from 
        (
 	       select rownum AS rno
-	            , seq, subject, kind
+	            , seq, subject,
 	       from   
 	       (  
-	         select seq, subject, kind
+	         select seq, subject
 			 from faq
+			 where status = 1
 			 order by seq desc
 		   ) V  
 	   ) T 	   
@@ -45,8 +49,8 @@
     
     
     <insert id="add" parameterType="com.spring.model.FAQVO"> 
-	 	insert into faq(seq, subject, content, kind, pw)
-		values(seq_faq.nextval, #{subject}, #{content}, #{kind}, #{pw})
+	 	insert into faq(seq, subject, kind, content, pw)
+		values(boardSeq.nextval, #{subject}, #{kind}, #{content}, #{pw})
 	</insert>
 	
 	
@@ -57,17 +61,17 @@
 	</select>
 	
 	
-	<delete id="deleteBoard" parameterType="com.spring.model.FAQVO">
+	<update id="deleteBoard" parameterType="com.spring.model.FAQVO">
 		delete faq 
 		where seq = #{seq}        
-	</delete>
+	</update>
 	
 	
 	<update id="updateBoard" parameterType="com.spring.model.FAQVO">
 		update faq set subject = #{subject}
-		             , content = #{content}
 		             , kind = #{kind} 
-		where seq = #{seq}             
+		             , content = #{content}
+		where seq = #{seq}                   
 	</update>
 
 </mapper>
