@@ -228,7 +228,7 @@ $(document).ready(function(){
 	
 });
 
-	
+	// 위시리스트에 추가하고 삭제해주는 함수
 	function wishAddRemove(){
 		
 		$.ajax({ 
@@ -265,6 +265,7 @@ $(document).ready(function(){
 		
 	}
 	
+	// 위시여부를 알아오는 함수
 	function wishSearch(){
 		
 		$.ajax({ 
@@ -376,14 +377,19 @@ $(document).ready(function(){
 				else{
 					for(var i=0; i<json.length; i++){
 						
-						html +="<div board style='text-align: left; border-top: solid 1px #ccc; margin-top: 40px; padding: 20px 0 20px 0; min-height: 200px;'>";
-						html += "<img style='width: 50px; height: 50px;' src='<%= ctxPath%>/resources/images/studyDetail/qa.png'/><span style='margin-left: 15px; font-size: 11pt; font-weight: bold;'>"+json[i].name+"</span>";
-						html += "<div class='edit' style='margin-left: 200px; cursor: pointer;' onclick='editBoard("+json[i].study_qna_num+", \""+json[i].content+"\")'>수정</div><img onclick='editBoard("+json[i].study_qna_num+", \""+json[i].content+"\")' style='width: 20px; height: 20px; cursor: pointer;' src='<%= ctxPath%>/resources/images/studyDetail/pencil.png'/><div style='cursor: pointer;' class='edit' onclick='deleteBoard("+json[i].study_qna_num+")'>삭제</div><img onclick='deleteBoard("+json[i].study_qna_num+")' style='width: 20px; height: 20px; cursor: pointer;' src='<%= ctxPath%>/resources/images/studyDetail/paper-bin.png'/>";
-						html +="<br/><br/>";
-						html +="<div id="+json[i].study_qna_num+"board style='width:90%; margin: 0 auto;'><table style='margin-top: 20px; width:80%;'><td style='word-break: break-all'>"+json[i].content+"</td></table>";
-						html +="<button type='button' class=question-answer onclick='quetion_answer("+json[i].study_qna_num+")'>답변하기</button>";
-						html +="<div id='qusetionanswer"+json[i].study_qna_num+"' style='margin-top:20px;'></div>"
-						html += "</div></div>";						
+						
+						
+							html +="<div board style='text-align: left; border-top: solid 1px #ccc; margin-top: 40px; padding: 20px 0 20px 0; min-height: 200px;'>";
+							html += "<img style='width: 50px; height: 50px;' src='<%= ctxPath%>/resources/images/studyDetail/qa.png'/><span style='margin-left: 15px; font-size: 11pt; font-weight: bold;'>"+json[i].name+"</span>";
+							html += "<div class='edit' style='margin-left: 200px; cursor: pointer;' onclick='editBoard("+json[i].study_qna_num+", \""+json[i].content+"\")'>수정</div><img onclick='editBoard("+json[i].study_qna_num+", \""+json[i].content+"\")' style='width: 20px; height: 20px; cursor: pointer;' src='<%= ctxPath%>/resources/images/studyDetail/pencil.png'/><div style='cursor: pointer;' class='edit' onclick='deleteBoard("+json[i].study_qna_num+")'>삭제</div><img onclick='deleteBoard("+json[i].study_qna_num+")' style='width: 20px; height: 20px; cursor: pointer;' src='<%= ctxPath%>/resources/images/studyDetail/paper-bin.png'/>";
+							html +="<br/><br/>";
+							html +="<div id="+json[i].study_qna_num+"board style='width:90%; margin: 0 auto;'><table style='margin-top: 20px; width:80%;'><td style='word-break: break-all'>"+json[i].content+"</td></table>";
+							html +="<button type='button' class=question-answer onclick='quetion_answer("+json[i].study_qna_num+")'>답변하기</button>";
+							html +="<div id='qusetionanswer"+json[i].study_qna_num+"' style='margin-top:20px;'></div>"
+							html += "</div></div>";
+							
+							
+							
 						
 					}
 					$("#leaderBoard").html(html);
