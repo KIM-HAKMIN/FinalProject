@@ -1,7 +1,6 @@
 package com.spring.controller;
 
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.forwardedUrl;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.request;
+
 
 import java.io.File;
 import java.util.ArrayList;
@@ -11,17 +10,21 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.google.gson.Gson;
+import com.google.gson.JsonObject;
 import com.spring.common.FileManager;
-import com.spring.common.ThumbnailManager;
-import com.spring.mail.GoogleMail;
+import com.spring.model.LeaderBoardVO;
 import com.spring.model.StudyVO;
 import com.spring.service.InterSearchService;
 
@@ -41,22 +44,41 @@ public class SearchController {
 	@RequestMapping(value="/search.st")
 	public ModelAndView search(ModelAndView mav, HttpServletRequest request) {
 		
-		String area[] = request.getParameterValues("area");
-		String level[] = request.getParameterValues("level");
-		String day[] = request.getParameterValues("day");
+		String areastr = request.getParameter("areastr");
+		String levelstr = request.getParameter("levelstr");
+		String daystr = request.getParameter("daystr");
+		
+
 		
 		HashMap<String, Object> paraMap = new HashMap<String, Object>();
 		
 		List<StudyVO> listst= new ArrayList<StudyVO>();
+	
 		
-		
-		if(area!=null||level!=null||day!=null) {
+		if((areastr!=null&&!"".equals(areastr))||(levelstr!=null&&!"".equals(levelstr)) ||(daystr!=null&&!"".equals(daystr))) {
 			
-			paraMap.put("area", area);
 			
-			paraMap.put("level", level);
+			String[] areaArr = areastr.split(",");
+			String[] levelArr = levelstr.split(",");
+			String[] dayArr = daystr.split(",");
 			
-			paraMap.put("day", day);
+			if(areastr==null||"".equals(areastr)) {
+				areaArr = null;				
+			}
+			
+			if(levelstr==null||"".equals(levelstr)) {
+				levelArr = null;				
+			}
+			
+			if(daystr==null||"".equals(daystr)) {
+				dayArr = null;				
+			}
+			
+			paraMap.put("areaArr", areaArr);
+			
+			paraMap.put("levelArr", levelArr);
+			
+			paraMap.put("dayArr", dayArr);
 			
 
 
@@ -70,11 +92,6 @@ public class SearchController {
 		}
 		
 
-		
-		
-		/*System.out.println("장소는: " + area);
-		System.out.println("레벨은: " + level);
-		System.out.println("주말유무는: " + day);*/
 		
 		request.setAttribute("listst", listst);
 
@@ -91,7 +108,6 @@ public class SearchController {
 		
 		String study_num = request.getParameter("study_num");
 		
-		System.out.println("study_num : "+study_num);
 		
 		StudyVO stvo = new StudyVO();
 				
@@ -100,15 +116,7 @@ public class SearchController {
 		List<HashMap<String, String>> viewStudyImageList = service.searchDetailImg(study_num);   //스터디 디테일 캐러셀 이미지주소를 가져온다
 		
 		
-		
-		System.out.println("useremail" + stvo.getFk_useremail());
-		
-		for(HashMap<String, String> paraMap:viewStudyImageList) {
-			
-			System.out.println("filename : " + paraMap.get("filename"));
-			
-		}
-		
+
 		request.setAttribute("stvo", stvo);
 		request.setAttribute("viewStudyImageList", viewStudyImageList);
 		
@@ -117,6 +125,8 @@ public class SearchController {
 		
 		return mav;
 	}
+	
+	
 
 	@RequestMapping(value="/studyRegister.st")
 	public ModelAndView studyRegister(ModelAndView mav) {
@@ -157,7 +167,6 @@ public class SearchController {
 			
 			
 			
-			System.out.println(study_num);
 			
 			List<MultipartFile> attachList = request.getFiles("attach");
 			
@@ -165,7 +174,7 @@ public class SearchController {
 			
 			studyMap.put("study_num", study_num);						
 			studyMap.put("fk_useremail", fk_useremail);			
-			studyMap.put("title", title);			// 스터디 번호 
+			studyMap.put("title", title);			// 스터디 타이틀
 			studyMap.put("study_info", study_info);			// 스터디 정보
 			studyMap.put("teacher_info", teacher_info);		// 리더 정보
 			studyMap.put("area", area);						// 장소
@@ -297,6 +306,245 @@ public class SearchController {
 		
 		return mav;
 	}	
+	
+	
+	// === 위시리스트 유무 확인하기 ===
+	@RequestMapping(value="/searchWishList.st", method= {RequestMethod.GET}) 
+	public String searchWishList(HttpServletRequest request) {
+		
+		String fk_useremail = request.getParameter("fk_useremail");
+		String fk_study_num = request.getParameter("fk_study_num");
+		
+		
 
+	
+		HashMap<String, String> paraMap = new HashMap<String, String>();
+		paraMap.put("fk_useremail", fk_useremail);
+		paraMap.put("fk_study_num", fk_study_num);
+		
+		int n = service.searchWish(paraMap);
+		
+		JSONObject jsonObj = new JSONObject();
+		jsonObj.put("n", n);
+		
+		String result = jsonObj.toString(); 
+		
+		request.setAttribute("result", result);
+		
+		return "jsonResult";
+		
+	}	
+
+	// === 위시리스트 추가 삭제하기 확인하기 ===
+	@RequestMapping(value="/wishAddRemove.st", method= {RequestMethod.GET}) 
+	public String wishAddRemove(HttpServletRequest request) {
+		
+		String fk_useremail = request.getParameter("fk_useremail");
+		String fk_study_num = request.getParameter("fk_study_num");
+		
+		
+
+	
+		HashMap<String, String> paraMap = new HashMap<String, String>();
+		paraMap.put("fk_useremail", fk_useremail);
+		paraMap.put("fk_study_num", fk_study_num);
+		
+		
+		int n = 0;
+		int m = 0;
+		int flag = 0;
+		
+		n = service.searchWish(paraMap);
+		
+		if(n==1) {	// 위시리스트에서 제거해준다.
+			m = service.deleteWishList(paraMap);	
+			flag=1;
+		}
+		
+		else {	// 위시리스트에 추가해준다.
+			m = service.insertWishList(paraMap);
+			flag=2;
+		}		
+		
+		
+		
+		JSONObject jsonObj = new JSONObject();
+		jsonObj.put("flag", flag);
+		
+		String result = jsonObj.toString(); 
+		
+		request.setAttribute("result", result);
+		
+		return "jsonResult";
+		
+	}		
+	
+	// === 스터디QnA 글쓰기 ===
+	@RequestMapping(value="/AddLeaderBoard.st", method= {RequestMethod.GET}) 
+	public String AddLeaderBoard(HttpServletRequest request) {
+		
+		String fk_useremail = request.getParameter("fk_useremail");
+		String fk_study_num = request.getParameter("fk_study_num");
+		String content = request.getParameter("questionContent");
+		
+		
+
+	
+		LeaderBoardVO leaderVO = new LeaderBoardVO(); 
+		
+		leaderVO.setFk_useremail(fk_useremail);
+		leaderVO.setFk_study_num(fk_study_num);
+		leaderVO.setContent(content);
+		
+		
+		
+		
+		int n = service.AddLeaderBoard(leaderVO);
+		
+	
+		
+		
+		
+		JSONObject jsonObj = new JSONObject();
+		jsonObj.put("n", n);
+		
+		String result = jsonObj.toString(); 
+		
+		request.setAttribute("result", result);
+		
+		return "jsonResult";
+		
+	}	
+	
+	
+	// === 리더 게시판의 목록을 보여주는 JSON===
+	@RequestMapping(value="/ListLeaderBoard.st", method= {RequestMethod.GET}) 
+	public String ListLeaderBoard(HttpServletRequest request) {
+		
+		String fk_study_num = request.getParameter("fk_study_num");
+		
+		 
+		List<LeaderBoardVO> boardList = service.ListLeaderBoard(fk_study_num);
+	
+		JSONArray jsonArr = new JSONArray();
+				
+			
+		if(boardList !=null) {
+			
+			for(LeaderBoardVO leaderVO:boardList) {
+				JSONObject jsonObj = new JSONObject();
+				jsonObj.put("study_qna_num", leaderVO.getStudy_qna_num());
+				jsonObj.put("fk_study_num", leaderVO.getFk_study_num());
+				jsonObj.put("fk_useremail", leaderVO.getFk_useremail());
+				jsonObj.put("content", leaderVO.getContent());
+				jsonObj.put("write_date", leaderVO.getWrite_date());
+				jsonObj.put("groupno", leaderVO.getGroupno());
+				jsonObj.put("depthno", leaderVO.getDepthno());
+				jsonObj.put("fk_seq", leaderVO.getFk_seq());
+				jsonObj.put("name", leaderVO.getName());
+				jsonObj.put("pwd", leaderVO.getPwd());
+				
+				jsonArr.put(jsonObj);
+			}
+			
+		
+		}
+		
+		String result = jsonArr.toString(); 
+		
+		request.setAttribute("result", result);
+		
+		return "jsonResult";
+		
+	}	
+	
+	
+	// === 리더QnA 삭제하기===
+	@RequestMapping(value="/DeleteLeaderBoard.st", method= {RequestMethod.GET}) 
+	public String DeleteLeaderBoard(HttpServletRequest request) {
+		
+		String study_qna_num = request.getParameter("study_qna_num");
+				
+		
+		int n = service.DeleteLeaderBoard(study_qna_num);
+		
+		
+		JSONObject jsonObj = new JSONObject();
+		jsonObj.put("n", n);
+		
+		String result = jsonObj.toString(); 
+		
+		request.setAttribute("result", result);
+		
+		return "jsonResult";
+		
+	}	
+	
+	// === 리더QnA 수정하기===
+	@RequestMapping(value="/EditLeaderBoard.st", method= {RequestMethod.GET}) 
+	public String EditLeaderBoard(HttpServletRequest request) {
+		
+		String study_qna_num = request.getParameter("study_qna_num");
+		String content = request.getParameter("content");
+		
+		HashMap<String, String> paraMap = new HashMap<String, String>();
+		
+		paraMap.put("study_qna_num", study_qna_num);
+		paraMap.put("content", content);
+		
+		
+		int n = service.EditeLeaderBoard(paraMap);
+		
+		
+		JSONObject jsonObj = new JSONObject();
+		jsonObj.put("n", n);
+		
+		String result = jsonObj.toString(); 
+		
+		request.setAttribute("result", result);
+		
+		return "jsonResult";
+		
+	}
+	
+
+	
+	// === 리더QnA 답변하기===
+	@RequestMapping(value="/AnswerLeaderBoard.st", method= {RequestMethod.GET}) 
+	public String AnswerLeaderBoard(HttpServletRequest request) {
+		
+		String study_qna_num = request.getParameter("study_qna_num");
+		String content = request.getParameter("content");
+		String fk_useremail = request.getParameter("fk_useremail");
+		
+	
+		
+		LeaderBoardVO leaderVO = new LeaderBoardVO();
+
+		
+		System.out.println("content : " + content);
+		
+		leaderVO.setStudy_qna_num(study_qna_num);
+		leaderVO.setContent(content);
+		leaderVO.setFk_useremail(fk_useremail);
+		
+		System.out.println("qna_num~~~~~~~~~~~~~~~" + leaderVO.getStudy_qna_num());
+		
+		
+		int n = service.AnswerLeaderBoard(leaderVO);
+		
+		
+		JSONObject jsonObj = new JSONObject();
+		jsonObj.put("n", n);
+		
+		String result = jsonObj.toString(); 
+		
+		request.setAttribute("result", result);
+		
+		return "jsonResult";
+		
+	}
+	
+	
 	
 }

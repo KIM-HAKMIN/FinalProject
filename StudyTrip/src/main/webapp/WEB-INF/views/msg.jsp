@@ -7,7 +7,7 @@
 <script type="text/javascript">
 
     if(${msg != null}) {
-    	swal("${msg}");
+    	alert("${msg}");
     }
     
     if(${loc != null}) {

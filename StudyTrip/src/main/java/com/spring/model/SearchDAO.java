@@ -21,8 +21,8 @@ public class SearchDAO implements InterSearchDAO {
 
 	@Override
 	public List<StudyVO> getStudySearchListAll(HashMap<String, Object> paraMap) {
-		//List<StudyVO> stvo =sqlsession.selectList("search.getStudySearchListAll", paraMap);
-		return null;
+		List<StudyVO> stvo =sqlsession.selectList("search.getStudySearchListAll", paraMap);
+		return stvo;
 	}
 
 	@Override
@@ -62,6 +62,82 @@ public class SearchDAO implements InterSearchDAO {
 		
 		return viewStudyImageList;
 	}
+
+	@Override
+	public int searchWish(HashMap<String, String> paraMap) {
+		int n = sqlsession.selectOne("search.searchWish", paraMap);
+		return n;
+	}
+
+	@Override
+	public int deleteWishList(HashMap<String, String> paraMap) {
+		int n = sqlsession.delete("search.deleteWishList", paraMap);
+		return n;
+	}
+
+	@Override
+	public int insertWishList(HashMap<String, String> paraMap) {
+		int n = sqlsession.insert("search.insertWishList", paraMap);
+		return n;
+	}
+
+
+	@Override
+	public int AddLeaderBoard(LeaderBoardVO leaderVO) {
+		int n = sqlsession.insert("search.AddLeaderBoard", leaderVO);
+		return n;
+	}
+
+	@Override
+	public int getGroupnoMax() {
+		
+		int max = sqlsession.selectOne("search.getGroupnoMax");
+		
+		return max;
+	}
+
+	@Override
+	public List<LeaderBoardVO> ListLeaderBoard(String fk_study_num) {
+		List<LeaderBoardVO> boardList = sqlsession.selectList("search.ListLeaderBoard", fk_study_num);
+		return boardList;
+	}
+
+	@Override
+	public int DeleteLeaderBoard(String study_qna_num) {
+		int n = sqlsession.delete("search.DeleteLeaderBoard", study_qna_num);
+		return n;
+	}
+
+	@Override
+	public int EditeLeaderBoard(HashMap<String, String> paraMap) {
+		int n = sqlsession.update("search.EditeLeaderBoard", paraMap);
+		return n;
+	}
+
+	@Override
+	public LeaderBoardVO SearchGroupNo(LeaderBoardVO leaderVO) {
+		
+		leaderVO = sqlsession.selectOne("search.SearchGroupNo", leaderVO);	
+		
+
+		
+		return leaderVO;
+	}
+	
+	
+	@Override
+	public int AnswerLeaderBoard(LeaderBoardVO leaderVO) {
+		System.out.println("~~~~~~~~~~~~~~groupno : "+leaderVO.getGroupno());
+		System.out.println("~~~~~~~~~~~~~~~~Fk_study_num : "+leaderVO.getFk_study_num());
+		System.out.println("~~~~~~~~~~~~~~depthno : " + leaderVO.getDepthno());
+		System.out.println("~~~~~~~~~~~~~~content : " + leaderVO.getContent());
+		
+		int n = sqlsession.insert("search.AnswerLeaderBoard",leaderVO);
+		
+		return n;
+	}
+
+
 
 
 

@@ -12,13 +12,40 @@
 			select *
 			from study S join members M
 			on S.fk_useremail = M.useremail
+			order by registerday 		
+			
 			
 		</select>
 
 		 <!--  조건에 맞는 스터디 목록을 모두 가져온다 -->
-	<!--<select id="getStudySearchListAll" parameterType="HashMap" resultType="com.spring.model.StudyVO" >
-			 
-		</select>  -->
+		<select id="getStudySearchListAll" parameterType="HashMap" resultType="com.spring.model.StudyVO" >
+			select *
+			from study S join members M
+			on S.fk_useremail = M.useremail
+			where  study_num is not null
+			<if test="areaArr != null">
+				and area in 
+				<foreach collection="areaArr" index="i" open="(" separator="," close=")">
+					'${areaArr[i]}'		
+				</foreach>
+			</if>
+			
+ 			<if test="levelArr != null">
+				and lv in 
+				<foreach collection="levelArr" index="i" open="(" separator="," close=")">
+					'${levelArr[i]}'		
+				</foreach>
+			</if>
+						
+			<if test="dayArr != null">
+				and study_holyday in 
+				<foreach collection="dayArr" index="i" open="(" separator="," close=")">
+					'${dayArr[i]}'		
+				</foreach>
+			</if>
+			order by registerday 		
+				
+		</select> 
  
  
 		<!-- 스터디 번호를 채번해온다 -->
@@ -62,6 +89,77 @@
 			from study_image
 			where study_num = #{study_num}
 		</select>
+		
+		<!-- 위시리스트 등록여부를 확인한다 -->
+		<select id="searchWish" parameterType="HashMap" resultType="int">
+		
+			select count(*)
+				from wishlist
+				where fk_useremail = #{fk_useremail}
+				and fk_study_num = #{fk_study_num}
+		
+		</select>
+		
+		<!-- 스터디를 위시리스트에서 삭제한다. -->
+		<delete id="deleteWishList" parameterType="HashMap" >
+			delete from wishlist
+			where fk_useremail = #{fk_useremail}
+			and fk_study_num = #{fk_study_num}		
+		</delete>
+		
+		
+		<!-- 스터디를 위시리스트에 등록한다. -->
+		<insert id="insertWishList" parameterType="HashMap">
+			insert into wishlist(wishlist_num, fk_useremail, fk_study_num)
+			values(seq_wishlist.nextval, #{fk_useremail}, #{fk_study_num})
+		</insert>
+		
+		<!-- 리더보드에 글을 등록한다. -->
+  		<insert id="AddLeaderBoard" parameterType="com.spring.model.LeaderBoardVO">
+			insert into study_qna(study_qna_num, fk_study_num, fk_useremail, content, write_date, groupno, depthno, fk_seq)
+			values(seq_study_qna.nextval, #{fk_study_num}, #{fk_useremail}, #{content}, default, #{groupno}, default, default)		
+		</insert>
+		
+		<!-- Max groupno를 가져온다. -->
+		<select id="getGroupnoMax" resultType="int">
+			select nvl(max(groupno), 0)
+			from study_qna
+		</select>
+		
+		<!-- 상세페이지의 리더QnA목록을 가져온다 -->
+		<select id="ListLeaderBoard" parameterType="String" resultType="com.spring.model.LeaderBoardVO">
+			select *
+				from study_qna Q join members M
+				on Q.fk_useremail = M.useremail
+				where fk_study_num = #{fk_study_num}
+				order by groupno desc, fk_seq asc
+			
+		</select>	
+		
+		<!-- 리더보드에 글을 삭제한다. -->	
+		<delete id="DeleteLeaderBoard" parameterType="String">
+			delete from study_qna
+			where study_qna_num = #{study_qna_num} OR fk_seq = #{study_qna_num}
+		</delete>
+		
+		<!-- 리더보드 글을 수정한다 -->
+		<update id="EditeLeaderBoard" parameterType="HashMap">
+			update study_qna set content = #{content}
+			where study_qna_num = #{study_qna_num}
+		</update>
+		
+		<!-- 댓글달 글의 groupno를 가져온다 -->
+		<select id="SearchGroupNo" parameterType="com.spring.model.LeaderBoardVO" resultType="com.spring.model.LeaderBoardVO">
+			select groupno, fk_study_num, depthno, study_qna_num, fk_useremail
+			from study_qna
+			where study_qna_num = #{study_qna_num}
+		</select>
+		
+		<!-- 리더보드에 글에 대한 답변글을 등록한다. -->
+		<insert id="AnswerLeaderBoard" parameterType="com.spring.model.LeaderBoardVO">
+			insert into study_qna(study_qna_num, fk_study_num, fk_useremail, content, write_date, groupno, depthno, fk_seq)
+			values(seq_study_qna.nextval, #{fk_study_num}, #{fk_useremail}, #{content}, default, #{groupno}, 1, #{study_qna_num})
+		</insert>
  
  
 

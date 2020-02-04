@@ -200,9 +200,9 @@
 		    var checkBoxArr2 = [];
 
 			
-			var area = null;
-			var level = null;
-			var day = null;
+			var areastr = null;
+			var levelstr = null;
+			var daystr = null;
 				 
 		    for(var i=0; i<length; i++) {
 			  if( $("input:checkbox[name=areaCheckbox]").eq(i).is(":checked") ) {
@@ -210,7 +210,8 @@
 			  }
 		    }// end of for------------------------------------
 		    
-		   area = checkBoxArr;
+		   areastr = checkBoxArr.join(",");
+		    
 		   
 		    
 		    
@@ -222,7 +223,7 @@
 				}
 			}
 		   
-		   level = checkBoxArr1;
+		   levelstr = checkBoxArr1.join(",");
 		   
 
  		   length = $("input:checkbox[name=dayCheckbox]").length;
@@ -233,10 +234,10 @@
 				}
 			}
 		   
-		   day = checkBoxArr2;
+		   daystr = checkBoxArr2.join(",");
 	 
 
-		   location.href="/studytrip/search.st?area="+area+"&&level="+level+"&&day="+day;
+		   location.href="/studytrip/search.st?areastr="+areastr+"&&levelstr="+levelstr+"&&daystr="+daystr;
 		 
 	 });
 	 
@@ -245,6 +246,7 @@
  
 	function goDetail(){
 		
+		alert("study_num : " + $('#study_num').val());
 		
 		location.href="/studytrip/studyDetail.st?study_num="+$('#study_num').val();
 		
@@ -279,7 +281,7 @@
 			<div class="dropdown" align="left" style="padding: 20px 0 20px 0;">
 			  <button class="dropbtn">지역</button>
 			  <button class="dropbtn">레벨</button>
-			  <button class="dropbtn">시간</button>
+			  <button class="dropbtn">평일 / 주말</button>
 			<div class="dropdown-content" style=" width:100%; background-color: white; padding-top: 40px;">
 				<ul  style="list-style-type: none; display: inline-block; width: 150px;" >
 				    <li>
@@ -374,10 +376,10 @@
 
 <div style="background: #ebebeb; width: 100%;" align="center">
 	<div align="left" style="width: 80%;">
-		<div style="text-align: left; color: #505050; font-size: 16pt; font-weight: bold; padding: 60px 0 40px 0; margin-left: 38px;"><span>1500개의 스터디</span></div>	
+		<div style="text-align: left; color: #505050; font-size: 16pt; font-weight: bold; padding: 60px 0 40px 0; margin-left: 38px;"><span>1500개의 스터디</span></div>			
 		<c:forEach var="stvo" items="${listst}" >
 		<input type="hidden" id="study_num" name="study_num" value="${stvo.study_num}"/>
-		<div id style=" width: 290px; display: inline-block; margin-bottom: 30px; margin-left: 42px; cursor: pointer;" onclick="goDetail()">
+		<div id style=" width: 290px; display: inline-block; margin-bottom: 30px; margin-left: 42px; cursor: pointer;" onClick="javascript:location.href='<%= request.getContextPath() %>/studyDetail.st?study_num='+ ${stvo.study_num} +''">
 			<div align="center" style="background-color:white; width: 100%; height: 50px; text-align: center;">
 				<div style="padding-top: 20px;"><span style="color: #4c8def; font-weight: bold;">${stvo.startday} (${stvo.study_day})</span> <span style= "color: #787878;font-weight: bold;"> ${stvo.study_time} 첫 시작</span></div>
 				<div style="border-top: solid 0.5px gray; width: 90%; margin: 0 auto; margin-top: 14px; position: relative;"></div>
