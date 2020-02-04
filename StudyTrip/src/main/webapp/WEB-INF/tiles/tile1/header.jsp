@@ -71,7 +71,7 @@ input[type=text]:focus {
 	  <a href="#">스터디찾기</a>
 	  <a href="#">추천받기</a>
 	  <a href="#">스터디후기</a>
-	  <a href="#">테마스터디</a>
+	  <a href="<%=ctxPath%>/thema.st">">테마스터디</a>
 	  <a href="#">후기</a>
 	  <div class="searchbar">
 		<form>
