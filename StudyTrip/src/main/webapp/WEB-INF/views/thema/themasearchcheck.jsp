@@ -237,6 +237,9 @@ align-items: flex-start;
     page-break-inside: avoid;
 }
 
+.br {
+	padding-top: 10px;
+}
 
 </style>
 
@@ -268,9 +271,10 @@ align-items: flex-start;
 						</div>
 						
 						<button type="button">뒤로</button>	
+						<div class="br"></div>
 						
 						<!--------------------- 댓글창 ---------------------------->
-
+						
 						<div class="viewFormContentHeader">
 						   <h1>댓글쓰기</h1>
 						   

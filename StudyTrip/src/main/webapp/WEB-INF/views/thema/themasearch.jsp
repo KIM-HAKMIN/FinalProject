@@ -230,20 +230,7 @@ align-items: flex-start;
 </style>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script type="text/javascript">
-	
-	$(document).ready(function(){	
-		
-		/* 체크박스 한개만 선택가능하도록 한것. */
-		$("input:checkbox[name=area_etc]").click(function(){
-			$("input:checkbox[name=area_etc]").prop("checked",false);
-			$(this).prop("checked",true);
-		});
-	
-		
-	}); //end of $(document).ready -------
 
-</script>
 
 </head>
 <body>
@@ -301,12 +288,12 @@ align-items: flex-start;
 											</div>
 											<div>																									
 												<label class="themasearch-genderchoice">
-													<input type="checkbox" name="area_etc" value="">
+													<input type="checkbox" name="area_etc1" value="">
 													<span class="mock-radio"></span>
 													<span class="label-text">남</span>															
 												</label>
 												<label class="themasearch-genderchoice">
-													<input type="checkbox" name="area_etc" value="">
+													<input type="checkbox" name="area_etc1" value="">
 													<span class="mock-radio"></span>
 													<span class="label-text">여</span>														
 												</label>											
@@ -322,22 +309,22 @@ align-items: flex-start;
 											</div>
 											<div>																									
 												<label class="themasearch-agechoice">
-													<input type="checkbox" name="area_etc" value="">
+													<input type="checkbox" name="area_etc2" value="">
 													<span class="mock-radio"></span>
 													<span class="label-text">20-24</span>															
 												</label>
 												<label class="themasearch-agechoice">
-													<input type="checkbox" name="area_etc" value="">
+													<input type="checkbox" name="area_etc2" value="">
 													<span class="mock-radio"></span>
 													<span class="label-text">24-29</span>														
 												</label>
 												<label class="themasearch-agechoice">
-													<input type="checkbox" name="area_etc" value="">
+													<input type="checkbox" name="area_etc2" value="">
 													<span class="mock-radio"></span>
 													<span class="label-text">30-34</span>														
 												</label>
 												<label class="themasearch-agechoice">
-													<input type="checkbox" name="area_etc" value="">
+													<input type="checkbox" name="area_etc2" value="">
 													<span class="mock-radio"></span>
 													<span class="label-text">35-39</span>														
 												</label>											
@@ -353,22 +340,22 @@ align-items: flex-start;
 											</div>
 											<div>																									
 												<label class="themasearch-levelchoice">
-													<input type="checkbox" name="area_etc" value="">
+													<input type="checkbox" name="area_etc3" value="">
 													<span class="mock-radio"></span>
 													<span class="label-text">입문</span>															
 												</label>
 												<label class="themasearch-levelchoice">
-													<input type="checkbox" name="area_etc" value="">
+													<input type="checkbox" name="area_etc3" value="">
 													<span class="mock-radio"></span>
 													<span class="label-text">초급</span>														
 												</label>
 												<label class="themasearch-levelchoice">
-													<input type="checkbox" name="area_etc" value="">
+													<input type="checkbox" name="area_etc3" value="">
 													<span class="mock-radio"></span>
 													<span class="label-text">중급</span>														
 												</label>
 												<label class="themasearch-levelchoice">
-													<input type="checkbox" name="area_etc" value="">
+													<input type="checkbox" name="area_etc3" value="">
 													<span class="mock-radio"></span>
 													<span class="label-text">고급</span>														
 												</label>											
@@ -438,20 +425,16 @@ align-items: flex-start;
 											</div>
 											<div class= "themasearch-noparty">																									
 												<label class="themasearch-noparty1">
-													<input type="checkbox" name="area_etc" value="">
+													<input type="checkbox" name="area_etc4" value="">
 													<span class="mock-radio"></span>
 													<span class="label-text">네, 이를 숙지했으며 동의합니다!</span>															
 												</label>
 												<label class="themasearch-noparty1">
-													<input type="checkbox" name="area_etc" value="">
+													<input type="checkbox" name="area_etc4" value="">
 													<span class="mock-radio"></span>
 													<span class="label-text">**입금까지 바로 완료해주셔야** 신청이 완료 됩니다.</span>														
 												</label>
-												<label class="themasearch-noparty1">
-													<input type="checkbox" name="area_etc" value="">
-													<span class="mock-radio"></span>
-													<span class="label-text">계좌정보는 저장해두셨죠? 😉 [기업은행 047-105629-04-030 (주)펜브코퍼레이션]</span>														
-												</label>																					
+												<h5 class="label-text">계좌정보는 저장해두셨죠? 😉 [기업은행 047-105629-04-030 (주)펜브코퍼레이션]</h5>																																			
 											</div>																				
 										</div>									
 									</div>
@@ -492,4 +475,39 @@ align-items: flex-start;
 		</div>		
 	</div>	
 </body>
+
+<script type="text/javascript">
+	
+	$(document).ready(function(){	
+		
+		/* 체크박스 한개만 선택가능하도록 한것. */
+		$("input:checkbox[name=area_etc1]").click(function(){
+			$("input:checkbox[name=area_etc1]").prop("checked",false);
+			$(this).prop("checked",true);
+		});
+		
+		/* 체크박스 한개만 선택가능하도록 한것. */
+		$("input:checkbox[name=area_etc2]").click(function(){
+			$("input:checkbox[name=area_etc2]").prop("checked",false);
+			$(this).prop("checked",true);
+		});
+		
+		/* 체크박스 한개만 선택가능하도록 한것. */
+		$("input:checkbox[name=area_etc3]").click(function(){
+			$("input:checkbox[name=area_etc3]").prop("checked",false);
+			$(this).prop("checked",true);
+		});
+		
+		/* 체크박스 한개만 선택가능하도록 한것. */
+		$("input:checkbox[name=area_etc4]").click(function(){
+			$("input:checkbox[name=area_etc4]").prop("checked",false);
+			$(this).prop("checked",true);
+		});
+		
+		
+	}); //end of $(document).ready -------
+
+</script>
+
+
 </html>

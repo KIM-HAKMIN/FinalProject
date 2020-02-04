@@ -258,7 +258,7 @@ display: inline-block;
 						</a>
 					</div>
 					<div class="study-wrap swiper-slide swiper-slide-next">
-						<a href="#" target="_blank">
+						<a href="<%=ctxPath%>/themasearchend.st" target="_blank">
 						<div class="date-label">종료된 테마스터디
 						</div>
 						<div class="study-thumbnail" style="background-image: url(&quot;https://cdn.studysearch.co.kr/images/theme-study/28/1576724775.06?v=1576724775&quot;);">
@@ -269,7 +269,7 @@ display: inline-block;
 						</a>
 					</div>
 					<div class="study-wrap swiper-slide">
-						<a href="#" target="_blank">
+						<a href="<%=ctxPath%>/themasearchend.st" target="_blank">
 						<div class="date-label">종료된 테마스터디
 						</div>
 						<div class="study-thumbnail" style="background-image: url(&quot;https://cdn.studysearch.co.kr/images/theme-study/16/1557076677.34?v=1557076677&quot;);">
@@ -306,11 +306,11 @@ display: inline-block;
 									</a>
 								</div>
 								<div class="study-wrap swiper-slide swiper-slide-next">
-									<a href="#" target="_blank">
-									<div class="date-label">1월 18일(토)
+									<a href="<%=ctxPath%>/themasearchend.st" target="_blank">
+									<div class="date-label">종료된 테마스터디
 									</div>
 									<div class="study-thumbnail" style="background-image: url(&quot;https://cdn.studysearch.co.kr/images/theme-study/30/1578668433.35?v=1578668433&quot;);">
-										<div class="recruiting-label on">신규 모집
+										<div class="recruiting-label on">완료됨
 										</div>
 									</div>
 									<div class="study-title">해외축구 같이볼래요?Football Night! 🍻⚽
@@ -320,7 +320,7 @@ display: inline-block;
 									</a>
 								</div>
 								<div class="study-wrap swiper-slide">
-									<a href="#" target="_blank">
+									<a href="<%=ctxPath%>/themasearchend.st" target="_blank">
 									<div class="date-label">종료된 테마스터디</div>
 									<div class="study-thumbnail" style="background-image: url(&quot;https://cdn.studysearch.co.kr/images/theme-study/26/1570444195.81?v=1570444195&quot;);">
 										<div class="recruiting-label off">완료됨
@@ -341,7 +341,7 @@ display: inline-block;
 				      <div class="middle-title-wrap">
 				      	 <div class="middle-title">스터디서치에서는<br>즐거운 만남이 끊이지 않는다!</div>
 				      	 <div class="middle-sub-title">이제 여러분도 함께 해요!</div>
-				      	 <a class="start-link" href="<%=ctxPath%>/leveltest.st">스터디 시작하기</a>
+				      	 <a class="start-link" href="<%=ctxPath%>/levelteststart.st">스터디 시작하기</a>
 				      </div>
 				   </div>
 		   

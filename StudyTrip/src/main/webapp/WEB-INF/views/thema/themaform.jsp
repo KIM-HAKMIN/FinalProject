@@ -183,20 +183,7 @@ align-items: flex-start;
 </style>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script type="text/javascript">
-	
-	/* 체크박스 한개만 선택가능하도록 한것. */
-	$(document).ready(function(){	
-		
-		
-		$("input:checkbox[name=daychoice]").click(function(){
-			$("input:checkbox[name=daychoice]").prop("checked",false);
-			$(this).prop("checked",true);
-		});
-		
-	}); //end of $(document).ready -------
 
-</script>
 
 </head>
 <body>
@@ -287,4 +274,22 @@ align-items: flex-start;
 	</div>
 	
 </body>
+
+<script type="text/javascript">
+	
+	/* 체크박스 한개만 선택가능하도록 한것. */
+	$(document).ready(function(){	
+		
+		
+		$("input:checkbox[name=daychoice]").click(function(){
+			$("input:checkbox[name=daychoice]").prop("checked",false);
+			$(this).prop("checked",true);
+		});
+		
+	}); //end of $(document).ready -------
+
+</script>
+
+
 </html>
+
