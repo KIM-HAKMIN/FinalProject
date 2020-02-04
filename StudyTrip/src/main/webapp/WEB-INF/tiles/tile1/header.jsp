@@ -81,13 +81,13 @@ input[type=text]:focus {
 	  <c:if test="${sessionScope.loginuser == null}">
 		 <a href="<%=ctxPath%>/login.st">로그인 </a>
 		 <a href="#">회원가입</a>
-	  </c:if>
+	  </c:if>   
 				
 	  <c:if test="${sessionScope.loginuser != null}">
 		  <a href="#">나의정보</a>
 		  <a href="<%=ctxPath%>/logout.st">로그아웃 </a>
 	  </c:if>
-	 
+	 <!--테스트  -->
 	</div>
 	</div>
 </body>
