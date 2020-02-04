@@ -165,6 +165,10 @@
     height: 186px;
     background: transparent url(https://cdn.studysearch.co.kr/static/images/level_test_result_recommendation/assets.f6759e581b7f.png)0 -168px;
 }
+
+.description-lines{
+	list-style: none;
+}
 </style>
 
 </head>

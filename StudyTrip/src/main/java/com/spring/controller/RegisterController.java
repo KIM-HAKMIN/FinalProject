@@ -164,7 +164,7 @@ public class RegisterController {
 		jsObj.put("isEmailExist", isEmailExist);
 		
 		System.out.println("jsObj.toString() : "+jsObj.toString());
-
+           
 		return jsObj.toString();
 	}
 	

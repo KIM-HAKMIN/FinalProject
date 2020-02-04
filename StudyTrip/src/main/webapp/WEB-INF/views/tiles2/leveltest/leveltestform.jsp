@@ -13,8 +13,6 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 
-
-
 <style type="text/css">
 
 
@@ -41,7 +39,7 @@
   line-height: 60px;
   font-size: 14pt;
   font-weight: 400;
- 
+  background-color: #00ffff;
 
   }
 
@@ -135,8 +133,71 @@ form {
     background: #fff;
     box-shadow: 0 2px 6px 0 rgba(0,0,0,.1);
 }
+
+.page-image{
+    background: url(https://cdn.studysearch.co.kr/static/images/level_test/consult-banner.6646f68f2596.png);
+}
+  
+.form-title{
+    font-size: 22pt;
+    font-weight: 700;
+    color: #505050;
+}
+
+.description {
+    margin-top: 8px;
+    color: #505050;
+    font-size: 16pt;
+    font-weight: 300;
+}  
+  
+
   
 </style>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<script src="//code.jquery.com/jquery.min.js"></script>
+<script src="//code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
+
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<link rel="stylesheet" href="/resources/demos/style.css">
+
+<script type="text/javascript">
+	
+	$(document).ready(function(){	
+		
+		/* 체크박스 한개만 선택가능하도록 한것. 직업 */
+		$("input:checkbox[name=job-select]").click(function(){
+			$("input:checkbox[name=job-select]").prop("checked",false);
+			$(this).prop("checked",true);
+		});
+	
+		/* 체크박스 한개만 선택가능하도록 한것. 지역*/
+		$("input:checkbox[name=area]").click(function(){
+			$("input:checkbox[name=area]").prop("checked",false);
+			$(this).prop("checked",true);
+		});
+		
+		/* 체크박스 한개만 선택가능하도록 한것. 시간*/
+		$("input:checkbox[name=available_time]").click(function(){
+			$("input:checkbox[name=available_time]").prop("checked",false);
+			$(this).prop("checked",true);
+		});
+		
+		
+		
+		
+		
+	}); //end of $(document).ready -------
+	
+	/* 데이터피커(달력) */
+	$(document).ready(function(){
+	    $( "#datepicker" ).datepicker();
+	});
+	  
+
+</script>
 
 </head>
 
@@ -155,7 +216,7 @@ form {
 				<div class="time">
 					<div class="clock"></div>
 					<div class="text-time">
-						<span>00:00:00 </span>
+						<span>${format_time2} </span>
 					</div>
 				</div>
 			</div>
@@ -169,7 +230,7 @@ form {
 					<input type="hidden" name="ltrt" value="D">
 					<div class="form-header">
 						<div class="form-title">(2/2)<br>이제 거의 끝났어요!</div>
-						<div class="description">11님을 위한 스터디, 곧 추천드릴게요!</div>
+						<div class="description"> XXX님을 위한 스터디, 곧 추천드릴게요!</div>
 					</div>
 					<dl class="form-fields">
 						<dt class="field-title">기본 정보<span class="description">성비와 나이대는 중요해요! 스터디 분위기에 영향을 준답니다.</span></dt>
@@ -194,6 +255,13 @@ form {
 										<div class="Select-control">
 											<span class="Select-multi-value-wrapper" id="react-select-2--value">
 											<div class="Select-placeholder">나이대
+												<select>
+													<option>20-24</option>
+													<option>25-29</option>
+													<option>30-34</option>
+													<option>35-39</option>
+													
+												</select>
 											</div>
 											<div role="combobox" aria-expanded="false" aria-owns="" aria-activedescendant="react-select-2--value" class="Select-input" tabindex="0" aria-disabled="false" style="border: 0px; width: 1px; display: inline-block;">
 											</div>
@@ -213,42 +281,36 @@ form {
 								<ul class="job-list">
 									<li class="job">
 										<label class="checkbox-wrap">
-										<input type="radio" name="job-select" value="학생">
+										<input type="checkbox" name="job-select" value="학생">
 										<span class="label-text">학생</span>
 										</label>
 									</li>
 								<li class="job">
 									<label class="checkbox-wrap">
-									<input type="radio" name="job-select" value="직장인">
+									<input type="checkbox" name="job-select" value="직장인">
 									<span class="label-text">직장인</span>
 									</label>
 								</li>
 								<li class="job">
 									<label class="checkbox-wrap">
-									<input type="radio" name="job-select" value="취준생">
+									<input type="checkbox" name="job-select" value="취준생">
 									<span class="label-text">취준생</span>
 									</label>
 								</li>
 								<li class="job">
 									<label class="checkbox-wrap">
-									<input type="radio" name="job-select" value="퇴직/이직중">
+									<input type="checkbox" name="job-select" value="퇴직/이직중">
 									<span class="label-text">퇴직/이직중</span>
 									</label>
 								</li>
 								<li class="job">
 									<label class="checkbox-wrap">
-									<input type="radio" name="job-select" value="대학원생">
+									<input type="checkbox" name="job-select" value="대학원생">
 									<span class="label-text">대학원생</span>
 									</label>
 								</li>
 								</ul>
-								<div class="job">
-									<label class="checkbox-wrap">
-									<input type="radio" name="job-select">
-									<span class="label-text">기타</span>
-									<input class="text-input job-etc" type="text" placeholder="직접입력" disabled="" value="">
-									</label>
-								</div>
+								
 							</dd>
 								<dt class="field-title">참여 가능한 지역<span class="description">
 								<span class="orange">복수 선택</span>이 가능해요!</span>
@@ -296,131 +358,18 @@ form {
 											</ul>
 											
 										</div>
-										<div class="area-list-2-wrap">
-											<div class="list-name">광역시 · 지방</div>
-											<ul class="area-list">
-												<li class="area">
-													<label class="checkbox-wrap">
-													<input type="checkbox" name="area" value="30">
-													<span class="label-text">부산-서면</span>
-													</label>
-												</li>
-												<li class="area">
-													<label class="checkbox-wrap">
-													<input type="checkbox" name="area" value="31">
-													<span class="label-text">대구-동성로</span>
-													</label>
-												</li>
-												<li class="area">
-													<label class="checkbox-wrap">
-													<input type="checkbox" name="area" value="32">
-													<span class="label-text">대전-둔산동</span>
-													</label>
-												</li>
-												<li class="area">
-													<label class="checkbox-wrap">
-													<input type="checkbox" name="area" value="43">
-													<span class="label-text">창원</span>
-													</label>
-												</li>
-												<li class="area">
-													<label class="checkbox-wrap">
-													<input type="checkbox" name="area" value="40">
-													<span class="label-text">제주-제주시</span>
-													</label>
-												</li>
-												<li class="area">
-													<label class="checkbox-wrap">
-													<input type="checkbox" name="area" value="52">
-													<span class="label-text">구미</span>
-													</label>
-												</li>
-											</ul>
-										</div>
-										<div class="area-etc-wrap">
-											<div class="etc-help">** 전국구 확장중이니 
-												<span class="highlight">지방거주자</span>
-												이실 경우 '기타'에 희망 도시 이름을 적어주세요!
-											</div>
-											<div class="container">
-												<label class="checkbox-wrap">
-													<input type="checkbox" name="area_etc" value="">
-													<span class="mock-radio"></span>
-													<span class="label-text">기타</span>
-												</label>
-													<div class="area-etc-input-wrap">
-													<input type="text" class="text-input" disabled="" placeholder="직접입력" value="">
-													</div>
-											</div>
-										</div>
+										
+									
 									</dd>
 									<dt class="field-title">일정
 										<span class="description">시작 가능한 날짜를 선택해주세요!</span>
 									</dt>
 										<dd class="field-content available-date">
 											<div class="calendar-wrap">
-											<input type="hidden" name="available_since" value="">
-												<div class="month-display">2020년 1월
-												</div>
-												<a class="month-button next" href="#">&gt;</a>
-												<table class="calendar">
-												<thead>
-													<tr>
-														<th>일</th>
-														<th>월</th>
-														<th>화</th>
-														<th>수</th>
-														<th>목</th>
-														<th>금</th>
-														<th>토</th>
-													</tr>
-												</thead>
-												<tbody>
-												<tr class="week">
-													<td></td>
-													<td></td>
-													<td></td>
-													<td class="date disabled">1</td>
-													<td class="date disabled">2</td>
-													<td class="date disabled">3</td>
-													<td class="date disabled">4</td>
-												</tr>
-												<tr class="week">
-													<td class="date disabled">5</td>
-													<td class="date disabled">6</td>
-													<td class="date disabled">7</td>
-													<td class="date disabled">8</td>
-													<td class="date disabled">9</td>
-													<td class="date disabled">10</td>
-													<td class="date disabled">11</td>
-												</tr>
-												<tr class="week"><td class="date disabled">12</td>
-													<td class="date">13</td>
-													<td class="date">14</td>
-													<td class="date">15</td>
-													<td class="date">16</td>
-													<td class="date">17</td>
-													<td class="date">18</td>
-												</tr>
-												<tr class="week">
-													<td class="date">19</td>
-													<td class="date">20</td>
-													<td class="date">21</td>
-													<td class="date">22</td>
-													<td class="date">23</td>
-													<td class="date">24</td>
-													<td class="date last-row">25</td>
-												</tr><tr class="week">
-													<td class="date last-row">26</td>
-													<td class="date last-row">27</td>
-													<td class="date last-row">28</td>
-													<td class="date last-row">29</td>
-													<td class="date last-row">30</td>
-													<td class="date last-row last-date">31</td>
-													<td></td>
-												</tr>
-											</tbody>
-										</table>
+											<input type="hidden" name="available_since" value="">								
+												<div style="color: red;" id="datepicker"></div>
+												 
+												
 									</div>
 								</dd>
 							<dt class="field-title">시간
