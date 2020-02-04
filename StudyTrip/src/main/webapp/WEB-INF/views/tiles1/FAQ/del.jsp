@@ -39,8 +39,21 @@ table td{
 <script type="text/javascript">
 	$(document).ready(function(){
 		
+		$("#pw").keydown(function(event){	
+  			if(event.keyCode == 13) { // 엔터를 했을 경우
+  				goDel();
+  			}
+    	 }); 			
+		
 		$("#btnDelete").click(function(){
+			goDel();
+		});
 			
+	});
+	
+	
+	function goDel() {
+					
 			// 글암호 유효성 검사
 			var pwval = $("#pw").val().trim();
 			if(pwval == "") {
@@ -48,15 +61,14 @@ table td{
 				return;
 			}
 			
-			
 			// 폼을 submit
 			var frm = document.delFrm;
 			frm.method = "POST";
 			frm.action = "<%= ctxPath%>/FAQ_delEnd.st";
-			frm.submit();
-		});
+			frm.submit();	
 		
-	});
+	}
+	
 </script>
 
 <div style="padding-left: 10%; margin-bottom: -2%; border: solid 0px red;">
@@ -68,13 +80,14 @@ table td{
 				<th>글암호</th>
 				<td>
 					<input type="password" name="pw" id="pw" class="short" />
+					<input type="text" style="display: none;" />
 					<input type="hidden"   name="seq" value="${seq}" />
 				</td>
 			</tr>
 		</table>
 		
 		<div style="margin: 20px;">
-			<button type="button" id="btnDelete">삭제</button>
+			<button type="button" id="btnDelete">삭제</button> 
 			<button type="button" onclick="javascript:history.back();">취소</button>
 		</div>
 		

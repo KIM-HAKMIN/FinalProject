@@ -261,7 +261,7 @@ tr:nth-child(even) {
 
 			// 회원정보 수정하기	
 			var frm = document.form-horizontal;			
-			frm.action = "";
+			frm.action = "/leader_edit.st";
 			frm.method = "post";
 			frm.submit();
 			
@@ -334,9 +334,7 @@ tr:nth-child(even) {
 			      	<input type="button" value="수강생 목록 보기" onclick="document.getElementById('id01').style.display='block'" class="btn warning backL" />
 			      	<input type="hidden" id="study_num" value="${studyVO.study_num}" />
 			      </div>
-			     	<input type="button" value="스터디 수정하러 가기" onclick="javascript:location.href='<%= request.getContextPath() %>/studyRegister.st'?seq=${studyvo.seq}" class="btn warning backO" />
-			      <div>
-			      </div>
+
 			      <div>
 				     <p style="font-size: 11pt; font-weight: bold;">답변이 필요한 <span style="color: orange; font-weight: bold; font-size: 12pt;">{$vo.cnt}</span>개의 Q&A 문의가 있습니다.</p>
 				     <input type="button" value="Q&A 확인하러 가기" onclick="상세페이지주소+Q&A위치값" class="btn warning backQ" />
@@ -387,14 +385,14 @@ tr:nth-child(even) {
 			    <div class="form-group">
 			      <label class="control-label col-sm-4" for="name">이름</label>
 			      <div class="col-sm-4">
-			     	<input type="text" class="form-control" id="name" value="로그인한 사람의 이름"  name="name" readonly> 
+			     	<input type="text" class="form-control" id="name" value="${membervo.name}"  name="name" readonly> 
 			      </div>
 			    </div>
 			    
 			    <div class="form-group">
 			      <label class="control-label col-sm-4" for="email">이메일</label>
 			      <div class="col-sm-4">
-			        <input type="email" class="form-control" id="email" value="로그인한 사람의 이메일" name="email" readonly>
+			        <input type="email" class="form-control" id="email" value="${membervo.email}" name="email" readonly>
 			      </div>
 			    </div>
 			    
@@ -415,13 +413,13 @@ tr:nth-child(even) {
 			     <div class="form-group">
 			      <label class="control-label col-sm-4" for="phone">핸드폰</label>
 			      <div class="col-sm-4">  
-			      	<input type="tel" class="form-control" placeholder="-를 제외한 핸드폰번호를 쓰세요" id="phone" name="phone">
+			      	<input type="tel" class="form-control" value="${membervo.hp}" placeholder="-를 제외한 핸드폰번호를 쓰세요" id="phone" name="phone">
 			      </div>
 			    </div>
 			    
 			    <div class="form-group">
 			    	<label class="control-label col-sm-4">프로필사진 등록(선택)</label>
-			    	<input type="file" class="col-sm-4" />
+			    	<input type="file" class="col-sm-4" value="${membervo.profile}" name="attach" />
 			    </div>
 			    
 			</form>

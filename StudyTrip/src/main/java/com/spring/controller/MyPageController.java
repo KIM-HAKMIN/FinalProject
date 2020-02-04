@@ -1,15 +1,23 @@
 package com.spring.controller;
 
+import java.io.File;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.spring.common.SHA256;
 import com.spring.model.CouponVO;
+import com.spring.model.FAQVO;
+import com.spring.model.MemberVO;
 import com.spring.model.PaymentVO;
 import com.spring.model.WishListVO;
 import com.spring.service.InterMyPageService;
@@ -22,14 +30,38 @@ public class MyPageController {
 	
 	
 	@RequestMapping(value="/myPage_member.st")
-	public ModelAndView myPage_member(ModelAndView mav) {
+	public ModelAndView myPage_member(HttpServletRequest request, ModelAndView mav) {
 
+		String email = request.getParameter("email");
+		
+//		MemberVO membervo = service.getMembers(email);
+		
+//		mav.addObject("membervo", membervo);
+		
 		mav.setViewName("myPage/member.tiles1");
 	
 		return mav;
 	}
 	
 	
+	@RequestMapping(value="/myPage_leader.st")
+	public ModelAndView myPage_leader(HttpServletRequest request, ModelAndView mav) {
+		
+		String email = request.getParameter("email");
+		
+//		MemberVO membervo = service.getMembers(email);
+		
+//		mav.addObject("membervo", membervo);
+		
+		mav.setViewName("myPage/leader.tiles1");
+
+		return mav;
+	}
+	
+	
+	///////////////////////////////////////////////////////////////////////////////////		
+	
+/*	
 	// 결제내역 조회
 	@RequestMapping(value="/myPage_member_pay.st")
 	public ModelAndView myPage_member_pay(HttpServletRequest request, ModelAndView mav) {
@@ -80,19 +112,13 @@ public class MyPageController {
 		
 		return mav;  
 	}
-	
-	
-	
-	@RequestMapping(value="/myPage_leader.st")
-	public ModelAndView myPage_leader(ModelAndView mav) {
-		
-		mav.setViewName("myPage/leader.tiles1");
+*/	
 
-		return mav;
-	}
 
+	///////////////////////////////////////////////////////////////////////////////////	
 	
 	
+/*	
 	// Q&A 개수 알아오기 
 	
 	
@@ -111,91 +137,169 @@ public class MyPageController {
 		
 		return mav;  
 	}
-	
+*/	
 
+	
+	
+	///////////////////////////////////////////////////////////////////////////////////	
+	
 	
 	// 공통 : 스터디 목록  
 	
 	
+	///////////////////////////////////////////////////////////////////////////////////	
 	
-	// 공통 : 회원정보수정(POST)	- select --> update   // jsp에서 받아오기 위해 jsp 수정
-/*
-	@RequestMapping(value="/FAQ_edit.st",  method= {RequestMethod.POST, RequestMethod.GET})
-	public ModelAndView FAQ_edit(HttpServletRequest request, ModelAndView mav) {
+	
+/*	
+	// 회원정보수정	
+	@RequestMapping(value="/member_edit.st",  method= {RequestMethod.POST})
+	public ModelAndView member_edit(MultipartHttpServletRequest mrequest, ModelAndView mav, MemberVO membervo) {
+		
+		MultipartFile attach = mvo.getAttach();	
+		if( !attach.isEmpty() ) { 
+			
+			HttpSession session = mrequest.getSession();
+		 	String root = session.getServletContext().getRealPath("/");
+		 	String path = root + "resources" + File.separator + "files";
+	
+		  	String profile = "";
+		 		 	
+		 	byte[] bytes = null;
+		 	
+		 	try {
+				bytes = attach.getBytes();
+								
+				profile = fileManager.doFileUpload(bytes, attach.getOriginalFilename(), path);
+
+				mvo.setProfile(profile);			
+				
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		
+		}
+
+		String pwd = mrequest.getParameter("pwd");          
+		String hp = mrequest.getParameter("hp");        
+
+		membervo.setPwd(SHA256.encrypt(pwd));
+		membervo.setHp(hp);
+
+				
+		int n = service.edit(membervo);
+		
+		if(n==0) {
+			mav.addObject("msg", "암호가 일치하지 않아 회원정보 수정이 불가합니다.");
+		}
+		else {
+			mav.addObject("msg", "회원정보를 수정하였습니다.");
+		}
+		
+		mav.addObject("loc", "/studytrip/myPage_member.st");
+		mav.setViewName("msg");
+	
+		return mav;
+	}
+	
+	
+	
+	// 리더정보수정	
+	@RequestMapping(value="/leader_edit.st",  method= {RequestMethod.POST})
+	public ModelAndView leader_edit(HttpServletRequest request, ModelAndView mav, MemberVO membervo) {
+		
+		MultipartFile attach = mvo.getAttach();	
+		if( !attach.isEmpty() ) { 
+			
+			HttpSession session = mrequest.getSession();
+		 	String root = session.getServletContext().getRealPath("/");
+		 	String path = root + "resources" + File.separator + "files";
+	
+		  	String profile = "";
+		 		 	
+		 	byte[] bytes = null;
+		 	
+		 	try {
+				bytes = attach.getBytes();
+								
+				profile = fileManager.doFileUpload(bytes, attach.getOriginalFilename(), path);
+
+				mvo.setProfile(profile);			
+				
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		
+		}
+
+		String pwd = mrequest.getParameter("pwd");          
+		String hp = mrequest.getParameter("hp");        
+
+		membervo.setPwd(SHA256.encrypt(pwd));
+		membervo.setHp(hp);
+		
+		
+		int n = service.edit(membervo);
+		
+		if(n==0) {
+			mav.addObject("msg", "암호가 일치하지 않아 회원정보 수정이 불가합니다.");
+		}
+		else {
+			mav.addObject("msg", "회원정보를 수정하였습니다.");
+		}
+		
+		mav.addObject("loc", "/studytrip/myPage_leader.st");
+		mav.setViewName("msg");
+	
+		return mav;
+	}
+	
+	
+	
+
+	
+	// 공통 : 회원탈퇴
+	 @RequestMapping(value="/myPage_del.st",  method= {RequestMethod.POST})
+	 public ModelAndView myPage_del(HttpServletRequest request, ModelAndView mav) {
+
+		String email = request.getParameter("email");
+		String pwd = request.getParameter("pwd");
+		
+		MemberVO membervo = new MemberVO();
+		membervo.setUseremail(email);
+		membervo.setPwd(pwd);
+		
+		mav.addObject("email", email);
+		
+		mav.setViewName("myPage/del.tiles1");
+	
+		return mav;
+	}
+	
+	
+	@RequestMapping(value="/myPage_delEnd.st",  method= {RequestMethod.POST})
+	public ModelAndView myPage_delEnd(HttpServletRequest request, ModelAndView mav) {
 
 		String email = request.getParameter("email");
 		
-		MemberVO membervo = service.getViewWithNoAddCount(email);
-
-		mav.addObject("membervo", membervo);
-		mav.setViewName("FAQ/edit.tiles1");
-	
-		return mav;
-	}
-	
-	
-	@RequestMapping(value="/FAQ_editEnd.st",  method= {RequestMethod.POST, RequestMethod.GET})
-	public ModelAndView FAQ_editEnd(HttpServletRequest request, FAQVO boardvo, ModelAndView mav) {
+		MemberVO membervo = new MemberVO();
+		membervo.setUseremail(email);
 		
-		int n = service.edit(boardvo);
-		
-		if(n==0) {
-			mav.addObject("msg", "암호가 일치하지 않아 글 수정이 불가합니다.");
-		}
-		else {
-			mav.addObject("msg", "글수정 성공!!");
-		}
-		
-		mav.addObject("loc", request.getContextPath()+"/FAQ_view.st?seq="+boardvo.getSeq());
-		mav.setViewName("msg");
-	
-		return mav;
-	}
-	
-*/	
-
-	
-	// 공통 : 회원탈퇴(POST) - 비번 확인하기 - update
-	/*
-	 @RequestMapping(value="/myPage_del.st",  method= {RequestMethod.POST, RequestMethod.GET})
-	public ModelAndView myPage_del(HttpServletRequest request, ModelAndView mav) {
-
-		String seq = request.getParameter("seq");
-		
-		mav.addObject("seq", seq);
-		
-		mav.setViewName("FAQ/del.tiles1");
-	
-		return mav;
-	}
-	
-	
-	@RequestMapping(value="/myPage_delEnd.st",  method= {RequestMethod.POST, RequestMethod.GET})
-	public ModelAndView myPage_delEnd(HttpServletRequest request, ModelAndView mav) {
-
-		String seq = request.getParameter("seq");
-		String pw = request.getParameter("pw");
-		
-		FAQVO boardvo = new FAQVO();
-		boardvo.setSeq(seq);
-		boardvo.setPw(pw);
-		
-		int n = service.del(boardvo);  
+		int n = service.del(membervo);  
 		
 		if(n == 0) {
-			 mav.addObject("msg", "암호가 일치하지 않아 글삭제가 불가합니다.");
+			 mav.addObject("msg", "암호가 일치하지 않아 회원탈퇴가 불가합니다.");
 		}
 		else {
-			mav.addObject("msg", "글삭제 성공!!");
+			mav.addObject("msg", "회원탈퇴가 되었습니다.");
 		}
 		
-		mav.addObject("loc", request.getContextPath()+"/FAQ_list.st"); 
+		mav.addObject("loc", "/studytrip/main.st"); 
 		mav.setViewName("msg");
 	
 		return mav;
 	}
-	 */
-	
+	 
+*/	
 	
 	
 	
