@@ -151,7 +151,7 @@ public class RegisterController {
 	
 	
 	
-	// ===== 이메일 중복검사 ===== //
+	// ==== 이메일 중복검사 ==== //
 	@ResponseBody
 	@RequestMapping(value="/emailExist.st", produces="text/plain;charset=UTF-8")
 	public String emailExist(HttpServletRequest request) { // , method= {RequestMethod.POST}
