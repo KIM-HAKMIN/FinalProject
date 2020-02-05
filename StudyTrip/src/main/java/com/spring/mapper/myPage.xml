@@ -87,8 +87,7 @@
 	<update id="myPage_update" parameterType="com.spring.model.MemberVO">
 		update members set pwd = #{pwd}
 		                  , hp = #{hp}
-		                  , profile = #{profile}
-		where useremail = #{useremail}                   
+		where useremail = #{useremail} 
 	</update>
 	
 	 

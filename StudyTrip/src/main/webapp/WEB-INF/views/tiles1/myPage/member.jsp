@@ -155,7 +155,7 @@ th, td {
 
 			// 회원정보 수정하기	
 			var frm = document.formhorizontal;			
-			frm.action = "/member_edit.st";
+			frm.action = "/studytrip/member_edit.st";
 			frm.method = "post";
 			frm.submit();
 			
@@ -370,15 +370,10 @@ th, td {
 			     <div class="form-group">
 			      <label class="control-label col-sm-4" for="phone">핸드폰</label>
 			      <div class="col-sm-4">  
-			      	<input type="tel" class="form-control" placeholder="-를 제외한 핸드폰번호를 쓰세요" id="phone" name="phone">
+			      	<input type="tel" class="form-control" placeholder="-를 제외한 핸드폰번호를 쓰세요" id="phone" name="hp">
 			      </div>
-			    </div>
-			    
-			    <div class="form-group">
-			    	<label class="control-label col-sm-4">프로필사진 등록(선택)</label>
-			    	<input type="file" class="col-sm-4" name="attach" />
-			    </div>
-			    
+			    </div>	
+			    		    
 			</form>
 
 			<div align="center" style="margin-bottom: 3%;">

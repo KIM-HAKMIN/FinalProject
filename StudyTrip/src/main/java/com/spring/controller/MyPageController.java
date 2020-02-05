@@ -12,11 +12,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.spring.common.FileManager;
 import com.spring.common.SHA256;
 import com.spring.model.CouponVO;
 import com.spring.model.FAQVO;
@@ -30,9 +28,6 @@ public class MyPageController {
 
 	@Autowired  
 	private InterMyPageService service;
-	
-	@Autowired
-	private FileManager fileManager;
 	
 	
 	@RequestMapping(value="/myPage_member.st")
@@ -166,35 +161,12 @@ public class MyPageController {
     //////////////////////////////////// 공유 : 회원 정보  ///////////////////////////////////
 		
 	// 회원정보수정	
-	@RequestMapping(value="/member_edit.st")
-	public ModelAndView member_edit(MultipartHttpServletRequest request, ModelAndView mav) {
+	@RequestMapping(value="/member_edit.st", method= {RequestMethod.POST})
+	public ModelAndView member_edit(HttpServletRequest request, ModelAndView mav) {
 		
 		HttpSession session = request.getSession();
 		MemberVO membervo = (MemberVO) session.getAttribute("loginuser"); 
 		
-		MultipartFile attach = membervo.getAttach();	
-		if( !attach.isEmpty() ) { 
-
-		 	String root = session.getServletContext().getRealPath("/");
-		 	String path = root + "resources" + File.separator + "files";
-	
-		  	String profile = "";
-		 		 	
-		 	byte[] bytes = null;
-		 	
-		 	try {
-				bytes = attach.getBytes();
-								
-				profile = fileManager.doFileUpload(bytes, attach.getOriginalFilename(), path);
-
-				membervo.setProfile(profile);			
-				
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		
-		}
-
 		String pwd = request.getParameter("pwd");          
 		String hp = request.getParameter("hp");        
 
@@ -219,35 +191,12 @@ public class MyPageController {
 
 	
 	// 리더정보수정	
-	@RequestMapping(value="/leader_edit.st")
+	@RequestMapping(value="/leader_edit.st", method= {RequestMethod.POST})
 	public ModelAndView leader_edit(HttpServletRequest request, ModelAndView mav) {
 		
 		HttpSession session = request.getSession();
 		MemberVO membervo = (MemberVO) session.getAttribute("loginuser"); 
 		
-		MultipartFile attach = membervo.getAttach();	
-		if( !attach.isEmpty() ) { 
-
-		 	String root = session.getServletContext().getRealPath("/");
-		 	String path = root + "resources" + File.separator + "files";
-	
-		  	String profile = "";
-		 		 	
-		 	byte[] bytes = null;
-		 	
-		 	try {
-				bytes = attach.getBytes();
-								
-				profile = fileManager.doFileUpload(bytes, attach.getOriginalFilename(), path);
-
-				membervo.setProfile(profile);			
-				
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		
-		}
-
 		String pwd = request.getParameter("pwd");          
 		String hp = request.getParameter("hp");        
 
