@@ -54,7 +54,7 @@ public class MainController {
 			HashMap<String, String> paraMap = new HashMap<String, String>(); 
 		    paraMap.put("userid", userid);
 		    paraMap.put("pwd", pwd);
-		    // paraMap.put("pwd", SHA256.encrypt(pwd));
+		//    paraMap.put("pwd", SHA256.encrypt(pwd));
 		      
 		    MemberVO loginuser = service.getLoginMember(paraMap);
 		    /////////////////////////////////////////////////////

@@ -12,7 +12,7 @@
 	<select id="Route" resultMap="RouteMap"> 
 		select route AS ROUTE
 		     , count(*) AS CNT
-		     , round(count(*)/(select count(*) from route)*100, 2) AS PERCENTAGE  
+		     , round(count(*)/(select count(route) from members)*100, 2) AS PERCENTAGE  
 		from members 
 		group by route
 	</select>

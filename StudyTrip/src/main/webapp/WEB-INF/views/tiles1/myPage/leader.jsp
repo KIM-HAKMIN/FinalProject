@@ -3,6 +3,8 @@
     
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
+<% String ctxPath = request.getContextPath(); %> 
+
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <style type="text/css">
@@ -84,40 +86,6 @@
 .warning:hover {
   background: #ff9800;
   color: white;
-}
-
-
-.flip-box {
-  background-color: transparent;
-  width: 290px;
-  height: 510px;
-  perspective: 1000px;
-}
-
-.flip-box-inner {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  text-align: center;
-  transition: transform 0.8s;
-  transform-style: preserve-3d;
-}
-
-.flip-box:hover .flip-box-inner {
-  transform: rotateY(180deg);
-  margin-left: 0px;
-}
-
-.flip-box-front, .flip-box-back {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  backface-visibility: hidden;
-}
-
-.flip-box-back {
-  background-color: white;
-  transform: rotateY(180deg);
 }
 
 
@@ -208,12 +176,8 @@ tr:nth-child(even) {
 }
 
 .backL {
-	margin-top: 32%;
-	margin-bottom: 25%;
-}
-
-.backO {
-	margin-bottom: 25%;
+	margin-top: 5%;
+	margin-left: 7%;
 }
 
 </style>
@@ -223,7 +187,7 @@ tr:nth-child(even) {
 	$(document).ready(function() {
 
 		/*유효성 검사  */	
-		$("#submitBtn").click(function(){  
+		$("#profileEdit").click(function(){  
 
 			//비밀번호 검사하기 
 			var pwd = $("#pwd").val();
@@ -260,25 +224,24 @@ tr:nth-child(even) {
 			}
 
 			// 회원정보 수정하기	
-			var frm = document.form-horizontal;			
-			frm.action = "";
+			var frm = document.formhorizontal;			
+			frm.action = "/leader_edit.st";
 			frm.method = "post";
 			frm.submit();
 			
 		}); // end of 유효성 검사 -----------------------------------------------------------------
-			
-		$("#delBtn").click(function(){
-			location.href="/myPage_del.st";
-		});
-		
-		
-		$("#study_num").click(function(){
-			location.href="/myPage_leader_student.st?study_num="+$('#study_num').val();
-		});
 		
 	}); // end of $(document).ready ---------------------------------------------------------------------
 
-
+	
+	function goDetail(){
+		location.href="/studytrip/studyDetail.st?study_num="+$('#study_num').val();		
+	}
+	
+	function profileDel(){
+		location.href="/studytrip/myPage_del.st";		
+	}
+	
 </script>
 
 </head>
@@ -286,10 +249,10 @@ tr:nth-child(even) {
 
 	<div class="form">
 		<div class="card">
-		  <img src="/studytrip/resources/images/myPage/anonymous.png" alt="Avatar" style="width:20%" />
+		<!-- 수정하기 -->  <img src="/studytrip/resources/images/myPage/anonymous.png" alt="Avatar" style="width:20%; margin-bottom: 5px;"" />
 		  <div class="cr">
-		    <h4>회원이름</h4>
-		    <p>회원 이메일</p>
+		    <h4 style="margin-top: 1%;">${sessionScope.loginuser.useremail}</h4>
+		    <p>${sessionScope.loginuser.name}</p>
 		  </div>
 		</div>
 		
@@ -302,50 +265,51 @@ tr:nth-child(even) {
 		
 		
 		<div id="mystudy" class="tabcontent">
-		  <c:forEach begin="1" end="3" varStatus="status">  <!-- db 갯수 수정 -->
-			<div class="flip-box" style="display: inline-block; margin-left: 40px;"> 
-			  <div class="flip-box-inner">
-			    
-			    <div class="flip-box-front">
-				  <div style=" width: 290px;">
-						<div align="center" style="background-color:white; width: 100%; height: 50px; text-align: center;">
-							<div style="padding-top: 20px;"><span style="color: #4c8def; font-weight: bold;">1월20일 (월)</span> <span style= "color: #787878;font-weight: bold;"> 17:00~19:00 첫 시작</span></div>
-							<div style="border-top: solid 1.5px gray; width: 90%; margin: 0 auto; margin-top: 14px; position: relative;"></div>
-						</div>
-						<div style="height: 50px; background-color: white; text-align: center;">
-							<div><span style="margin-top:10px; color: #A0A0A0; font-size: 10pt; position: relative;top: 40px;">강남&nbsp; | &nbsp;초급</span></div>
-						</div>
-						<div style="height: 110px; text-align: center; background-color: white; padding-top: 10px;">
-							<div style="margin-top: 20px;"><span style="color: #3c3c3c; font-size: 14pt; font-weight: bold;">노화우 가득한 리더 Jason의<br/> 꿀잼 스터디로 회화두려움 극복!</span></div>
-						</div>	
-						<div style="height: 80px; background-color: white; text-align: center;">
-							<span style="color: #f48210; font-weight: 700; font-size: 14pt;">240,000원 </span><span style="color: #a0a0a0; font-size: 10pt;">12주</span>
-						</div>	
-						<div align="center" style="height: 220px; width: 100%; background-image:url('/studytrip/resources/images/6035-1508821271.jpg');background-size:cover;">
-							<img src="/studytrip/resources/images/1508821271.jpg" style="height: 100px; width: 100px; border-radius: 100px; position: relative; bottom: 35px; border: solid 2px white;"/>
-							<div style="width: 100%; height: 50px; background-color: rgba(220,0,0,.6); margin-top: 70px; text-align: center;"><div style="color: white; font-size: 11pt; font-weight: bold; position: relative; top: 13px;">마감임박</div></div>		
-						</div>
+		 	<c:if test="${not empty studyList}">
+		    <c:forEach var="studyvo" items="${studyList}" varStatus="status"> 
+				<input type="hidden" id="study_num" name="study_num" value="${studyList.study_num}"/>
+				<div id style=" width: 290px; display: inline-block; margin-bottom: 30px; margin-left: 42px; cursor: pointer;" onclick="goDetail()">
+					<div align="center" style="background-color:white; width: 100%; height: 50px; text-align: center;">
+						<div style="padding-top: 20px;"><span style="color: #4c8def; font-weight: bold;">${studyList.startday} (${studyList.study_day})</span> <span style= "color: #787878;font-weight: bold;"> ${studyList.study_time} 첫 시작</span></div>
+						<div style="border-top: solid 0.5px gray; width: 90%; margin: 0 auto; margin-top: 14px; position: relative;"></div>
 					</div>
-					<c:if test="${status.index == 0}"><div style="width: 100%; border : solid 1px #dcdcdc; margin-bottom: 30px;"></div></c:if>
-			    </div>
-			    
-			    <div class="flip-box-back">
-			      <div>
-			      	<input type="button" value="수강생 목록 보기" onclick="document.getElementById('id01').style.display='block'" class="btn warning backL" />
-			      	<input type="hidden" id="study_num" value="${studyVO.study_num}" />
-			      </div>
-			     	<input type="button" value="스터디 수정하러 가기" onclick="javascript:location.href='<%= request.getContextPath() %>/studyRegister.st'?seq=${studyvo.seq}" class="btn warning backO" />
-			      <div>
-			      </div>
-			      <div>
-				     <p style="font-size: 11pt; font-weight: bold;">답변이 필요한 <span style="color: orange; font-weight: bold; font-size: 12pt;">{$vo.cnt}</span>개의 Q&A 문의가 있습니다.</p>
-				     <input type="button" value="Q&A 확인하러 가기" onclick="상세페이지주소+Q&A위치값" class="btn warning backQ" />
-			      </div>
-			    </div>
-			 
-			  </div>
-			</div>
-		  </c:forEach>
+					<div style="height: 50px; background-color: white; text-align: center;">
+						<div><span style="margin-top:10px; color: #A0A0A0; font-size: 10pt; position: relative;top: 40px;">${studyList.area}&nbsp; | &nbsp;${studyList.lv}</span></div>
+					</div>
+					<div style="height: 110px; text-align: center; background-color: white; padding-top: 10px;">
+						<div style="margin-top: 20px;"><span style="color: #3c3c3c; font-size: 14pt; font-weight: bold;">${studyList.title}</span></div>
+					</div>	
+					<div style="height: 80px; background-color: white; text-align: center;">
+						<span style="color: #f48210; font-weight: 700; font-size: 14pt;">${studyList.price}원 </span><span style="color: #a0a0a0; font-size: 10pt;">${studyList.study_week }주</span>
+					</div>	
+		
+					<c:if test="${studyList.studyStatus==0}">
+					<div align="center" style="height: 220px; width: 100%; background-image:url('<%= ctxPath%>/resources/files/${studyList.title_img}'); background-size:cover; background-position: center;">
+						<img src="<%= ctxPath%>/resources/files/${studyList.profile}" style="height: 100px; width: 100px; border-radius: 100px; position: relative; bottom: 35px; border: solid 2px white;"/>
+						<div style="width: 100%; height: 50px; background-color: rgba(0,0,0,.5); margin-top: 70px; text-align: center;"><div style="color: white; font-size: 11pt; font-weight:bold; position: relative; top: 13px;">마감 되었습니다.</div></div>		
+					</div>
+					</c:if>
+					<c:if test="${studyList.studyStatus==2}">
+					<div align="center" style="height: 220px; width: 100%; background-image:url('<%= ctxPath%>/resources/files/${studyList.title_img}');background-size:cover; background-position: center;">
+						<img src="<%= ctxPath%>/resources/files/${studyList.profile}" style="height: 100px; width: 100px; border-radius: 100px; position: relative; bottom: 35px; border: solid 2px white;"/>
+						<div style="width: 100%; height: 50px; background-color: rgba(220,0,0,.6); margin-top: 70px; text-align: center;"><div style="color: white; font-size: 11pt; font-weight: bold; position: relative; top: 13px;">마감임박</div></div>		
+					</div>
+					</c:if>
+					<c:if test="${studyList.studyStatus==1}">
+					<div align="center" style="height: 220px; width: 100%; background-image:url('<%= ctxPath%>/resources/files/${studyList.title_img}');background-size:cover; background-position: center;">
+						<img src="<%= ctxPath%>/resources/files/${studyList.profile}" style="height: 100px; width: 100px; border-radius: 100px; position: relative; bottom: 35px; border: solid 2px white;"/>
+						<div style="width: 100%; height: 50px; background-color: rgba(239,108,0,.6); margin-top: 70px; text-align: center;"><div style="color: white; font-size: 11pt; font-weight: bold; position: relative; top: 13px;">신규모집</div></div>		
+					</div>
+					</c:if>
+				</div>
+				
+				<input type="button" value="수강생 목록 보기" onclick="document.getElementById('id01').style.display='block'" class="btn warning backL" />
+		    </c:forEach>
+			</c:if>
+			
+			<c:if test="${not studyList}">
+				<div style="font-size: 15pt; text-align: center; font-weight: bold;">등록한 스터디가 없습니다.</div>
+			</c:if>
 		</div>
 
 
@@ -354,26 +318,23 @@ tr:nth-child(even) {
 		  <form class="modal-content" action="/action_page.php">
 		    <div class="container2">
 		        <table>
-				  <tr>
+				   <tr style="border-bottom: solid 2px black;">
 				    <th>이름</th>
 				    <th>이메일</th>
 				    <th>핸드폰번호</th>
 				  </tr>
+				<%-- <c:if test="${not empty requestScope.studentList}">
+				  <c:forEach var="membervo" items="${studentList}">			  
 				  <tr>
-				    <td>Jill</td>
-				    <td>Smith</td>
-				    <td>50</td>
-				  </tr>
-				  <tr>
-				    <td>Eve</td>
-				    <td>Jackson</td>
-				    <td>94</td>
-				  </tr>
-				  <tr>
-				    <td>Adam</td>
-				    <td>Johnson</td>
-				    <td>67</td>
-				  </tr>
+				    <td>${name}</td> 
+				    <td>${useremail}</td>
+				    <td>${hp}</td>
+				 </tr>
+				 </c:forEach>
+				 </c:if>
+				 <c:if test="${empty requestScope.studentList}""> --%>
+				 	<tr><td colspan="3" style="font-size: 13pt;">아직 수강생이 없습니다.</td></tr>
+				 <%-- </c:if> --%>
 				</table>
 		    </div>
 		  </form>
@@ -382,19 +343,19 @@ tr:nth-child(even) {
 
 		<div id="profile" class="tabcontent">
 		  
-			<form class="form-horizontal" style="padding: 3% 3% 1% 3%;">
+			<form class="form-horizontal" name="formhorizontal" style="padding: 3% 3% 1% 3%;">
 			    
 			    <div class="form-group">
 			      <label class="control-label col-sm-4" for="name">이름</label>
 			      <div class="col-sm-4">
-			     	<input type="text" class="form-control" id="name" value="로그인한 사람의 이름"  name="name" readonly> 
+			     	<input type="text" class="form-control" id="name" value="${sessionScope.loginuser.name}"  name="name" readonly> 
 			      </div>
 			    </div>
 			    
 			    <div class="form-group">
 			      <label class="control-label col-sm-4" for="email">이메일</label>
 			      <div class="col-sm-4">
-			        <input type="email" class="form-control" id="email" value="로그인한 사람의 이메일" name="email" readonly>
+			        <input type="email" class="form-control" id="email" value="${sessionScope.loginuser.useremail}" name="email" readonly>
 			      </div>
 			    </div>
 			    
@@ -421,13 +382,13 @@ tr:nth-child(even) {
 			    
 			    <div class="form-group">
 			    	<label class="control-label col-sm-4">프로필사진 등록(선택)</label>
-			    	<input type="file" class="col-sm-4" />
+			    	<input type="file" class="col-sm-4" name="attach" />
 			    </div>
 			    
 			</form>
 
 			<div align="center" style="margin-bottom: 3%;">
-		   		<input type="button" value="내 프로필 수정" onclick="profileEdit();" class="btn warning" style="width: 150px;" id="submitBtn"/>
+		   		<input type="button" value="내 프로필 수정" id="profileEdit" class="btn warning" style="width: 150px;" id="submitBtn"/>
 				<input type="button" value="회원탈퇴" onclick="profileDel();" class="btn warning" style="margin-left:5px; width: 150px;" id="delBtn"/>
 			</div>
 		</div>

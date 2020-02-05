@@ -17,7 +17,7 @@ import com.spring.mail.MySMTPAuthenticator;
 @Component 
 public class GoogleMail {
   
- // ==== 회원가입시 이메일 인증번호 전송 ==== //
+ // ==== 회원가입 완료 이메일  전송 ==== //
     public void emailSend(String recipient, String emailContents)
     	throws Exception {
     	
@@ -56,7 +56,7 @@ public class GoogleMail {
     	MimeMessage msg = new MimeMessage(ses);
 
     	// 제목 설정
-    	String subject = "[StudyTrip] 회원님의 이메일 인증번호입니다.";
+    	String subject = "[StudyTrip] 회원가입이 완료되었습니다.";
     	msg.setSubject(subject);
     	        
     	// 보내는 사람의 메일주소
@@ -69,7 +69,7 @@ public class GoogleMail {
     	msg.addRecipient(Message.RecipientType.TO, toAddr);
     	        
     	// 메시지 본문의 내용과 형식, 캐릭터 셋 설정
-    	msg.setContent("<div style='font-size:14pt; color='orange''>"+emailContents+"</div>", "text/html;charset=UTF-8");
+    	msg.setContent("<div style='font-size:14pt;'>"+emailContents+"</div>", "text/html;charset=UTF-8");
     	        
     	// 메일 발송하기
     	Transport.send(msg);

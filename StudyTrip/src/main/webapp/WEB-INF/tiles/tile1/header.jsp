@@ -67,7 +67,7 @@ input[type=text]:focus {
 <body>
 	<div class="topnav">
 	  <a class="active" href="<%=ctxPath%>/main.st">스터디서치</a>
-	  <a href="#">스터디찾기</a>
+	  <a href="<%=ctxPath%>/search.st">스터디찾기</a>
 	  <a href="<%=ctxPath%>/levelteststart.st">추천받기</a>
 	  <a href="#">스터디후기</a>
 	  <a href="<%=ctxPath%>/thema.st">테마스터디</a>
@@ -88,7 +88,7 @@ input[type=text]:focus {
 		  <a href="<%=ctxPath%>/logout.st">로그아웃 </a>
 	  </c:if>
 	 <!--테스트  -->
-	</div>
+	</div> 
 	</div>
 
 </body>

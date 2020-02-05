@@ -139,7 +139,10 @@ table td{
 			</tr>
 			<tr>
 				<th>글암호</th>
-				<td><input type="password" name="pw" id="pw" class="short" /></td>
+				<td>
+					<input type="password" name="pw" id="pw" class="short" />
+					<input type="hidden"   name="seq" value="${boardvo.seq}" />
+				</td>
 			</tr>
 		</table>
 		
@@ -150,8 +153,3 @@ table td{
 		
 	</form>
 </div>
-
-
-
-
-
