@@ -88,7 +88,7 @@ input[type=text]:focus {
 		  <a href="<%=ctxPath%>/logout.st">로그아웃 </a>
 	  </c:if>
 	 <!--테스트  -->
-	</div>
+	</div> 
 	</div>
 
 </body>
